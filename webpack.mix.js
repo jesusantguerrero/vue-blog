@@ -14,8 +14,8 @@ let mix = require('laravel-mix');
 mix.js('src/main.js', 'public/')
     .sass('src/assets/app.sass', 'public/assets/')
     .setPublicPath('public')
-    .extract(['vue', 'vue-router', 'bootstrap']);
-    //.browserSync('my-site.test');
+		.extract(['vue', 'vue-router', 'bootstrap']);
+	// .browserSync('localhost:3000/');
 
 // Full API
 // mix.js(src, output);

@@ -2,8 +2,9 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home';
 import Login from './views/Login';
-import Registration from './views/Registration';
 import MyPosts from './views/MyPosts';
+import Registration from './views/Registration';
+import Post from './views/Post';
 
 Vue.use(Router)
 
@@ -28,6 +29,12 @@ export default new Router({
 					path: '/my-posts',
 					name: 'my-posts',
 					component: MyPosts
+				},
+
+				{
+					path: '/post/:id',
+					name: 'post',
+					component: Post
 				},
     ]
 

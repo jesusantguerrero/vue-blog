@@ -49,9 +49,7 @@
 					],
 					likes: [],
 					created: new Date(),
-					updated: new Date(),
-					deleted: false,
-					allowComments: true
+					updated: new Date()
 				},
 			}
 		}

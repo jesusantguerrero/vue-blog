@@ -3,8 +3,12 @@ import App from './App.vue';
 import router from './router';
 import jquery from 'jquery';
 
+window.$ = jquery;
+
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import VueFroala from './froala';
+Vue.use(VueFroala);
 
 export default new Vue({
     router,
