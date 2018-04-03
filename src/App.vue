@@ -1,10 +1,30 @@
 <template>
   <div>
+      <app-header appTitle="Vue Blog" :routes="routes"></app-header>
       <h1> Hello World</h1>
-      <router-link to="/"> Home </router-link>
-      <router-link to="/login"> Login </router-link>
-      <router-link to="/registration"> Registration </router-link>
-
-      <router-view></router-view>
+      <div class="container">
+        <router-view></router-view>
+      </div>
   </div>
 </template>
+
+<script>
+  import AppHeader from './components/AppHeader';
+
+  export default {
+    components: {
+      AppHeader
+    },
+    data() {
+      return {
+        routes: [
+          {name: 'Home', href: '/:page?'},
+          {name: 'Login', href: '/login'},
+          {name: 'Registration', href: '/registration'},
+          {name: 'My Posts', href: '/my-posts'},
+        ]
+      }
+    }
+  };
+</script>
+

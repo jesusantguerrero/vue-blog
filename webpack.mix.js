@@ -15,6 +15,7 @@ mix.js('src/main.js', 'public/')
     .sass('src/assets/app.sass', 'public/assets/')
     .setPublicPath('public')
     .extract(['vue', 'vue-router', 'bootstrap']);
+    //.browserSync('my-site.test');
 
 // Full API
 // mix.js(src, output);
@@ -28,7 +29,6 @@ mix.js('src/main.js', 'public/')
 // mix.less(src, output);
 // mix.stylus(src, output);
 // mix.postCss(src, output, [require('postcss-some-plugin')()]);
-// mix.browserSync('my-site.test');
 // mix.combine(files, destination);
 // mix.babel(files, destination); <-- Identical to mix.combine(), but also includes Babel compilation.
 // mix.copy(from, to);
