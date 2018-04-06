@@ -18,8 +18,7 @@
 			<h2> Comments </h2>
 				<p> Post a new comment </p>
 				<comment-form></comment-form>
-				<comment-item :comment="comment"></comment-item>
-				<comment-item :key="i" v-for="(comment, i) of comments" :comment="comment"></comment-item>
+				<comment-item :key="i" v-for="(comment, i) of comments" :comment="comment" model="comment.content" @update-comment="updateComment"></comment-item>
 		</div>
   </div>
 
@@ -37,6 +36,7 @@
 		data() {
 			return {
 				comments: [{
+					id: 1,
 					author: {
 						username: 'freesgen',
 						alias: 'Jesus Guerrero',
@@ -47,6 +47,7 @@
 					editMode: false 
 				},
 				{
+					id: 2,
 					author: {
 						username: 'freesgen',
 						alias: 'Jesus Guerrero',
@@ -74,6 +75,14 @@
 					created: new Date(),
 					updated: new Date()
 				},
+			}
+		},
+
+		methods: {
+			updateComment([content, id]) {
+				const index = this.comments.findIndex((item) => item.id == id );
+				console.log(index);
+				this.comments[index].content = content;
 			}
 		}
 	}

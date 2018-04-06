@@ -4,12 +4,11 @@
 			<div class="media-body">
 				<h5 class="mt-0"> <router-link :to="authorLink"> {{ comment.author.alias }} </router-link> </h5>
 				<div v-if="!comment.editMode" class="commet-content" v-html="comment.content"></div>
-				<comment-form v-else :model="comment.content"></comment-form>
+				<comment-form v-else :model="comment.content" :id="comment.id" btnSaveText="Update" @saved="updateComment" @canceled="cancelComment"></comment-form>
 				<br>
 				<p class="media-footer text-muted">
 						Posted on 
-            <button @click="toggleEditMode"> {{ btnEditText }} </button>
-            <button v-if="comment.editMode" @click="toggleEditMode"> Cancel </button>
+            <button v-if="!comment.editMode" @click="toggleEditMode"> {{ btnEditText }} </button>
             <button> Delete </button>
             <span> Likes:  {{ comment.likes.length }} </span>
         </p>
@@ -42,6 +41,15 @@
 				} else {
 					this.comment.editMode = false;
 				}
+			},
+
+			updateComment(...args) {
+				this.$emit('update-comment', args);
+				this.comment.editMode = false;
+			},
+
+			cancelComment() {
+				this.toggleEditMode();
 			}
 		}
 	}

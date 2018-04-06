@@ -1966,7 +1966,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_CommentItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_CommentItem__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_CommentForm__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_CommentForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_CommentForm__);
-//
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 //
 //
 //
@@ -2005,6 +2006,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data: function data() {
 		return {
 			comments: [{
+				id: 1,
 				author: {
 					username: 'freesgen',
 					alias: 'Jesus Guerrero',
@@ -2014,6 +2016,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				likes: ['jesus'],
 				editMode: false
 			}, {
+				id: 2,
 				author: {
 					username: 'freesgen',
 					alias: 'Jesus Guerrero',
@@ -2039,6 +2042,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				updated: new Date()
 			}
 		};
+	},
+
+
+	methods: {
+		updateComment: function updateComment(_ref) {
+			var _ref2 = _slicedToArray(_ref, 2),
+			    content = _ref2[0],
+			    id = _ref2[1];
+
+			var index = this.comments.findIndex(function (item) {
+				return item.id == id;
+			});
+			console.log(index);
+			this.comments[index].content = content;
+		}
 	}
 });
 
@@ -2115,7 +2133,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -2140,6 +2157,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			} else {
 				this.comment.editMode = false;
 			}
+		},
+		updateComment: function updateComment() {
+			for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+				args[_key] = arguments[_key];
+			}
+
+			this.$emit('update-comment', args);
+			this.comment.editMode = false;
+		},
+		cancelComment: function cancelComment() {
+			this.toggleEditMode();
 		}
 	}
 });
@@ -2152,6 +2180,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_froala_wysiwyg__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_froala_wysiwyg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_froala_wysiwyg__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
 //
 //
 //
@@ -2162,18 +2194,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['model'],
-  data: function data() {
-    return {
-      config: {
-        events: {
-          'froalaEditor.initialized': function froalaEditorInitialized() {
-            console.log('initialized');
-          }
-        }
-      }
-    };
-  }
+	props: ['model', 'btnSaveText', 'id'],
+	data: function data() {
+		return {
+			value: this.model,
+			config: {
+				events: {
+					'froalaEditor.initialized': function froalaEditorInitialized() {}
+				}
+			}
+		};
+	},
+
+	methods: _defineProperty({
+		save: function save() {
+			this.$emit('saved', this.value, this.id);
+		}
+	}, 'save', function save() {
+		this.$emit('canceled');
+	})
 });
 
 /***/ }),
@@ -2533,15 +2572,23 @@ var render = function() {
     { attrs: { id: "app" } },
     [
       _c("froala", {
-        attrs: { tag: "textarea", config: _vm.config },
+        attrs: { tag: "textarea", config: _vm.config, value: _vm.model },
         model: {
-          value: _vm.model,
+          value: _vm.value,
           callback: function($$v) {
-            _vm.model = $$v
+            _vm.value = $$v
           },
-          expression: "model"
+          expression: "value"
         }
-      })
+      }),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.save } }, [
+        _vm._v(" " + _vm._s(_vm.btnSaveText || "Save") + " ")
+      ]),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.cancel } }, [
+        _vm._v(" " + _vm._s(_vm.btnCancelText || "Cancel") + " ")
+      ])
     ],
     1
   )
@@ -2595,19 +2642,22 @@ var render = function() {
                 staticClass: "commet-content",
                 domProps: { innerHTML: _vm._s(_vm.comment.content) }
               })
-            : _c("comment-form", { attrs: { model: _vm.comment.content } }),
+            : _c("comment-form", {
+                attrs: {
+                  model: _vm.comment.content,
+                  id: _vm.comment.id,
+                  btnSaveText: "Update"
+                },
+                on: { saved: _vm.updateComment, canceled: _vm.cancelComment }
+              }),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
           _c("p", { staticClass: "media-footer text-muted" }, [
             _vm._v("\n\t\t\t\t\t\tPosted on \n            "),
-            _c("button", { on: { click: _vm.toggleEditMode } }, [
-              _vm._v(" " + _vm._s(_vm.btnEditText) + " ")
-            ]),
-            _vm._v(" "),
-            _vm.comment.editMode
+            !_vm.comment.editMode
               ? _c("button", { on: { click: _vm.toggleEditMode } }, [
-                  _vm._v(" Cancel ")
+                  _vm._v(" " + _vm._s(_vm.btnEditText) + " ")
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -2684,10 +2734,12 @@ var render = function() {
         _vm._v(" "),
         _c("comment-form"),
         _vm._v(" "),
-        _c("comment-item", { attrs: { comment: _vm.comment } }),
-        _vm._v(" "),
         _vm._l(_vm.comments, function(comment, i) {
-          return _c("comment-item", { key: i, attrs: { comment: comment } })
+          return _c("comment-item", {
+            key: i,
+            attrs: { comment: comment, model: "comment.content" },
+            on: { "update-comment": _vm.updateComment }
+          })
         })
       ],
       2
