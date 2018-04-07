@@ -18,7 +18,7 @@
     data() {
       return {
         routes: [
-          {name: 'Home', href: '/:page?'},
+          {name: 'Home', href: '/'},
           {name: 'Login', href: '/login'},
           {name: 'Registration', href: '/registration'},
           {name: 'My Posts', href: '/my-posts'},

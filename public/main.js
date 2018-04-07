@@ -929,7 +929,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      routes: [{ name: 'Home', href: '/:page?' }, { name: 'Login', href: '/login' }, { name: 'Registration', href: '/registration' }, { name: 'My Posts', href: '/my-posts' }]
+      routes: [{ name: 'Home', href: '/' }, { name: 'Login', href: '/login' }, { name: 'Registration', href: '/registration' }, { name: 'My Posts', href: '/my-posts' }]
     };
   }
 });
@@ -1025,46 +1025,53 @@ var render = function() {
     "nav",
     { staticClass: "navbar navbar-expand-lg navbar-dark bg-dark fixed-top" },
     [
-      _c("div", { staticClass: "container" }, [
-        _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-          _vm._v(" " + _vm._s(_vm.appTitle) + " ")
-        ]),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "collapse navbar-collapse",
-            attrs: { id: "navbarResponsive" }
-          },
-          [
-            _c(
-              "ul",
-              { staticClass: "navbar-nav ml-auto" },
-              _vm._l(_vm.routes, function(route, i) {
-                return _c(
-                  "li",
-                  { key: i, staticClass: "nav-item active" },
-                  [
-                    _c(
-                      "router-link",
-                      { staticClass: "nav-link", attrs: { to: route.href } },
-                      [
-                        _vm._v(" " + _vm._s(route.name) + "\n             "),
-                        _c("span", { staticClass: "sr-only" }, [
-                          _vm._v("(current)")
-                        ])
-                      ]
-                    )
-                  ],
-                  1
-                )
-              })
-            )
-          ]
-        )
-      ])
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          _c(
+            "router-link",
+            { staticClass: "navbar-brand", attrs: { to: "/" } },
+            [_vm._v(" " + _vm._s(_vm.appTitle) + " ")]
+          ),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "collapse navbar-collapse",
+              attrs: { id: "navbarResponsive" }
+            },
+            [
+              _c(
+                "ul",
+                { staticClass: "navbar-nav ml-auto" },
+                _vm._l(_vm.routes, function(route, i) {
+                  return _c(
+                    "li",
+                    { key: i, staticClass: "nav-item active" },
+                    [
+                      _c(
+                        "router-link",
+                        { staticClass: "nav-link", attrs: { to: route.href } },
+                        [
+                          _vm._v(" " + _vm._s(route.name) + "\n             "),
+                          _c("span", { staticClass: "sr-only" }, [
+                            _vm._v("(current)")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                })
+              )
+            ]
+          )
+        ],
+        1
+      )
     ]
   )
 }
@@ -1265,6 +1272,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -1285,7 +1295,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				title: 'Post Title',
 				content: 'example text',
 				publishDate: new Date(),
+				lastUpdate: new Date(),
 				author: {
+					picture: '',
 					username: 'freesgen',
 					alias: 'Jesus Guerrero'
 				},
@@ -1329,6 +1341,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['post'],
@@ -1338,9 +1351,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		};
 	},
 
+
+	filters: {
+		summary: function summary(text) {
+			return text.slice(0, 200);
+		}
+	},
+
 	computed: {
 		postLink: function postLink() {
 			return '/post/' + this.post.id;
+		},
+		authorLink: function authorLink() {
+			return '/author/' + this.post.author.username;
 		}
 	}
 });
@@ -1379,7 +1402,7 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("p", { staticClass: "card-text" }, [
-          _vm._v(" " + _vm._s(_vm.post.content) + " ")
+          _vm._v(" " + _vm._s(_vm._f("summary")(_vm.post.content)) + " ")
         ]),
         _vm._v(" "),
         _c(
@@ -1405,7 +1428,14 @@ var render = function() {
           { attrs: { to: "/author/" + _vm.post.author.username } },
           [_vm._v(" " + _vm._s(_vm.post.author.alias) + " ")]
         ),
-        _vm._v(" |\n            "),
+        _vm._v(" "),
+        _c("router-link", { attrs: { to: _vm.authorLink } }, [
+          _c("img", {
+            staticClass: "d-flex mr-3 rounded-circle",
+            attrs: { src: "http://placehold.it/50x50", alt: "" }
+          })
+        ]),
+        _vm._v(" "),
         _c("router-link", { attrs: { to: _vm.postLink } }, [
           _vm._v(" Comments:  " + _vm._s(_vm.post.comments.length) + " ")
         ]),
@@ -1570,9 +1600,9 @@ var render = function() {
       [
         _vm._m(0),
         _vm._v(" "),
-        _c("post-card", { attrs: { post: _vm.post } }),
+        _c("post-card", { ref: _vm.home, attrs: { post: _vm.post } }),
         _vm._v(" "),
-        _c("post-card", { attrs: { post: _vm.post } }),
+        _c("post-card", { ref: _vm.home, attrs: { post: _vm.post } }),
         _vm._v(" "),
         _c("app-pagination")
       ],
@@ -1582,7 +1612,20 @@ var render = function() {
     _c(
       "div",
       { staticClass: "col-md-4" },
-      [_c("app-wigget", { attrs: { title: "Search" } }, [_c("search")], 1)],
+      [
+        _c("app-wigget", { attrs: { title: "Search" } }, [_c("search")], 1),
+        _vm._v(" "),
+        _c(
+          "app-wigget",
+          { attrs: { title: "Nuevo Post" } },
+          [
+            _c("router-link", { attrs: { to: "/new-post" } }, [
+              _vm._v(" Nuevo Post ")
+            ])
+          ],
+          1
+        )
+      ],
       1
     )
   ])
@@ -1994,6 +2037,8 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
+//
+//
 
 
 
@@ -2003,8 +2048,24 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 		CommentItem: __WEBPACK_IMPORTED_MODULE_0__components_CommentItem___default.a,
 		CommentForm: __WEBPACK_IMPORTED_MODULE_1__components_CommentForm___default.a
 	},
+
+	computed: {
+		commentList: function commentList() {
+			if (this.commentOrder == 'asc') {
+				return this.comments.sort(function (a, b) {
+					return a.id > b.id;
+				});
+			} else {
+				return this.comments.sort(function (a, b) {
+					return a.id < b.id;
+				});
+			}
+		}
+	},
+
 	data: function data() {
 		return {
+			commentOrder: 'desc',
 			comments: [{
 				id: 1,
 				author: {
@@ -2014,7 +2075,8 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 				},
 				content: 'this is a example content text',
 				likes: ['jesus'],
-				editMode: false
+				editMode: false,
+				created: new Date()
 			}, {
 				id: 2,
 				author: {
@@ -2024,7 +2086,8 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 				},
 				content: 'this is a example content text 2',
 				likes: [],
-				editMode: false
+				editMode: false,
+				created: new Date()
 			}],
 
 			post: {
@@ -2039,7 +2102,8 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 				comments: [],
 				likes: [],
 				created: new Date(),
-				updated: new Date()
+				updated: new Date(),
+				canComment: true
 			}
 		};
 	},
@@ -2056,6 +2120,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 			});
 			console.log(index);
 			this.comments[index].content = content;
+		},
+		changeCommentOrder: function changeCommentOrder() {
+			this.commentOrder = this.commentOrder == 'asc' ? 'desc' : 'asc';
 		}
 	}
 });
@@ -2180,8 +2247,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_froala_wysiwyg__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_froala_wysiwyg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_froala_wysiwyg__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -2194,7 +2259,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['model', 'btnSaveText', 'id'],
+	props: ['model', 'btnSaveText', 'btnCancelText', 'id'],
 	data: function data() {
 		return {
 			value: this.model,
@@ -2206,13 +2271,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 		};
 	},
 
-	methods: _defineProperty({
+	methods: {
 		save: function save() {
 			this.$emit('saved', this.value, this.id);
+		},
+		cancel: function cancel() {
+			this.$emit('canceled');
 		}
-	}, 'save', function save() {
-		this.$emit('canceled');
-	})
+	}
 });
 
 /***/ }),
@@ -2732,9 +2798,20 @@ var render = function() {
         _vm._v(" "),
         _c("p", [_vm._v(" Post a new comment ")]),
         _vm._v(" "),
-        _c("comment-form"),
+        _vm.post.canComment ? _c("comment-form") : _vm._e(),
         _vm._v(" "),
-        _vm._l(_vm.comments, function(comment, i) {
+        _c("br"),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            " Comments (current Order: " + _vm._s(_vm.commentOrder) + ") "
+          ),
+          _c("button", { on: { click: _vm.changeCommentOrder } }, [
+            _vm._v(" Change Order ")
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._l(_vm.commentList, function(comment, i) {
           return _c("comment-item", {
             key: i,
             attrs: { comment: comment, model: "comment.content" },
