@@ -10,7 +10,7 @@
 import VueFroala from 'vue-froala-wysiwyg';
 
 export default {
-	props: ['model', 'btnSaveText', 'id'],
+	props: ['model', 'btnSaveText', 'btnCancelText', 'id'],
   data () {
     return {
 			value: this.model,
@@ -28,7 +28,7 @@ export default {
 			this.$emit('saved', this.value, this.id)
 		},
 
-		save() {
+		cancel() {
 			this.$emit('canceled')
 		}
 	}

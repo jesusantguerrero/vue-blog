@@ -17,8 +17,10 @@
 			<hr>
 			<h2> Comments </h2>
 				<p> Post a new comment </p>
-				<comment-form></comment-form>
-				<comment-item :key="i" v-for="(comment, i) of comments" :comment="comment" model="comment.content" @update-comment="updateComment"></comment-item>
+				<comment-form v-if="post.canComment"></comment-form>
+				<br>
+				<p> Comments (current Order: {{ commentOrder }}) <button @click="changeCommentOrder"> Change Order </button></p>
+				<comment-item :key="i" v-for="(comment, i) of commentList" :comment="comment" model="comment.content" @update-comment="updateComment"></comment-item>
 		</div>
   </div>
 
@@ -33,30 +35,45 @@
 			CommentItem,
 			CommentForm
 		},
+
+		computed: {
+			commentList() {
+				if (this.commentOrder == 'asc') {
+					return this.comments.sort(( a, b) => a.id > b.id)
+				} else {
+					return this.comments.sort(( a, b) => a.id < b.id)					
+				}
+			}
+		},
+
 		data() {
 			return {
-				comments: [{
-					id: 1,
-					author: {
-						username: 'freesgen',
-						alias: 'Jesus Guerrero',
-						avatar: ''
+				commentOrder: 'desc',
+				comments: [
+					{
+						id: 1,
+						author: {
+							username: 'freesgen',
+							alias: 'Jesus Guerrero',
+							avatar: ''
+						},
+						content: 'this is a example content text',
+						likes: ['jesus'],
+						editMode: false,
+						created: new Date()
 					},
-					content: 'this is a example content text',
-					likes: ['jesus'],
-					editMode: false 
-				},
-				{
-					id: 2,
-					author: {
-						username: 'freesgen',
-						alias: 'Jesus Guerrero',
-						avatar: ''
-					},
-					content: 'this is a example content text 2',
-					likes: [],
-					editMode: false 
-				}
+					{
+						id: 2,
+						author: {
+							username: 'freesgen',
+							alias: 'Jesus Guerrero',
+							avatar: ''
+						},
+						content: 'this is a example content text 2',
+						likes: [],
+						editMode: false, 
+						created: new Date()
+					}
 				],
 				
 				post: {
@@ -73,7 +90,8 @@
 					],
 					likes: [],
 					created: new Date(),
-					updated: new Date()
+					updated: new Date(),
+					canComment: true
 				},
 			}
 		},
@@ -83,6 +101,10 @@
 				const index = this.comments.findIndex((item) => item.id == id );
 				console.log(index);
 				this.comments[index].content = content;
+			},
+
+			changeCommentOrder() {
+				this.commentOrder = this.commentOrder == 'asc' ? 'desc' : 'asc';
 			}
 		}
 	}

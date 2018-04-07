@@ -7,13 +7,14 @@
 								{{ post.title }} 
 							</router-link>
 						</h2>
-            <p class="card-text"> {{ post.content }} </p>
+            <p class="card-text"> {{ post.content | summary }} </p>
             <router-link :to="postLink" class="btn btn-primary">Read More &rarr;</router-link>
         </div>
         <div class="card-footer text-muted">
 						Posted on 
             <router-link :to="postLink">{{ post.publishDate }}</router-link> by
-            <router-link :to="`/author/${post.author.username}`"> {{ post.author.alias }} </router-link> |
+            <router-link :to="`/author/${post.author.username}`"> {{ post.author.alias }} </router-link> 
+						<router-link :to="authorLink"> <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt=""> </router-link>
             <router-link :to="postLink"> Comments:  {{ post.comments.length }} </router-link> |
             <span> Likes:  {{ post.comments.length }} </span>
 						
@@ -29,10 +30,22 @@ export default {
 			message: ``
 		}
 	},
+
+	filters: {
+		summary(text) {
+			return text.slice(0, 200);
+		}
+	},
+
 	computed: {
 		postLink() {
 			return `/post/${this.post.id}`;
-		}
+		},
+
+		authorLink() {
+			return `/author/${this.post.author.username}`;
+		},
+
 	}
 }
 </script>

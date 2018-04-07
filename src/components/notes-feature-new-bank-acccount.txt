@@ -1,0 +1,8 @@
+validar la tarjeta el tamaño --
+validar campos con jquery validator --
+poner asteriscos en campos requeridos --
+recargar cuando guarde --
+mandar encargado de caja como banco --
+titulo del modal : crear nueva cuenta bancaria --
+validar campos numericos para que no acepten decimales ni negativos --
+atributo for para los labels --

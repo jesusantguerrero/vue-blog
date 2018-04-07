@@ -5,14 +5,17 @@
                 <small> Subheading</small>
             </h1>
 
-					<post-card :post="post"></post-card>
-					<post-card :post="post"></post-card>
+					<post-card :post="post" :ref="home"></post-card>
+					<post-card :post="post" :ref="home"></post-card>
 					<app-pagination></app-pagination>
         </div>
 
 				<div class="col-md-4">
 						<app-wigget title="Search">
 							<search></search>
+						</app-wigget>
+						<app-wigget title="Nuevo Post">
+							<router-link to='/new-post'> Nuevo Post </router-link>
 						</app-wigget>
 				</div>
 
@@ -40,7 +43,9 @@
 					title: 'Post Title',
 					content: 'example text',
 					publishDate: new Date(),
+					lastUpdate: new Date(),
 					author: {
+						picture: '',
 						username: 'freesgen',
 						alias: 'Jesus Guerrero',
 					},
