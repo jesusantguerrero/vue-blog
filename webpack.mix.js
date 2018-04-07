@@ -11,7 +11,7 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('src/main.js', 'public/')
+mix.js('src/main.js', 'public/assets/bundle/')
     .sass('src/assets/app.sass', 'public/assets/')
     .setPublicPath('public')
 		.extract(['vue', 'vue-router', 'bootstrap']);

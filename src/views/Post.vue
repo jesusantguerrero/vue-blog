@@ -17,7 +17,7 @@
 			<hr>
 			<h2> Comments </h2>
 				<p> Post a new comment </p>
-				<comment-form v-if="post.canComment"></comment-form>
+				<comment-form v-if="post.canComment" btnSaveText="Create"></comment-form>
 				<br>
 				<p> Comments (current Order: {{ commentOrder }}) <button @click="changeCommentOrder"> Change Order </button></p>
 				<comment-item :key="i" v-for="(comment, i) of commentList" :comment="comment" model="comment.content" @update-comment="updateComment"></comment-item>
