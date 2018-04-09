@@ -5,8 +5,8 @@
                 <small> Subheading</small>
             </h1>
 
-					<post-card :post="post" :ref="home"></post-card>
-					<post-card :post="post" :ref="home"></post-card>
+					<post-card :post="post" ref="home"></post-card>
+					<post-card :post="post" ref="home"></post-card>
 					<app-pagination></app-pagination>
         </div>
 

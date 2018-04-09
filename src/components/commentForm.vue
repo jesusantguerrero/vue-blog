@@ -1,28 +1,44 @@
 <template>
-  <div id="app">
-    <froala :tag="'textarea'" :config="config" v-model="value" :value="model"></froala>
-		<button @click="save"> {{ btnSaveText || 'Save' }} </button>
-		<button @click="cancel"> {{ btnCancelText || 'Cancel' }} </button>
+  <div>
+    <froala :tag="'textarea'" :config="config" v-model="value" :value="model" contenteditable="true"></froala>
+		<div class="d-flex flex-row justify-content-end">
+			<button class="btn btn-danger" @click="cancel"> {{ btnCancelText || 'Cancel' }} </button>
+			<button @click="save" class="btn btn-success"> {{ btnSaveText || 'Save' }} </button>
+		</div>
   </div>
 </template>
 
 <script>
 import VueFroala from 'vue-froala-wysiwyg';
+const atJsConfig = {}
 
 export default {
 	props: ['model', 'btnSaveText', 'btnCancelText', 'id'],
   data () {
     return {
 			value: this.model,
+			atJsConfig,
       config: {
         events: {
-          'froalaEditor.initialized': function () {
-  
+          'froalaEditor.initialized': (e, editor) => {
+						this.generateAtJsConfig();
+						editor.$el.atwho(this.atJsConfig)
+
+						editor.events.on('keydown', (e) => {
+							if (e.which == $.FroalaEditor.KEYCODE.ENTER && editor.$el.atwho('isSelecting')) {
+								return false;
+							}
+						}, true)
           }
         }
       },
     }
 	},
+
+	mounted() {
+		this.generateAtJsConfig()
+	},
+
 	methods: {
 		save() {
 			this.$emit('saved', this.value, this.id)
@@ -30,6 +46,27 @@ export default {
 
 		cancel() {
 			this.$emit('canceled')
+		},
+
+		generateAtJsConfig() {
+			const datasource = ["Jacob", "Isabella", "Ethan", "Emma", "Michael", "Olivia" ];
+
+			// Build data to be used in At.JS config.
+    	const names = datasource.map((value, i) => {
+      	return {
+        	'id': i, 'name': value, 'email': value + "@email.com"
+      	};
+			});
+			
+ 
+    	// Define config for At.JS.
+    	this.atJsConfig = {
+      	at: "@",
+				data: names,
+				editableAtwhoQueryAttrs: {"data-fr-verified": true},
+      	displayTpl: '<li>${name} <small>${email}</small></li>',
+      	limit: 200
+    	}
 		}
 	}
 }
