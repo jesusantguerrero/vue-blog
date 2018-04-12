@@ -1,7 +1,6 @@
 <template>
   <div>
       <app-header appTitle="Vue Blog" :routes="routes"></app-header>
-      <h1> Hello World</h1>
       <div class="container">
         <router-view></router-view>
       </div>
@@ -28,9 +27,12 @@
   };
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 	.btn
 		margin: 5px
+
+	.container
+		padding-top: 50px
 </style>
 
 

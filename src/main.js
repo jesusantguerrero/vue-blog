@@ -3,6 +3,7 @@ import App from './App.vue';
 import router from './router';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import VeeValidate from 'vee-validate';
 import mixin from './utils/mixin';
 
 import 'bootstrap';
@@ -13,7 +14,7 @@ axios.defaults.baseURL = 'http://localhost:3600';
 
 Vue.use(VueFroala);
 Vue.use(VueAxios, axios);
-
+Vue.use(VeeValidate);
 Vue.mixin(mixin)
 
 export default new Vue({

@@ -1,3 +1,46 @@
 <template>
-    <h1> Hello i am the Login page </h1>
+    <div class="text-center login-box">
+			<form class="form-signin">
+				<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+				
+				<div class="form-group">
+					<label class="sr-only" for="email">Email</label>
+					<p :class="{ 'control': true }">
+							<input v-validate="'required|email'" class="form-control" :class="{'input': true, 'is-danger': errors.has('email') }" name="email" type="text" placeholder="Email">
+							<span v-show="errors.has('email')" class="help text-danger">{{ errors.first('email') }}</span>
+					</p>
+				</div>
+
+				<div class="form-group">
+					<label for="password" class="sr-only">Password</label>
+					<p :class="{ 'control': true }">
+							<input  type="password" id="password" v-validate="'required'" class="form-control" :class="{'input': true, 'is-danger': errors.has('password') }" name="password" placeholder="password">
+							<span v-show="errors.has('password')" class="help text-danger">{{ errors.first('password') }}</span>
+					</p>
+				</div>
+				
+				<div class="checkbox mb-3">
+					<label>
+						<input type="checkbox" value="remember-me"> Remember me
+					</label>
+				</div>
+
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+				<p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+    	</form>
+		</div>
 </template>
+
+<style lang="sass" scoped>
+	.login-box
+		padding-top: 70px
+		height: 60vh
+		width: 100%
+		display: flex
+		align-items: center
+		justify-content: center
+
+		form
+			width: 50%
+</style>
+
