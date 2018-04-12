@@ -28,3 +28,9 @@
   };
 </script>
 
+<style lang="sass">
+	.btn
+		margin: 5px
+</style>
+
+

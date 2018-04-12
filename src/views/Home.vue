@@ -5,8 +5,7 @@
                 <small> Subheading</small>
             </h1>
 
-					<post-card :post="post" ref="home"></post-card>
-					<post-card :post="post" ref="home"></post-card>
+					<post-card :key="i" v-for="(post, i) in posts" :post="post" ref="home"></post-card>
 					<app-pagination></app-pagination>
         </div>
 
@@ -28,6 +27,7 @@
 	import AppWigget from '../components/AppWigget';
 	import Search from '../components/Search';
 	import AppPagination from '../components/AppPagination';
+	import axios from 'axios';
 
 	export default {
 		components: {
@@ -36,28 +36,20 @@
 			PostCard,
 			Search
 		},
+		mounted() {
+			this.getPosts();
+		},
 		data() {
 			return {
-				post: {
-					id: 1,
-					title: 'Post Title',
-					content: 'example text',
-					publishDate: new Date(),
-					lastUpdate: new Date(),
-					author: {
-						picture: '',
-						username: 'freesgen',
-						alias: 'Jesus Guerrero',
-					},
-					comments: [
-
-					],
-					likes: [],
-					created: new Date(),
-					updated: new Date(),
-					deleted: false,
-					allowComments: true
-				},
+				posts: [],
+			}
+		},
+		methods: {
+			getPosts() {
+				this.$http.get('/posts')
+				.then((res) => {
+					this.posts = res.data
+				})
 			}
 		}
 	}
