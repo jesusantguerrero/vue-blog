@@ -1,6 +1,6 @@
 <template>
     <div class="card mb-4">
-        <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+        <img class="card-img-top" :src="this.getImageLink()" alt="Card image cap">
         <div class="card-body">
             <h2 class="card-title"> 
 							<router-link :to="postLink">
@@ -24,7 +24,14 @@
 
 <script>
 export default {
-	props: ['post'],
+	props: {
+		post:{
+			type: Object,
+			default: {
+				content: ''
+			}
+		}
+	},
 	data() {
 		return {
 			message: ``
@@ -33,7 +40,11 @@ export default {
 
 	filters: {
 		summary(text) {
-			return text.slice(0, 200);
+			if (text) {
+				const plainText = (text[0] == "<") ? $(text).text() : text;
+				return plainText.slice(0, 200);
+			} 
+			return text;
 		}
 	},
 
@@ -42,10 +53,28 @@ export default {
 			return `/post/${this.post.id}`;
 		},
 
+		isHTML() {
+			return (this.post.content && this.post.content[0] == "<")
+		},
+
 		authorLink() {
 			return `/author/${this.post.author.username}`;
 		},
 
+	},
+
+	methods: {
+		getImageLink() {
+			const { content } = this.post;
+			if (this.isHTML) {
+				const images = $(content).find("img");
+				if (images.length > 0) {
+					return images[0].src;
+				} 
+			}
+
+			return 'http://placehold.it/750x300';
+		}
 	}
 }
 </script>

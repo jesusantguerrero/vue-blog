@@ -5,16 +5,19 @@ import Login from './views/Login';
 import MyPosts from './views/MyPosts';
 import Registration from './views/Registration';
 import Post from './views/Post';
+import PostCreate from './views/PostCreate';
 
 Vue.use(Router)
 
 export default new Router({
     routes: [
+				// generals
         {
             path: '/',
             name: 'home',
             component: Home
-        },
+				},
+				// Auth
         {
             path: '/login',
             name: 'login',
@@ -25,16 +28,21 @@ export default new Router({
             name: 'registration',
             component: Registration
 				},
+				// Posts
 				{
 					path: '/my-posts',
 					name: 'my-posts',
 					component: MyPosts
 				},
-
 				{
 					path: '/post/:id',
 					name: 'post',
 					component: Post
+				},
+				{
+					path: '/new-post',
+					name: 'new-post',
+					component: PostCreate
 				},
     ]
 

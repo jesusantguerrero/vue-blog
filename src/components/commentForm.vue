@@ -1,10 +1,11 @@
 <template>
   <div>
     <froala :tag="'textarea'" :config="config" v-model="value" :value="model" contenteditable="true"></froala>
-		<div class="d-flex flex-row justify-content-end">
-			<button class="btn btn-danger" @click="cancel"> {{ btnCancelText || 'Cancel' }} </button>
-			<button @click="save" class="btn btn-success"> {{ btnSaveText || 'Save' }} </button>
-		</div>
+			<slot></slot>
+			<div class="d-flex flex-row justify-content-end">
+					<button class="btn btn-danger" @click="cancel"> {{ btnCancelText || 'Cancel' }} </button>
+					<button @click="save" class="btn btn-success"> {{ btnSaveText || 'Save' }} </button>
+			</div>
   </div>
 </template>
 

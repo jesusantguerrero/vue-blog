@@ -1,24 +1,8 @@
 <template>
-	<div class="row" v-if="post">
-		<div class="col-lg-8">
-
-			<h1 class="mt-4"> {{ post.title }} </h1>
-
-			<p class="lead" v-show="post"> by <a href="#"> {{ post.author.alias }} </a></p>
-			<hr>
-
-			<p> Posted on {{ post.publishDate }}</p>
-			<hr>
-
-			<div class="content" v-html="post.content"></div>
-			<hr>
-			<h2> Comments </h2>
-				<p> Post a new comment </p>
-				<comment-form v-if="post.canComment" btnSaveText="Create"></comment-form>
-				<br>
-				<p> Comments (current Order: {{ commentOrder }}) <button @click="changeCommentOrder"> Change Order </button></p>
-				<comment-item :key="i" v-for="(comment, i) of commentList" :comment="comment" model="comment.content" @update-comment="updateComment"></comment-item>
-		</div>
+	<div class="row">
+			<h2> Write a new post </h2>
+			<input type="text" value="">
+			<comment-form v-if="post.canComment" btnSaveText="Create"></comment-form>
   </div>
 
 </template>
@@ -69,6 +53,7 @@
 
 			updateComment([content, id]) {
 				const index = this.comments.findIndex((item) => item.id == id );
+				console.log(index);
 				this.comments[index].content = content;
 			},
 
