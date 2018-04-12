@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "username": "freesgen",
+      "alias": "Jesus Guerrero",
+      "picture": ""
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "Post Title",
+      "content": "example text",
+      "publishDate": "2018-04-10",
+      "author": {
+        "username": "freesgen",
+        "alias": "Jesus Guerrero",
+        "picture": ""
+      },
+      "comments": [],
+      "likes": [],
+      "created": "2018-04-10",
+      "updated": "2018-04-10",
+      "canComment": true
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "postId": 1,
+      "author": {
+        "username": "freesgen",
+        "alias": "Jesus Guerrero",
+        "avatar": ""
+      },
+      "content": "this is a example content text",
+      "likes": [
+        "jesus"
+      ],
+      "editMode": false,
+      "created": "2018-04-10"
+    }
+  ]
+}

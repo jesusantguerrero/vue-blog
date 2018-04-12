@@ -1,0 +1,140 @@
+{
+  "users": [
+    {
+      "username": "freesgen",
+      "alias": "Jesus Guerrero",
+      "picture": "",
+      "password": "",
+      "isActive": ""
+    },
+    {
+      "username": "jesus",
+      "alias": "Jesus Guerrero",
+      "picture": "",
+      "password": "",
+      "isActive": ""
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "Post Title",
+      "content": "example text",
+      "publishDate": "2018-04-10",
+      "author": {
+        "username": "freesgen",
+        "alias": "Jesus Guerrero",
+        "picture": ""
+      },
+      "comments": [],
+      "likes": [],
+      "created": "2018-04-10",
+      "updated": "2018-04-10",
+      "canComment": true
+    },
+    {
+      "id": 2,
+      "title": "Post Title",
+      "content": "example text",
+      "publishDate": "2018-04-10",
+      "author": {
+        "username": "freesgen",
+        "alias": "Jesus Guerrero",
+        "picture": ""
+      },
+      "comments": [],
+      "likes": [],
+      "created": "2018-04-10",
+      "updated": "2018-04-10",
+      "canComment": true
+    },
+    {
+      "title": "",
+      "publishDate": null,
+      "author": {
+        "username": "freesgen",
+        "alias": "Jesus Guerrero",
+        "picture": ""
+      },
+      "comments": [],
+      "likes": [],
+      "created": "2018-04-12",
+      "updated": "",
+      "canComment": true,
+      "isPublish": true,
+      "update": "2018-04-12",
+      "id": 3
+    },
+    {
+      "title": "First Post",
+      "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae fermentum urna, nec congue lacus. Maecenas vitae ante mollis, ultricies erat condimentum, mattis orci. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris placerat et lacus eu porttitor. Aliquam eget dui ut ex dignissim scelerisque. Donec sagittis elit ante, at vestibulum lacus egestas id. Etiam suscipit, felis a sollicitudin vehicula, eros sem placerat nunc, et dictum lectus dolor quis eros. Nulla at ipsum vitae ipsum euismod condimentum vel eu nulla. Etiam tempor erat vitae risus varius lacinia. In sagittis in justo ut rutrum. Nunc quis quam ex. Vestibulum eu finibus turpis.</p><p>Sed vehicula tincidunt ipsum, non placerat tortor pretium id. Proin odio massa, aliquam vel commodo sit amet, mollis eget lectus. Sed sed pharetra mauris, a aliquet justo. Nulla imperdiet ante velit, ac auctor magna viverra non. Phasellus quam mauris, aliquet at aliquet a, laoreet vel lectus. Vivamus at malesuada sem. Nulla non euismod lectus. Pellentesque a neque quis felis luctus finibus. Vestibulum ultricies ante ac erat rhoncus laoreet. Phasellus luctus venenatis nibh. Sed sed nisi id nisl hendrerit pellentesque ac id libero.</p><p>Integer dictum turpis in lorem gravida, eget euismod nisi molestie. Nullam dui dolor, tempus hendrerit iaculis a, tempus vel enim. Aenean viverra vel lacus vel pulvinar. Nunc in ipsum risus. Ut sollicitudin ultrices nisi quis dictum. Nulla non sollicitudin elit. Maecenas rhoncus lorem enim, id ultricies nunc mollis ac. Nunc nec mi vitae libero aliquet imperdiet et eget sapien. Vestibulum euismod vulputate magna, sed maximus nulla vehicula sed.</p><p>Quisque luctus sagittis sem, et convallis massa vestibulum vitae. Vivamus nisl ipsum, vehicula a pretium ac, elementum eget tortor. Proin congue sodales tellus ac dictum. Aenean molestie lorem a sagittis malesuada. Mauris elementum tortor quis rutrum maximus. Phasellus ac ex suscipit, tincidunt nibh non, laoreet ipsum. Suspendisse vehicula massa ac metus aliquam luctus in eu elit. Vivamus vulputate odio id diam condimentum pharetra eget a urna.</p><p>Curabitur tincidunt ornare urna non mattis. Duis ipsum nisl, efficitur id commodo id, malesuada eu enim. Nam venenatis euismod est, eu imperdiet nunc laoreet eget. Etiam pulvinar lacinia pretium. Vivamus posuere molestie sapien et fermentum. Maecenas sed lacus porttitor, molestie ex nec, congue mi. Quisque mattis ornare neque ac elementum. Praesent in consectetur metus, eu varius libero. Donec rutrum, lacus commodo vehicula convallis, metus odio pulvinar felis, eu imperdiet arcu metus sit amet erat. Proin urna ex, vestibulum id lacinia a, fringilla in neque. Sed ultricies rutrum leo, non ornare lectus fermentum vel. Nam euismod nisl mi, eget mollis mi auctor ut. Fusce commodo metus ut metus condimentum, in mollis velit molestie. Duis leo urna, sollicitudin in ultrices non, imperdiet sit amet lorem. Etiam vel vulputate eros, et aliquet augue. Duis porta placerat facilisis.</p>",
+      "publishDate": null,
+      "author": {
+        "username": "freesgen",
+        "alias": "Jesus Guerrero",
+        "picture": ""
+      },
+      "comments": [],
+      "likes": [],
+      "created": "2018-04-12",
+      "updated": "",
+      "canComment": true,
+      "isPublish": true,
+      "update": "2018-04-12",
+      "id": 4
+    },
+    {
+      "title": "First Post",
+      "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae fermentum urna, nec congue lacus. Maecenas vitae ante mollis, ultricies erat condimentum, mattis orci. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris placerat et lacus eu porttitor. Aliquam eget dui ut ex dignissim scelerisque. Donec sagittis elit ante, at vestibulum lacus egestas id. Etiam suscipit, felis a sollicitudin vehicula, eros sem placerat nunc, et dictum lectus dolor quis eros. Nulla at ipsum vitae ipsum euismod condimentum vel eu nulla. Etiam tempor erat vitae risus varius lacinia. In sagittis in justo ut rutrum. Nunc quis quam ex. Vestibulum eu finibus turpis.</p><p>Sed vehicula tincidunt ipsum, non placerat tortor pretium id. Proin odio massa, aliquam vel commodo sit amet, mollis eget lectus. Sed sed pharetra mauris, a aliquet justo. Nulla imperdiet ante velit, ac auctor magna viverra non. Phasellus quam mauris, aliquet at aliquet a, laoreet vel lectus. Vivamus at malesuada sem. Nulla non euismod lectus. Pellentesque a neque quis felis luctus finibus. Vestibulum ultricies ante ac erat rhoncus laoreet. Phasellus luctus venenatis nibh. Sed sed nisi id nisl hendrerit pellentesque ac id libero.</p><p>Integer dictum turpis in lorem gravida, eget euismod nisi molestie. Nullam dui dolor, tempus hendrerit iaculis a, tempus vel enim. Aenean viverra vel lacus vel pulvinar. Nunc in ipsum risus. Ut sollicitudin ultrices nisi quis dictum. Nulla non sollicitudin elit. Maecenas rhoncus lorem enim, id ultricies nunc mollis ac. Nunc nec mi vitae libero aliquet imperdiet et eget sapien. Vestibulum euismod vulputate magna, sed maximus nulla vehicula sed.</p><p>Quisque luctus sagittis sem, et convallis massa vestibulum vitae. Vivamus nisl ipsum, vehicula a pretium ac, elementum eget tortor. Proin congue sodales tellus ac dictum. Aenean molestie lorem a sagittis malesuada. Mauris elementum tortor quis rutrum maximus. Phasellus ac ex suscipit, tincidunt nibh non, laoreet ipsum. Suspendisse vehicula massa ac metus aliquam luctus in eu elit. Vivamus vulputate odio id diam condimentum pharetra eget a urna.</p><p>Curabitur tincidunt ornare urna non mattis. Duis ipsum nisl, efficitur id commodo id, malesuada eu enim. Nam venenatis euismod est, eu imperdiet nunc laoreet eget. Etiam pulvinar lacinia pretium. Vivamus posuere molestie sapien et fermentum. Maecenas sed lacus porttitor, molestie ex nec, congue mi. Quisque mattis ornare neque ac elementum. Praesent in consectetur metus, eu varius libero. Donec rutrum, lacus commodo vehicula convallis, metus odio pulvinar felis, eu imperdiet arcu metus sit amet erat. Proin urna ex, vestibulum id lacinia a, fringilla in neque. Sed ultricies rutrum leo, non ornare lectus fermentum vel. Nam euismod nisl mi, eget mollis mi auctor ut. Fusce commodo metus ut metus condimentum, in mollis velit molestie. Duis leo urna, sollicitudin in ultrices non, imperdiet sit amet lorem. Etiam vel vulputate eros, et aliquet augue. Duis porta placerat facilisis.</p>",
+      "publishDate": null,
+      "author": {
+        "username": "freesgen",
+        "alias": "Jesus Guerrero",
+        "picture": ""
+      },
+      "comments": [],
+      "likes": [],
+      "created": "2018-04-12",
+      "updated": "",
+      "canComment": true,
+      "isPublish": true,
+      "update": "2018-04-12",
+      "id": 5
+    },
+    {
+      "title": "Second Post",
+      "content": "<p><img src=\"https://i.froala.com/download/02c8996c2f00a9dadb7b6457bc8b5d4a8d17fca2.jpg?1523566352\" style=\"width: 300px;\" class=\"fr-fic fr-dib\"></p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae fermentum urna, nec congue lacus. Maecenas vitae ante mollis, ultricies erat condimentum, mattis orci. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris placerat et lacus eu porttitor. Aliquam eget dui ut ex dignissim scelerisque. Donec sagittis elit ante, at vestibulum lacus egestas id. Etiam suscipit, felis a sollicitudin vehicula, eros sem placerat nunc, et dictum lectus dolor quis eros. Nulla at ipsum vitae ipsum euismod condimentum vel eu nulla. Etiam tempor erat vitae risus varius lacinia. In sagittis in justo ut rutrum. Nunc quis quam ex. Vestibulum eu finibus turpis.</p><p>Sed vehicula tincidunt ipsum, non placerat tortor pretium id. Proin odio massa, aliquam vel commodo sit amet, mollis eget lectus. Sed sed pharetra mauris, a aliquet justo. Nulla imperdiet ante velit, ac auctor magna viverra non. Phasellus quam mauris, aliquet at aliquet a, laoreet vel lectus. Vivamus at malesuada sem. Nulla non euismod lectus. Pellentesque a neque quis felis luctus finibus. Vestibulum ultricies ante ac erat rhoncus laoreet. Phasellus luctus venenatis nibh. Sed sed nisi id nisl hendrerit pellentesque ac id libero.</p><p>Integer dictum turpis in lorem gravida, eget euismod nisi molestie. Nullam dui dolor, tempus hendrerit iaculis a, tempus vel enim. Aenean viverra vel lacus vel pulvinar. Nunc in ipsum risus. Ut sollicitudin ultrices nisi quis dictum. Nulla non sollicitudin elit. Maecenas rhoncus lorem enim, id ultricies nunc mollis ac. Nunc nec mi vitae libero aliquet imperdiet et eget sapien. Vestibulum euismod vulputate magna, sed maximus nulla vehicula sed.</p><p>Quisque luctus sagittis sem, et convallis massa vestibulum vitae. Vivamus nisl ipsum, vehicula a pretium ac, elementum eget tortor. Proin congue sodales tellus ac dictum. Aenean molestie lorem a sagittis malesuada. Mauris elementum tortor quis rutrum maximus. Phasellus ac ex suscipit, tincidunt nibh non, laoreet ipsum. Suspendisse vehicula massa ac metus aliquam luctus in eu elit. Vivamus vulputate odio id diam condimentum pharetra eget a urna.</p><p>Curabitur tincidunt ornare urna non mattis. Duis ipsum nisl, efficitur id commodo id, malesuada eu enim. Nam venenatis euismod est, eu imperdiet nunc laoreet eget. Etiam pulvinar lacinia pretium. Vivamus posuere molestie sapien et fermentum. Maecenas sed lacus porttitor, molestie ex nec, congue mi. Quisque mattis ornare neque ac elementum. Praesent in consectetur metus, eu varius libero. Donec rutrum, lacus commodo vehicula convallis, metus odio pulvinar felis, eu imperdiet arcu metus sit amet erat. Proin urna ex, vestibulum id lacinia a, fringilla in neque. Sed ultricies rutrum leo, non ornare lectus fermentum vel. Nam euismod nisl mi, eget mollis mi auctor ut. Fusce commodo metus ut metus condimentum, in mollis velit molestie. Duis leo urna, sollicitudin in ultrices non, imperdiet sit amet lorem. Etiam vel vulputate eros, et aliquet augue. Duis porta placerat facilisis.</p>",
+      "publishDate": "2018-04-12",
+      "author": {
+        "username": "freesgen",
+        "alias": "Jesus Guerrero",
+        "picture": ""
+      },
+      "comments": [],
+      "likes": [],
+      "created": "2018-04-12",
+      "updated": "",
+      "canComment": true,
+      "isPublish": true,
+      "update": "2018-04-12",
+      "id": 6
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "postId": 1,
+      "author": {
+        "username": "freesgen",
+        "alias": "Jesus Guerrero",
+        "avatar": ""
+      },
+      "content": "this is a example content text",
+      "likes": [
+        "jesus"
+      ],
+      "editMode": false,
+      "created": "2018-04-10"
+    }
+  ]
+}
