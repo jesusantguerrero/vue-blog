@@ -45,9 +45,13 @@ export default {
 
 	methods: {
 		save() {
-			this.$emit('saved', this.value, this.id)
-			if (this.isDeleteOnSave) {
-				this.value = ''
+			if (this.isEmpty()) {
+				this.$emit('saved', this.value, this.id)
+				if (this.isDeleteOnSave) {
+					this.value = ''
+				}
+			} else {
+				this.$toastr.warning("all the fields are required");
 			}
 		},
 
@@ -78,7 +82,11 @@ export default {
       	displayTpl: '<li>${name} <small>${email}</small></li>',
       	limit: 200
     	}
-		}
+		},
+
+		isEmpty() {
+			return $('.fr-element.fr-view').text().trim()
+  	}
 	}
 }
 </script>

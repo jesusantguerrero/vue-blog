@@ -79,7 +79,8 @@
 					created: '',
 					updated: '',
 					canComment: true,
-					isPublish: true
+					isPublish: true,
+					isDeleted: false
 				},
 			}
 		},

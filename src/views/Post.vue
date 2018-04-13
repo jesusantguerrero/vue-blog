@@ -95,7 +95,7 @@
 			},
 
 			createComment(content) {
-				if (content) {
+				if (content && content.trim()) {
 					this.comment.author = this.getAutor();
 					this.setDates();
 
@@ -113,6 +113,10 @@
 				}
 			},
 
+			deletePost() {
+
+			},
+
 			getAutor() {
 				return {
 					"username": "freesgen",
@@ -126,7 +130,7 @@
 			},
 
 			updateComment({ content, comment }) {
-				if ( content ) {
+				if ( content.trim() ) {
 					const index = this.post.comments.findIndex((item) => item.id == comment.id );
 					comment.content = content;
 	

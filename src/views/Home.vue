@@ -46,7 +46,7 @@
 		},
 		methods: {
 			getPosts() {
-				this.$http.get('/posts?isPublish=true&_sort=id&_order=desc&_embed=comments')
+				this.$http.get('/posts?isDeleted=false&isPublish=true&_sort=id&_order=desc&_embed=comments')
 				.then((res) => {
 					this.posts = res.data
 				})

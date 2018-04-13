@@ -151,9 +151,7 @@
         "picture": ""
       },
       "content": "<p>Hello World 2</p>",
-      "likes": [
-        "freesgen"
-      ],
+      "likes": [],
       "editMode": false,
       "created": "2018-04-13"
     },
@@ -166,9 +164,7 @@
         "picture": ""
       },
       "content": "<ul><li>Hello world</li><li>two</li><li>three</li></ul>",
-      "likes": [
-        "freesgen"
-      ],
+      "likes": [],
       "editMode": false,
       "created": "2018-04-13"
     },
@@ -181,9 +177,20 @@
         "picture": ""
       },
       "content": "<p>Hi this is a comment</p>",
-      "likes": [
-        "freesgen"
-      ],
+      "likes": [],
+      "editMode": false,
+      "created": "2018-04-13"
+    },
+    {
+      "id": 13,
+      "postId": 6,
+      "author": {
+        "username": "freesgen",
+        "alias": "Jesus Guerrero",
+        "picture": ""
+      },
+      "content": "<p>&nbsp; &nbsp;dsadsa</p>",
+      "likes": [],
       "editMode": false,
       "created": "2018-04-13"
     }
