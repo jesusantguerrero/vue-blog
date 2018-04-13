@@ -16,10 +16,10 @@
 			<hr>
 			<h2> Comments </h2>
 				<p> Post a new comment </p>
-				<comment-form v-if="post.canComment" btnSaveText="Create"></comment-form>
+				<comment-form v-if="post.canComment" :is-delete-on-save="true" :model="comment.content" btnSaveText="Create" @saved="createComment" @canceled="clearComment"></comment-form>
 				<br>
-				<p> Comments (current Order: {{ commentOrder }}) <button @click="changeCommentOrder"> Change Order </button></p>
-				<comment-item :key="i" v-for="(comment, i) of commentList" :comment="comment" model="comment.content" @update-comment="updateComment"></comment-item>
+				<p> Comments (current Order: {{ commentOrder }}) <button class="btn btn-primary" @click="changeCommentOrder"> Change Order </button></p>
+				<comment-item :key="i" v-for="(comment, i) of commentList" :comment="comment" model="comment.content" @update-comment="updateComment" @delete-comment="deleteComment" @liked="commentLiked"></comment-item>
 		</div>
   </div>
 
@@ -28,6 +28,16 @@
 <script>
 	import CommentItem from '../components/CommentItem';
 	import CommentForm from '../components/CommentForm';
+
+	const comment = {
+      id: null,
+      postId: null,
+      author: {},
+      content: '',
+      likes: [],
+      editMode: false,
+      created: ''
+    }
 
 	export default {
 		components: {
@@ -64,6 +74,7 @@
 		data() {
 			return {
 				commentOrder: 'desc',
+				comment: { ...comment },
 				post: {
 					author: {},
 					comments: []
@@ -83,14 +94,94 @@
 				})
 			},
 
-			updateComment([content, id]) {
-				const index = this.comments.findIndex((item) => item.id == id );
-				this.comments[index].content = content;
+			createComment(content) {
+				if (content) {
+					this.comment.author = this.getAutor();
+					this.setDates();
+
+					this.comment.postId = this.post.id;
+					this.comment.content = content; 
+	
+					this.$http.post('/comments', this.comment)
+					.then(({data}) => {
+						this.post.comments.push(data);
+						this.$toastr.success('comment published');
+						this.clearComment();
+					})
+				} else {
+					this.$toastr.warning('all the fields are required')
+				}
+			},
+
+			getAutor() {
+				return {
+					"username": "freesgen",
+					"alias": "Jesus Guerrero",
+					"picture": ""
+				}
+			},
+	
+			setDates() {
+				this.comment.created = this.now();
+			},
+
+			updateComment({ content, comment }) {
+				if ( content ) {
+					const index = this.post.comments.findIndex((item) => item.id == comment.id );
+					comment.content = content;
+	
+					this.$http.patch(`/comments/${comment.id}`, comment)
+						.then(({ data }) => {
+							this.post.comments[index] = data;
+							this.$toastr.success('comment updated');
+						})
+				} else {
+					this.$toastr.warning('all the fields are required')
+				}
+			},
+
+			deleteComment(id) {
+				const index = this.post.comments.findIndex((item) => item.id == id );
+
+				this.$http.delete(`/comments/${id}`)
+					.then(() => {
+						this.post.comments.splice(index, 1);
+						this.$toastr.success('comment deleted');
+					})
+			},
+
+			commentLiked(comment) {
+				const index = this.post.comments.findIndex((item) => item.id == comment.id );
+				const profile = this.getAutor();
+				let message = 'post Liked';
+
+				if (comment.likes.includes(profile.username)) {
+					const likes = comment.likes.filter((item) => item !== profile.username);
+					comment.likes = likes
+					message = 'post disliked';
+				} else {
+					comment.likes.push(profile.username);
+				}
+
+				this.$http.patch(`/comments/${comment.id}`, comment)
+					.then(({ data }) => {
+						this.post.comments[index] = data;
+						this.$toastr.success(message);
+					})
 			},
 
 			changeCommentOrder() {
 				this.commentOrder = this.commentOrder == 'asc' ? 'desc' : 'asc';
+			},
+
+			getMentions(content) {
+
+			},
+
+			clearComment() {
+				this.comment = { ...comment };
 			}
+
 		}
 	}
 </script>

@@ -15,6 +15,7 @@
     "pusher": "^1.5.1",
     "pusher-js": "^4.2.2",
     "textarea-caret": "^3.1.0",
+    "toastr": "^2.1.4",
     "vee-validate": "^2.0.6",
     "vue": "^2.5.16",
     "vue-at": "^2.3.2",
@@ -37,9 +38,8 @@
     "js-hot": "set NODE_ENV=development & webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
     "js-production": "set NODE_ENV=production & webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "dev-server": "nodemon server.js",
-		"db": "json-server --watch server/db/db.json --p 3600",
-		"dev": "run-p db js-watch dev-server"
-		
+    "db": "json-server --watch server/db/db.json --p 3600",
+    "dev": "run-p db js-watch dev-server"
   },
   "author": "Jesus Guerrero",
   "license": "ISC"

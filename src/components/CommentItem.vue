@@ -7,10 +7,12 @@
 				<comment-form v-else :model="comment.content" :id="comment.id" btnSaveText="Update" @saved="updateComment" @canceled="cancelComment"></comment-form>
 				<br>
 				<p class="media-footer text-muted">
-						Posted on 
-            <button v-if="!comment.editMode" @click="toggleEditMode"> {{ btnEditText }} </button>
-            <button> Delete </button>
-            <span> Likes:  {{ comment.likes.length }} </span>
+						Posted on {{ comment.created }} |
+						<a href="#" @click="addLikes">
+            	<span> Likes:  {{ comment.likes.length }} </span>
+						</a>
+            <button class="btn btn-primary" v-if="!comment.editMode" @click="toggleEditMode"> {{ btnEditText }} </button>
+            <button class="btn btn-danger" @click="deleteComment"> Delete </button>
         </p>
 			</div>
     </div>
@@ -44,8 +46,18 @@
 			},
 
 			updateComment(...args) {
-				this.$emit('update-comment', args);
 				this.comment.editMode = false;
+				console.log(args)
+				this.$emit('update-comment', { content: args[0] , comment: this.comment });
+			},
+
+			deleteComment() {
+				this.$emit('delete-comment', this.comment.id);
+			},
+
+			addLikes(e) {
+				e.preventDefault();
+				this.$emit('liked', this.comment);
 			},
 
 			cancelComment() {

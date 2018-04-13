@@ -5,6 +5,7 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VeeValidate from 'vee-validate';
 import mixin from './utils/mixin';
+import Toastr from './utils/toastr';
 
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -16,6 +17,8 @@ Vue.use(VueFroala);
 Vue.use(VueAxios, axios);
 Vue.use(VeeValidate);
 Vue.mixin(mixin)
+
+Vue.prototype.$toastr = Toastr;
 
 export default new Vue({
 		router,

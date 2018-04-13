@@ -16,7 +16,7 @@
             <router-link :to="`/author/${post.author.username}`"> {{ post.author.alias }} </router-link> 
 						<router-link :to="authorLink"> <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt=""> </router-link>
             <router-link :to="postLink"> Comments:  {{ post.comments.length }} </router-link> |
-            <span> Likes:  {{ post.comments.length }} </span>
+            <span> Likes:  {{ post.likes.length }} </span>
 						
         </div>
         </div>

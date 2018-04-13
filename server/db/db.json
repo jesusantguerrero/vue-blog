@@ -29,8 +29,8 @@
       "comments": [],
       "likes": [],
       "created": "2018-04-10",
-			"updated": "2018-04-10",
-			"isPublish": false,
+      "updated": "2018-04-10",
+      "isPublish": false,
       "canComment": true
     },
     {
@@ -143,19 +143,49 @@
   ],
   "comments": [
     {
-      "id": 1,
-      "postId": 1,
+      "id": 10,
+      "postId": 6,
       "author": {
         "username": "freesgen",
         "alias": "Jesus Guerrero",
-        "avatar": ""
+        "picture": ""
       },
-      "content": "this is a example content text",
+      "content": "<p>Hello World 2</p>",
       "likes": [
-        "jesus"
+        "freesgen"
       ],
       "editMode": false,
-      "created": "2018-04-10"
+      "created": "2018-04-13"
+    },
+    {
+      "id": 11,
+      "postId": 6,
+      "author": {
+        "username": "freesgen",
+        "alias": "Jesus Guerrero",
+        "picture": ""
+      },
+      "content": "<ul><li>Hello world</li><li>two</li><li>three</li></ul>",
+      "likes": [
+        "freesgen"
+      ],
+      "editMode": false,
+      "created": "2018-04-13"
+    },
+    {
+      "id": 12,
+      "postId": 6,
+      "author": {
+        "username": "freesgen",
+        "alias": "Jesus Guerrero",
+        "picture": ""
+      },
+      "content": "<p>Hi this is a comment</p>",
+      "likes": [
+        "freesgen"
+      ],
+      "editMode": false,
+      "created": "2018-04-13"
     }
   ]
 }

@@ -17,7 +17,7 @@ import VueFroala from 'vue-froala-wysiwyg';
 const atJsConfig = {}
 
 export default {
-	props: ['model', 'btnSaveText', 'btnCancelText', 'id'],
+	props: ['model', 'btnSaveText', 'btnCancelText', 'id', "isDeleteOnSave"],
   data () {
     return {
 			value: this.model,
@@ -46,6 +46,9 @@ export default {
 	methods: {
 		save() {
 			this.$emit('saved', this.value, this.id)
+			if (this.isDeleteOnSave) {
+				this.value = ''
+			}
 		},
 
 		cancel() {
