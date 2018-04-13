@@ -28,9 +28,6 @@
 </script>
 
 <style lang="sass" scoped>
-	.btn
-		margin: 5px
-
 	.container
 		padding-top: 50px
 </style>
