@@ -39,6 +39,12 @@ export default {
     }
 	},
 
+	watch: {
+		model() {
+			this.value = this.model;
+		}
+	},
+
 	mounted() {
 		this.generateAtJsConfig()
 	},

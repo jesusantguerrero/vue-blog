@@ -2,10 +2,11 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home';
 import Login from './views/Login';
-import MyPosts from './views/MyPosts';
+import PostList from './views/PostList';
 import Registration from './views/Registration';
 import Post from './views/Post';
 import PostCreate from './views/PostCreate';
+import PostEdit from './views/PostEdit';
 
 Vue.use(Router)
 
@@ -31,14 +32,24 @@ export default new Router({
 				},
 				// Posts
 				{
-					path: '/my-posts',
-					name: 'my-posts',
-					component: MyPosts
+					path: '/list',
+					name: 'list',
+					component: PostList
 				},
 				{
 					path: '/post/:id/:origin?',
 					name: 'post',
 					component: Post
+				},
+				{
+					path: '/list',
+					name: 'post-list',
+					component: PostList
+				},
+				{
+					path: '/edit/post/:id/',
+					name: 'post-edit',
+					component: PostEdit
 				},
 				{
 					path: '/new-post',

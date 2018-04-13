@@ -2,7 +2,13 @@
 	<div class="row" v-if="post">
 		<div class="col-lg-8">
 			<br>
-			<p class="lead" v-show="post"> <router-link :to="`/${origin}`"> {{ goBackText }} </router-link></p>
+			<div class="lead d-flex justify-content-between w-100" v-show="post"> 
+				<router-link :to="`/${origin}`"> {{ goBackText }} </router-link>
+				<div>
+					<button @click="deletePost" class="btn btn-danger"> X </button>	
+					<router-link class="btn btn-success" :to="`/edit/post/${this.post.id}`"> Edit </router-link>
+				</div>
+			</div>
 
 			<h1 class="mt-4"> {{ post.title }} </h1>
 
@@ -113,8 +119,13 @@
 				}
 			},
 
-			deletePost() {
-
+			deletePost() {	
+				this.post.isDeleted = true;
+				this.$http.patch(`/posts/${this.post.id}`, this.post)
+					.then(({ data }) => {
+						this.$toastr.success('post deleted');
+						this.$router.push('/home');
+					})
 			},
 
 			getAutor() {
