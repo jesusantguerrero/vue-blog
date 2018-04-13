@@ -14,7 +14,8 @@ export default new Router({
 				// generals
         {
             path: '/',
-            name: 'home',
+						name: 'home',
+						alias: "/home",
             component: Home
 				},
 				// Auth
@@ -35,7 +36,7 @@ export default new Router({
 					component: MyPosts
 				},
 				{
-					path: '/post/:id',
+					path: '/post/:id/:origin?',
 					name: 'post',
 					component: Post
 				},

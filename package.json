@@ -28,15 +28,18 @@
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-vue": "^4.4.0",
-    "nodemon": "^1.17.3"
+    "nodemon": "^1.17.3",
+    "npm-run-all": "^4.1.2"
   },
   "scripts": {
-    "dev": "set NODE_ENV=development & webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "set NODE_ENV=development & webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "hot": "set NODE_ENV=development & webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "production": "set NODE_ENV=production & webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "js-dev": "set NODE_ENV=development & webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "js-watch": "set NODE_ENV=development & webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "js-hot": "set NODE_ENV=development & webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "js-production": "set NODE_ENV=production & webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "dev-server": "nodemon server.js",
-    "db": "json-server --watch server/db/db.json --p 3600"
+		"db": "json-server --watch server/db/db.json --p 3600",
+		"dev": "run-p db js-watch dev-server"
+		
   },
   "author": "Jesus Guerrero",
   "license": "ISC"

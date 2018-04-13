@@ -5,7 +5,7 @@
                 <small> Subheading</small>
             </h1>
 
-					<post-card :key="i" v-for="(post, i) in posts" :post="post" ref="home"></post-card>
+					<post-card :key="i" v-for="(post, i) in posts" :post="post" origin="home"></post-card>
 					<app-pagination></app-pagination>
         </div>
 
@@ -46,7 +46,7 @@
 		},
 		methods: {
 			getPosts() {
-				this.$http.get('/posts')
+				this.$http.get('/posts?_sort=id&_order=desc')
 				.then((res) => {
 					this.posts = res.data
 				})

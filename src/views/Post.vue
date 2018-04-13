@@ -1,10 +1,12 @@
 <template>
 	<div class="row" v-if="post">
 		<div class="col-lg-8">
+			<br>
+			<p class="lead" v-show="post"> <router-link :to="`/${origin}`"> {{ goBackText }} </router-link></p>
 
 			<h1 class="mt-4"> {{ post.title }} </h1>
 
-			<p class="lead" v-show="post"> by <a href="#"> {{ post.author.alias }} </a></p>
+			<p class="lead" v-show="post"> by <router-link :to="authorLink"> {{ post.author.alias }} </router-link></p>
 			<hr>
 
 			<p> Posted on {{ post.publishDate }}</p>
@@ -42,7 +44,21 @@
 				} else {
 					return comments.sort(( a, b) => a.id < b.id)					
 				}
+			},
+
+			authorLink() {
+				return `/author/${this.post.author.username}`;
+			},
+
+			goBackText() {
+				const { origin } = this.$route.params;
+				return (origin && origin.includes("home")) ? 'Volver al listado' : 'Volver a la Busqueda';
+			},
+
+			origin() {
+				return this.$route.params.origin || '';
 			}
+			
 		},
 
 		data() {

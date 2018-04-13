@@ -25,6 +25,10 @@
 <script>
 export default {
 	props: {
+		origin: {
+			type: String,
+			default: ''
+		},
 		post:{
 			type: Object,
 			default: {
@@ -50,7 +54,7 @@ export default {
 
 	computed: {
 		postLink() {
-			return `/post/${this.post.id}`;
+			return `/post/${this.post.id}/${this.origin}`;
 		},
 
 		isHTML() {
