@@ -11,9 +11,11 @@
 						<a href="#" @click="addLikes">
             	<span> Likes:  {{ comment.likes.length }} </span>
 						</a>
+        </p>
+				<p>
             <button class="btn btn-primary" v-if="!comment.editMode" @click="toggleEditMode"> {{ btnEditText }} </button>
             <button class="btn btn-danger" @click="deleteComment"> Delete </button>
-        </p>
+				</p>
 			</div>
     </div>
 </template>
