@@ -41,6 +41,7 @@ export default {
 			default: false
 		}
 	},
+
 	data() {
 		return {
 			message: ``
@@ -59,7 +60,7 @@ export default {
 
 	computed: {
 		postLink() {
-			return `/post/${this.post.id}/${this.origin}`;
+			return `/post/${this.post.id}?ref=${this.origin}`;
 		},
 
 		isHTML() {

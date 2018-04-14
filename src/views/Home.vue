@@ -5,7 +5,7 @@
                 <small> Subheading</small>
             </h1>
 
-					<post-card :key="i" v-for="(post, i) in posts" :post="post" origin="home"></post-card>
+					<post-card :key="i" v-for="(post, i) in posts" :post="post" origin="/home"></post-card>
 					<app-pagination></app-pagination>
         </div>
 

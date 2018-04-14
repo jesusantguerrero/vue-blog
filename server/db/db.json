@@ -282,7 +282,9 @@
         "picture": ""
       },
       "content": "<p>Hello world</p>",
-      "likes": [],
+      "likes": [
+        "freesgen"
+      ],
       "editMode": false,
       "created": "2018-04-13"
     }

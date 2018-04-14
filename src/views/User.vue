@@ -5,7 +5,7 @@
                 <small> {{ authorName }} </small>
             </h1>
 
-					<post-card :key="i" v-for="(post, i) in posts" :post="post" origin="home" :isFullContent="true"></post-card>
+					<post-card :key="i" v-for="(post, i) in posts" :post="post" :origin="$route.path" :isFullContent="true"></post-card>
 					<app-pagination></app-pagination>
         </div>
 
