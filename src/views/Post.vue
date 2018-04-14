@@ -103,6 +103,7 @@
 			createComment(content) {
 				if (content && content.trim()) {
 					this.comment.author = this.getAutor();
+					this.getMentions(content)
 					this.setDates();
 
 					this.comment.postId = this.post.id;
@@ -142,6 +143,7 @@
 
 			updateComment({ content, comment }) {
 				if ( content.trim() ) {
+					this.getMentions(content)
 					const index = this.post.comments.findIndex((item) => item.id == comment.id );
 					comment.content = content;
 	
@@ -190,7 +192,14 @@
 			},
 
 			getMentions(content) {
-
+				const $mentions = $(content).find('.atwho-inserted');
+				const mentions = [];
+				if ($mentions.length > 0)  {
+					const mentions = Array.from($mentions);
+					console.log($mentions)
+					$mentions.each(($mention) => mentions.push($mention.text()));
+				}
+				console.log(mentions);
 			},
 
 			clearComment() {
