@@ -7,6 +7,7 @@ import Registration from './views/Registration';
 import Post from './views/Post';
 import PostCreate from './views/PostCreate';
 import PostEdit from './views/PostEdit';
+import User from './views/User';
 
 Vue.use(Router)
 
@@ -18,6 +19,12 @@ export default new Router({
 						name: 'home',
 						alias: "/home",
             component: Home
+				},
+				{     
+					path: '/author/:username',
+					name: 'user',
+					alias: "/user",
+					component: User
 				},
 				// Auth
         {

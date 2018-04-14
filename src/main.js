@@ -11,7 +11,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import VueFroala from './froala';
 
-axios.defaults.baseURL = 'http://localhost:3600';
+axios.defaults.baseURL = 'http://localhost:3000/api';
 
 Vue.use(VueFroala);
 Vue.use(VueAxios, axios);
