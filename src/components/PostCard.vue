@@ -7,7 +7,8 @@
 								{{ post.title }} 
 							</router-link>
 						</h2>
-            <p class="card-text"> {{ post.content | summary }} </p>
+            <div class="card-text" v-if="isFullContent" v-html="post.content"></div>
+            <p class="card-text" v-else> {{ post.content | summary }} </p>
             <router-link :to="postLink" class="btn btn-primary">Read More &rarr;</router-link>
         </div>
         <div class="card-footer text-muted">
@@ -34,6 +35,10 @@ export default {
 			default: {
 				content: ''
 			}
+		},
+		isFullContent: {
+			type: Boolean,
+			default: false
 		}
 	},
 	data() {
