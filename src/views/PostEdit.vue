@@ -104,15 +104,6 @@
 				})
 			},
 
-			createPost() {
-				this.setAutor();
-				this.setDates();
-				this.$http.post('/posts', this.post)
-					.then(({data}) => {
-						this.backToHome();
-					})
-			},
-
 			publishPost() {
 				this.post.isPublish = true;
 				this.post.publishDate = this.now();
@@ -120,10 +111,15 @@
 			},
 
 			updatePost() {	
-				this.$http.patch(`/posts/${this.post.id}`, this.post)
-					.then(({ data }) => {
-						this.$toastr.success('post published');
-					})
+				if (this.post.title.trim()) {
+					this.post.updated = this.now();
+					this.$http.patch(`/posts/${this.post.id}`, this.post)
+						.then(({ data }) => {
+							this.$toastr.success('post published');
+						})
+				}	else {
+					this.$toastr.warning('all the fields are required');
+				}
 			},
 
 			deletePost() {	

@@ -88,12 +88,16 @@
 	
 		methods: {
 			createPost() {
-				this.setAutor();
-				this.setDates();
-				this.$http.post('/posts', this.post)
-					.then(({data}) => {
-						this.backToHome();
-					})
+				if (this.post.title.trim()) {
+					this.setAutor();
+					this.setDates();
+					this.$http.post('/posts', this.post)
+						.then(({data}) => {
+							this.backToHome();
+						})
+				} else {
+					this.$toastr.warning('all the fields are required');
+				}
 			},
 
 			saveDraft() {
