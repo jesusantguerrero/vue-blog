@@ -34,7 +34,7 @@
 <script>
 	import CommentItem from '../components/CommentItem';
 	import CommentForm from '../components/CommentForm';
-
+	
 	const comment = {
       id: null,
       postId: null,
@@ -42,7 +42,8 @@
       content: '',
       likes: [],
       editMode: false,
-      created: ''
+			created: '',
+			mentions: []
     }
 
 	export default {
@@ -180,7 +181,7 @@
 					comment.likes.push(profile.username);
 				}
 
-				this.$http.patch(`/comments/${comment.id}`, comment)
+				this.$http.put(`/comments/${comment.id}`, comment)
 					.then(({ data }) => {
 						this.post.comments[index] = data;
 						this.$toastr.success(message);
@@ -195,17 +196,18 @@
 				const $mentions = $(content).find('.atwho-inserted');
 				const mentions = [];
 				if ($mentions.length > 0)  {
-					const mentions = Array.from($mentions);
-					console.log($mentions)
-					$mentions.each(($mention) => mentions.push($mention.text()));
+					$mentions.each((_, $mention) => {
+						const mentionItem = $($mention).text();
+						if (!mentions.includes(mentionItem))
+							mentions.push(mentionItem)
+					});
 				}
-				console.log(mentions);
+				this.comment.mentions = mentions;
 			},
 
 			clearComment() {
 				this.comment = { ...comment };
 			}
-
 		}
 	}
 </script>

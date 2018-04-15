@@ -1,4 +1,6 @@
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
+const esLintConfig = require('./.eslintrc');
+require('laravel-mix-eslint');
 
 /*
  |--------------------------------------------------------------------------
@@ -12,7 +14,8 @@ let mix = require('laravel-mix');
  */
 
 mix.js('src/main.js', 'public/assets/bundle/')
-	  .js('src/libs.js', 'public/assets/bundle/')
+		.js('src/libs.js', 'public/assets/bundle/')
+		.eslint(esLintConfig)
     .sass('src/assets/app.sass', 'public/assets/')
     .setPublicPath('public')
 		.extract(['vue', 'vue-router', 'bootstrap', 'jquery']);
