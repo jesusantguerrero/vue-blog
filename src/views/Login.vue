@@ -6,7 +6,7 @@
 				<div class="form-group">
 					<label class="sr-only" for="email">Email</label>
 					<p :class="{ 'control': true }">
-							<input v-validate="'required|email'" class="form-control" :class="{'input': true, 'is-danger': errors.has('email') }" name="email" type="text" placeholder="Email">
+							<input v-validate="'required|email'" v-model="user.email" class="form-control" :class="{'input': true, 'is-danger': errors.has('email') }" name="email" type="text" placeholder="Email">
 							<span v-show="errors.has('email')" class="help text-danger">{{ errors.first('email') }}</span>
 					</p>
 				</div>
@@ -14,7 +14,7 @@
 				<div class="form-group">
 					<label for="password" class="sr-only">Password</label>
 					<p :class="{ 'control': true }">
-							<input  type="password" id="password" v-validate="'required'" class="form-control" :class="{'input': true, 'is-danger': errors.has('password') }" name="password" placeholder="password">
+							<input  type="password" id="password" v-model="user.password" v-validate="'required'" class="form-control" :class="{'input': true, 'is-danger': errors.has('password') }" name="password" placeholder="password">
 							<span v-show="errors.has('password')" class="help text-danger">{{ errors.first('password') }}</span>
 					</p>
 				</div>
@@ -25,11 +25,45 @@
 					</label>
 				</div>
 
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+				<button class="btn btn-lg btn-primary btn-block" type="submit" @click.prevent="login">Sign in</button>
 				<p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
     	</form>
 		</div>
 </template>
+
+<script>
+export default {
+	data() {
+		return {
+			user: {
+				email: '',
+				password: ''
+			}
+		}
+	},
+	methods: {
+		login() {
+			this.$validator.validateAll()
+				.then((result) => {
+					if (result) {
+						this.$http.post('/auth/login', this.user)
+						.then((user) => {
+							sessionStorage.setItem('user', this.user);
+							if (user) {
+								window.location.reload();
+							}
+						}).catch((err) => {
+							console.log(err);
+						});
+						return
+					}
+
+					this.$toastr.warning('the form has some errors');
+				})
+		}
+	}
+}
+</script>
 
 <style lang="sass" scoped>
 	.login-box
@@ -43,4 +77,5 @@
 		form
 			width: 50%
 </style>
+
 

@@ -22,12 +22,14 @@
           {name: 'Login', href: '/login'},
           {name: 'Registration', href: '/registration'},
           {name: 'My Posts', href: '/my-posts'},
-        ]
+				],
+				currentUser: {},
       }
 		},
 		
 		mounted() {
 			this.listenEvents();
+			this.getCurrentUser();
 		},
 		
 		methods: {
@@ -45,6 +47,12 @@
 					console.log(data);
 					this.$toastr.info(`${data.comment.author.alias} has metioned you in a ${data.message}`);
 				});
+			},
+
+			getCurrentUser() {
+				this.$http.get('/auth/me', ({data}) => {
+					this.currentUser = data;
+				})
 			}
 		}
   };

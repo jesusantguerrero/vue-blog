@@ -5,15 +5,23 @@
   "main": "server.js",
   "dependencies": {
     "axios": "^0.18.0",
+    "bcrypt": "^2.0.0",
     "bootstrap": "^4.0.0",
+    "email-templates": "^3.5.2",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
     "faker": "^4.1.0",
     "jquery": "^3.3.1",
     "json-server": "^0.12.1",
     "laravel-mix": "^2.1.11",
+    "nodemailer": "^4.6.4",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "popper.js": "^1.14.2",
+    "pug": "^2.0.3",
     "pusher": "^1.5.1",
     "pusher-js": "^4.2.2",
+    "rand-token": "^0.4.0",
     "textarea-caret": "^3.1.0",
     "toastr": "^2.1.4",
     "vee-validate": "^2.0.6",
@@ -26,6 +34,7 @@
   "devDependencies": {
     "browser-sync": "^2.23.6",
     "browser-sync-webpack-plugin": "^2.0.1",
+    "dotenv": "^5.0.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-loader": "^2.0.0",
@@ -43,8 +52,8 @@
     "dev-server": "nodemon server.js",
     "start-server": "node server.js",
     "db": "json-server --watch server/db/db.json --p 3600",
-		"dev": "run-p js-watch dev-server",
-		"start": "run-p js-watch start-server"
+    "dev": "run-p js-watch dev-server",
+    "start": "run-p js-watch start-server"
   },
   "author": "Jesus Guerrero",
   "license": "ISC"

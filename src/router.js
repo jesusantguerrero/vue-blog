@@ -8,6 +8,7 @@ import Post from './views/Post';
 import PostCreate from './views/PostCreate';
 import PostEdit from './views/PostEdit';
 import User from './views/User';
+import AccountValidation from './views/AccountValidation';
 
 Vue.use(Router)
 
@@ -62,6 +63,13 @@ export default new Router({
 					path: '/new-post',
 					name: 'new-post',
 					component: PostCreate
+				},
+				// user
+				{
+					path: '/account/validation/:token?/:email?',
+					name: 'validation',
+					alias: 'accounts/validation',
+					component: AccountValidation
 				},
     ]
 
