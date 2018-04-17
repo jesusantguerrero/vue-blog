@@ -1,13 +1,12 @@
 const Pusher = require('pusher');
+const { PUSHER_APP_KEY, PUSHER_APP_ID, PUSHER_APP_SECRET } = process.env;
 
 const pusher = new Pusher({
-	appId: '509678',
-	key: '21afd18b9a96f017b4a4',
-	secret: 'fb27b24b44360f829156',
+	appId: PUSHER_APP_ID,
+	key: PUSHER_APP_KEY,
+	secret: PUSHER_APP_SECRET,
 	cluster: 'us2',
 	encrypted: true
 });
-
-pusher.port = 443;
 
 module.exports = pusher

@@ -8,7 +8,6 @@ function commentMiddleware (req, res, next) {
 		const { method } = req;
 		const message = (method === 'POST') ? 'new comment': 'updated comment'
 		if (mentions) {
-			console.log('hello world comments')
 			pusher.trigger('comments', 'new-mention', {
 				mentions,
 				comment: req.body,
