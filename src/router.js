@@ -9,10 +9,11 @@ import PostCreate from './views/PostCreate';
 import PostEdit from './views/PostEdit';
 import User from './views/User';
 import AccountValidation from './views/AccountValidation';
+import axios from 'axios';
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
     routes: [
 				// generals
         {
@@ -31,12 +32,14 @@ export default new Router({
         {
             path: '/login',
             name: 'login',
-            component: Login
+						component: Login,
+						meta: {isLoged: true}
         },
         {
             path: '/registration',
             name: 'registration',
-            component: Registration
+						component: Registration,
+						meta: {isLoged: true}
 				},
 				// Posts
 				{
@@ -52,17 +55,20 @@ export default new Router({
 				{
 					path: '/list',
 					name: 'post-list',
-					component: PostList
+					component: PostList,
+					meta: {requiresAuth: true}
 				},
 				{
 					path: '/edit/post/:id/',
 					name: 'post-edit',
-					component: PostEdit
+					component: PostEdit,
+					meta: {requiresAuth: true}
 				},
 				{
 					path: '/new-post',
 					name: 'new-post',
-					component: PostCreate
+					component: PostCreate,
+					meta: {requiresAuth: true}
 				},
 				// user
 				{
@@ -74,3 +80,42 @@ export default new Router({
     ]
 
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+		// if not, redirect to login page.
+		axios.get('/auth/me')
+			.then(({data}) =>{
+				if (!data) {
+					next({
+						path: '/login',
+						query: { redirect: to.fullPath }
+					})
+				} else {
+					next()
+				}
+			});
+  } else if (to.matched.some(record => record.meta.isLoged)) {
+		axios.get('/auth/me')
+			.then(({data}) => {
+				if (data && data.isActive) {
+					next({
+						path: '/new-post',
+						query: { redirect: to.fullPath }
+					})
+				} else if (data && !data.isActive) {
+					next({
+						path: '/account/validation',
+						query: { redirect: to.fullPath }
+					})
+				} else {
+					next()
+				}
+			})
+  } else {
+		next()
+	}
+})
+
+export default router;

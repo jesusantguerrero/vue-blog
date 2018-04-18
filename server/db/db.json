@@ -12,12 +12,12 @@
     {
       "email": "jesusant.guerrero@gmail.com",
       "username": "freesgen",
-      "alias": "",
+      "alias": "freesgen",
       "picture": "",
-      "password": "$2b$10$U0P1bl45JK0Y5SO7Okouc.GDiRphBv5b75ZbK4R/jKLco6jqhuIg6",
+      "password": "$2b$10$8aaNEtIBj1sCswSGc3kdn.9ijfviS/bASGF0hmcQRDxRa0aue8LQS",
       "isActive": false,
-      "validationToken": "DsYk8FA05BqmNKTj",
-      "validationTokenTime": 1523934777920,
+      "validationToken": "kw276RiievoWQ2XP",
+      "validationTokenTime": 1524025113670,
       "id": 2
     }
   ],

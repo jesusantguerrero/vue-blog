@@ -34,6 +34,10 @@ export default {
 		}
 	},
 
+	mounted() {
+		this.validateEmail();
+	},
+
 	methods: {
 		resendValidation() {
 			this.$validator.validateAll()
@@ -58,10 +62,10 @@ export default {
 			if (this.validationCredentials.email && this.validationCredentials.token) {
 					axios.post('/auth/validation', this.validationCredentials)
 						.then(() => {
-							this.$toastr('your email has been validated');
+							this.$toastr.success('your email has been validated');
 							this.$router.push('/new-post');
 						}).catch((err) => {
-							console.log(err);
+							this.$toastr.error(`${err.response.statusText}`);
 						});
 						return	
 			}

@@ -50,7 +50,8 @@
 			},
 
 			getCurrentUser() {
-				this.$http.get('/auth/me', ({data}) => {
+				this.$http.get('/auth/me')
+				 .then(({data}) => {
 					this.currentUser = data;
 				})
 			}

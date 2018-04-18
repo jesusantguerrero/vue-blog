@@ -65,10 +65,11 @@ export default {
 					if (result) {
 						this.$http.post('/auth/registration', this.user)
 						.then(() => {
-							this.$toastr('you will receive a validation email');
+							this.$toastr.success('you will receive a validation email');
 							localStorage.setItem('validationEmail', this.user.email);
 							this.$router.push('/account/validation');
 						}).catch((err) => {
+							this.$toastr.error(`${err.response.statusText}`)
 							console.log(err);
 						});
 						return
