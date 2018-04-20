@@ -1,5 +1,5 @@
 const axios = require('axios').default;
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-nodejs');
 
 module.exports = class User {
 	static async findUser (field, value) {
@@ -16,6 +16,13 @@ module.exports = class User {
 
 	static async validatePassword(hash, password) {
 		return await bcrypt.compare(password, hash);
+	}
+
+	static forSession(user) {
+		delete user.password;
+		delete user.validationToken;
+		delete user.validationTokenTime;
+		return user;
 	}
 
 }

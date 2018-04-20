@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const axios = require('axios');
+const axios = require('axios').default;
 const randtoken = require('rand-token');
 const Email = require('email-templates');
 const transporter = require('./../utils/nodemailer');
@@ -33,13 +33,9 @@ router.post('/validation', async (req, res, next) => {
 	const credentials = req.body;
 	const user = await User.findUser('email', credentials.email);
 
-	console.log(credentials.email == user.email)
-	console.log(user.validationToken == credentials.token)
-	console.log(isValidTokenTime(user.validationTokenTime))
-
 	if (credentials.email == user.email && user.validationToken == credentials.token && isValidTokenTime(user.validationTokenTime)) {
 		user.isActive = true;
-		axios.default.put(`${process.env.ROOT}/api/users/${user.id}`, user);
+		axios.put(`${process.env.ROOT}/api/users/${user.id}`, user);
 		req.login(user,  function(err) {
 			if (err) { return next(err); }
 			return true
@@ -97,15 +93,10 @@ function sendEmailConfirmation(user, isCreated = false) {
 		transport: transporter
 	});
 
-	if (isCreated) {
-		axios.default.post(`${process.env.ROOT}/api/users/${user.id}`, user)
-		.then((user) => console.log('token sent'))
-		.catch((err) => console.log(err))		
-	} else {
-		axios.default.post(`${process.env.ROOT}/api/users`, user)
+	const url = (isCreated) ? `${process.env.ROOT}/api/users/${user.id}` : `${process.env.ROOT}/api/users`;
+		axios.post(url, user)
 			.then((user) => console.log('user created'))
-			.catch((err) => console.log(err))		
-	}
+			.catch((err) => console.log(err));		
 
 	emailer
 		.send({

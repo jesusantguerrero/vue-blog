@@ -11,10 +11,6 @@ passport.use(new LocalStrategy({
         return done(null, false, { message: 'Incorrect username.' });
 			}
 			
-			console.log('user')
-			console.log(user);
-			console.log('validation')
-			console.log(User.validatePassword(user.password, password))
       if (!User.validatePassword(user.password, password)) {
         return done(null, false, { message: 'Incorrect password.' });
       }
@@ -28,10 +24,7 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(async function(id, done) {
 	user = await User.findUser('id', id)
-		delete user.password;
-		delete user.validationToken;
-		delete user.validationTokenTime;
-    done(null, user);
+  done(null, User.forSession(user));
 });
 
 module.exports = passport;
