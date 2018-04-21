@@ -1,10 +1,10 @@
 <template>
-	<div class="row" v-if="post">
+	<div class="row" v-if="post && post.author">
 		<div class="col-lg-8">
 			<br>
 			<div class="lead d-flex justify-content-between w-100" v-show="post"> 
 				<router-link :to="`${origin}`"> {{ goBackText }} </router-link>
-				<div>
+				<div v-if="isAuthor(post.userId)">
 					<button @click="deletePost" class="btn btn-danger"> X </button>	
 					<router-link class="btn btn-success" :to="`/edit/post/${this.post.id}`"> Edit </router-link>
 				</div>
@@ -54,8 +54,7 @@
 
 		computed: {
 			commentList() {
-				const { comments } = this.post;
-
+				const { comments } = this;
 				if (this.commentOrder == 'asc') {
 					return comments.sort(( a, b) => a.id > b.id)
 				} else {
@@ -64,7 +63,7 @@
 			},
 
 			authorLink() {
-				return `/author/${this.post.author.username}`;
+				return (this.post.author) ? `/author/${this.post.author.username}` : null;
 			},
 
 			goBackText() {
@@ -92,26 +91,25 @@
 
 		mounted() {
 			this.getPost();
-			this.getCommnets();
+			this.getComments();
 		},
 
 		methods: {
 			getPost() {
-				this.$http.get(`/posts/${this.$route.params.id}?_embed=users`)
+				this.$http.get(`/posts/${this.$route.params.id}?_expand=user`)
 				.then(({data}) => {
 					if (data) {
-						data.author = data.users[0];
+						data.author = data.user;
 					}	
 					this.post = data;
-					this.getCommnets(post.id);
 				})
 			},
 
-			getCommnets(postId) {
-				this.$http.get(`/comments/?postId=${this.$route.params.id}?_expand=users`)
-				.then(({data}) => {
+			getComments(postId) {
+				this.$http.get(`/comments/?postId=${this.$route.params.id}&_expand=user`)
+				.then(({ data }) => {
 					if (data && data.length) {
-						this.commets = data.map((comment) => {
+						this.comments = data.map((comment) => {
 							comment.author = comment.user;
 							return comment;
 						})
@@ -120,22 +118,27 @@
 			},
 
 			createComment(content) {
-				if (content && content.trim()) {
-					this.comment.userId = this.getAutor();
-					this.getMentions(content)
-					this.setDates();
-
-					this.comment.postId = this.post.id;
-					this.comment.content = content; 
+				if (this.me) {
+					if (content && content.trim()) {
+						this.comment.userId = this.getAuthor();
+						this.getMentions(content)
+						this.setDates();
 	
-					this.$http.post('/comments', this.comment)
-					.then(({data}) => {
-						this.comments.push(data);
-						this.$toastr.success('comment published');
-						this.clearComment();
-					})
+						this.comment.postId = this.post.id;
+						this.comment.content = content; 
+		
+						this.$http.post('/comments', this.comment)
+						.then(({data}) => {
+							data.author = this.me;
+							this.comments.push(data);
+							this.$toastr.success('comment published');
+							this.clearComment();
+						})
+					} else {
+						this.$toastr.warning('all the fields are required')
+					}
 				} else {
-					this.$toastr.warning('all the fields are required')
+						this.$toastr.warning('you must be an user to comment on this post')
 				}
 			},
 
@@ -179,16 +182,20 @@
 			},
 
 			commentLiked(comment) {
+				if (!this.me) {
+					this.$toastr.info('you must be an user to like this comment');
+				} else {
+
 				const index = this.comments.findIndex((item) => item.id == comment.id );
-				const profile = this.getAutor();
+				const profile = this.me;
 				let message = 'post Liked';
 
-				if (comment.likes.includes(profile.username)) {
-					const likes = comment.likes.filter((item) => item !== profile.username);
+				if (comment.likes.includes(profile.id)) {
+					const likes = comment.likes.filter((item) => item !== profile.id);
 					comment.likes = likes
 					message = 'post disliked';
 				} else {
-					comment.likes.push(profile.username);
+					comment.likes.push(profile.id);
 				}
 
 				this.$http.put(`/comments/${comment.id}`, comment)
@@ -196,6 +203,7 @@
 						this.comments[index] = data;
 						this.$toastr.success(message);
 					})
+				}
 			},
 
 			changeCommentOrder() {
@@ -221,4 +229,12 @@
 		}
 	}
 </script>
+
+<style lang="sass">
+	.atwho-inserted
+		background: transparentize(#06f, .8)
+		border-radius: 4px
+		padding: 0 5px
+</style>
+
 

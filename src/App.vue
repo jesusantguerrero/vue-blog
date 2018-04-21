@@ -19,9 +19,8 @@
       return {
         routes: [
           {name: 'Home', href: '/'},
-          {name: 'Login', href: '/login'},
-          {name: 'Registration', href: '/registration'},
-          {name: 'My Posts', href: '/my-posts'},
+          {name: 'Login', href: '/login', hideAuth: true},
+          {name: 'Registration', href: '/registration', hideAuth: true},
 				],
 				currentUser: {},
       }
@@ -44,7 +43,6 @@
 				const channel = pusher.subscribe('comments', () => console.log('started'))
 
 				channel.bind('new-mention', (data) => {
-					console.log(data);
 					this.$toastr.info(`${data.author} has metioned you in a ${data.message}`);
 				});
 			},
@@ -52,7 +50,7 @@
 			getCurrentUser() {
 				this.$http.get('/auth/me')
 				 .then(({data}) => {
-					this.currentUser = data;
+					this.setCurrentUser(data);
 				})
 			}
 		}

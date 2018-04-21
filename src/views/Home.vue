@@ -6,14 +6,13 @@
             </h1>
 
 					<post-card :key="i" v-for="(post, i) in posts" :post="post" origin="/home"></post-card>
-					<app-pagination></app-pagination>
         </div>
 
 				<div class="col-md-4">
 						<app-wigget title="Search">
 							<search></search>
 						</app-wigget>
-						<app-wigget title="Nuevo Post">
+						<app-wigget title="Nuevo Post" v-if="isLogged">
 							<router-link to='/new-post'> Nuevo Post </router-link>
 						</app-wigget>
 				</div>

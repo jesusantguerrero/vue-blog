@@ -63,7 +63,7 @@ export default {
 					axios.post('/auth/validation', this.validationCredentials)
 						.then(() => {
 							this.$toastr.success('your email has been validated');
-							this.$router.push('/new-post');
+							window.location.reload();
 						}).catch((err) => {
 							this.$toastr.error(`${err.response.statusText}`);
 						});

@@ -45,6 +45,7 @@ const router = new Router({
 				{
 					path: '/list',
 					name: 'list',
+					alias: 'my-posts',
 					component: PostList
 				},
 				{

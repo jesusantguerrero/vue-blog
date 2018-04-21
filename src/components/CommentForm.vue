@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <froala :tag="'textarea'" :config="config" v-model="value" :value="model" contenteditable="true" @input="input"></froala>
+  <div >
+    <froala :tag="'textarea'" :config="config" v-model="value" :value="model" contenteditable="true" @input="input" v-show="atJsConfig.length"></froala>
 			<slot></slot>
 			<div class="d-flex flex-row justify-content-end">
 					<slot name="actions-before"></slot>
@@ -24,8 +24,8 @@ export default {
 			atJsConfig,
       config: {
         events: {
-          'froalaEditor.initialized': (e, editor) => {
-						this.generateAtJsConfig();
+          'froalaEditor.initialized': async (e, editor) => {
+						await this.generateAtJsConfig();
 						editor.$el.atwho(this.atJsConfig)
 
 						editor.events.on('keydown', (e) => {
@@ -69,13 +69,13 @@ export default {
 			this.$emit('input', this.value)
 		},
 
-		generateAtJsConfig() {
-			const datasource = ["Jacob", "Isabella", "Ethan", "Emma", "Michael", "Olivia" ];
+		async generateAtJsConfig() {
+			const datasource = await this.$http.get('/users?password_ne&isActive_ne').catch((err) => console.log(err));
 
 			// Build data to be used in At.JS config.
-    	const names = datasource.map((value, i) => {
+    	const names = datasource.data.map((value, i) => {
       	return {
-        	'id': i, 'name': value, 'email': value + "@email.com"
+        	'id': value.id, 'name': value.username, 'email': value.email
       	};
 			});
 			

@@ -89,7 +89,7 @@
 		methods: {
 			createPost() {
 				if (this.post.title.trim()) {
-					this.post.userId = this.getAutor();
+					this.post.userId = this.getAuthor();
 					this.setDates();
 					this.$http.post('/posts', this.post)
 						.then(({data}) => {
