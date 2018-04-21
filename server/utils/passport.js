@@ -6,7 +6,7 @@ passport.use(new LocalStrategy({
 	usernameField: 'email'
 	},
   async function(username, password, done) {
-		const user = await User.findUser('email', username);
+		const user = await User.find('email', username);
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
 			}
@@ -23,7 +23,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(async function(id, done) {
-	user = await User.findUser('id', id)
+	user = await User.find('id', id)
   done(null, User.forSession(user));
 });
 

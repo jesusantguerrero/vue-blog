@@ -9,8 +9,8 @@ const passport = require('./../utils/passport');
 
 router.post('/registration', async (req, res, next) => {
 	const { email, username } = req.body;
-	const foundByEmail = await User.findUser('email', email);
-	const foundByUsername = await User.findUser('username', username);
+	const foundByEmail = await User.find('email', email);
+	const foundByUsername = await User.find('username', username);
 	
 	if (foundByEmail || foundByUsername) {
 		let message = (foundByEmail) ? 'Email is' : 'Username is';
@@ -22,7 +22,7 @@ router.post('/registration', async (req, res, next) => {
 	} else {
 		const user = req.body;
 		user.alias = user.username;
-		user.password = await User.hash(user.password);
+		user.password = User.hash(user.password);
 		sendEmailConfirmation(user)
 		res.status(200).json({ ok: true });		
 	}
@@ -31,8 +31,7 @@ router.post('/registration', async (req, res, next) => {
 
 router.post('/validation', async (req, res, next) => {
 	const credentials = req.body;
-	const user = await User.findUser('email', credentials.email);
-
+	const user = await User.find('email', credentials.email);
 	if (credentials.email == user.email && user.validationToken == credentials.token && isValidTokenTime(user.validationTokenTime)) {
 		user.isActive = true;
 		axios.put(`${process.env.ROOT}/api/users/${user.id}`, user);
@@ -51,10 +50,10 @@ router.post('/validation', async (req, res, next) => {
 
 router.post('/send_confirmation', async (req, res, next) => {
 	const credentials = req.body;
-	const user = await User.findUser('email', credentials.email);
+	const user = await User.find('email', credentials.email);
 	if (user) {
 		sendEmailConfirmation(user, true);
-		res.json({ ok : true})		
+		res.json(User.forSession(user))		
 	} else {
 		res.statusMessage = 'is not a valid email';
  		res.status(400).end();
@@ -71,8 +70,8 @@ passport.authenticate('local'), (req, res) => {
 }
 );
 
-router.get('/auth/logout',(req, res) => {
-  req.logout();
+router.get('/logout',(req, res) => {
+	req.logout();
   res.redirect('/');
 })
 
@@ -83,8 +82,34 @@ router.get('/me', (req, res) => {
 function sendEmailConfirmation(user, isCreated = false) {
 	user.validationToken = randtoken.generate(16);
 	user.validationTokenTime = new Date().getTime();
-	const validationLink = `${process.env.ROOT}/#/account/validation/${user.validationToken}/${user.email}`;
 
+	const url = (isCreated) ? `${process.env.ROOT}/api/users/${user.id}` : `${process.env.ROOT}/api/users`;
+	const method = (isCreated) ? 'patch' : 'post';
+	
+	axios[method](url, user)
+	.then(({data}) => {
+		console.log(data)
+		const user = data;
+		const validationLink = `${process.env.ROOT}/#/account/validation/${user.validationToken}/${user.email}`;
+		sendEmail(user.email, validationLink);
+	})
+	.catch((err) => console.log('Error de post', err));
+
+}
+
+function isValidTokenTime(tokenTime) {
+	const now = new Date().getTime();
+	const timePassed = now - tokenTime;
+	const hours = timePassed / (1000 * 60 * 60) ;
+	console.log(hours);
+	if (hours <= 2) {
+		return true;
+	}
+	return false;
+}
+
+function sendEmail(email, link, template = 'welcome') {
+	
 	const emailer = new Email({
 		message: {
 			from: 'jesusant@mctekk.com'
@@ -93,34 +118,19 @@ function sendEmailConfirmation(user, isCreated = false) {
 		transport: transporter
 	});
 
-	const url = (isCreated) ? `${process.env.ROOT}/api/users/${user.id}` : `${process.env.ROOT}/api/users`;
-		axios.post(url, user)
-			.then((user) => console.log('user created'))
-			.catch((err) => console.log(err));		
-
 	emailer
-		.send({
-			template: 'welcome',
-			message: {
-				to: user.email
-			},
-			locals: {
-				name: user.email,
-				link: validationLink,
-			}
-		})
-		.then((email) => console.log('message sent'))
-		.catch((err) => console.error(err.data));
-}
-
-function isValidTokenTime(tokenTime) {
-	const now = new Date().getTime();
-	const timePassed = now - tokenTime;
-	const hours = timePassed / (1000 * 60 * 60) ;
-	if (hours <= 2) {
-		return true;
-	}
-	return false;
+	.send({
+		template: template,
+		message: {
+			to: email
+		},
+		locals: {
+			name: email,
+			link,
+		}
+	})
+	.then((email) => console.log('message sent'))
+	.catch((err) => console.error(err.data));
 }
 
 module.exports = router

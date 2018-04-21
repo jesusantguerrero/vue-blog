@@ -50,10 +50,10 @@
     "js-hot": "set NODE_ENV=development & webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
     "js-production": "set NODE_ENV=production & webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "dev-server": "nodemon server.js",
-    "start-server": "node server.js",
+    "start": "node server.js",
     "db": "json-server --watch server/db/db.json --p 3600",
     "dev": "run-p js-watch dev-server",
-    "start": "run-p js-watch start-server"
+    "start-local": "run-p js-watch start"
   },
   "author": "Jesus Guerrero",
   "license": "ISC"

@@ -45,7 +45,7 @@
 
 				channel.bind('new-mention', (data) => {
 					console.log(data);
-					this.$toastr.info(`${data.comment.author.alias} has metioned you in a ${data.message}`);
+					this.$toastr.info(`${data.author} has metioned you in a ${data.message}`);
 				});
 			},
 

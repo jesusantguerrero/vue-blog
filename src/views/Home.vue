@@ -46,10 +46,14 @@
 		},
 		methods: {
 			getPosts() {
-				this.$http.get('/posts?isDeleted=false&isPublish=true&_sort=id&_order=desc&_embed=comments')
+				this.$http.get('/posts?isDeleted=false&isPublish=true&_sort=id&_order=desc&_embed=comments&_expand=user')
 				.then((res) => {
-					this.posts = res.data
+					this.posts = res.data.map((post) => {
+						post.author = post.user;
+						return post;
+					})
 				})
+				.catch((err) => console.log(err));
 			}
 		}
 	}

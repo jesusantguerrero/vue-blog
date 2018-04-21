@@ -6,6 +6,10 @@ export default {
 
 		now() {
 			return this.formatDate(new Date());
+		},
+
+		getAuthor() {
+			return 2;
 		}
 	}
 }

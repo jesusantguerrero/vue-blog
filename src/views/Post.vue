@@ -82,6 +82,7 @@
 			return {
 				commentOrder: 'desc',
 				comment: { ...comment },
+				comments: [],
 				post: {
 					author: {},
 					comments: []
@@ -91,19 +92,36 @@
 
 		mounted() {
 			this.getPost();
+			this.getCommnets();
 		},
 
 		methods: {
 			getPost() {
-				this.$http.get(`/posts/${this.$route.params.id}?_embed=comments`)
+				this.$http.get(`/posts/${this.$route.params.id}?_embed=users`)
 				.then(({data}) => {
+					if (data) {
+						data.author = data.users[0];
+					}	
 					this.post = data;
+					this.getCommnets(post.id);
+				})
+			},
+
+			getCommnets(postId) {
+				this.$http.get(`/comments/?postId=${this.$route.params.id}?_expand=users`)
+				.then(({data}) => {
+					if (data && data.length) {
+						this.commets = data.map((comment) => {
+							comment.author = comment.user;
+							return comment;
+						})
+					}
 				})
 			},
 
 			createComment(content) {
 				if (content && content.trim()) {
-					this.comment.author = this.getAutor();
+					this.comment.userId = this.getAutor();
 					this.getMentions(content)
 					this.setDates();
 
@@ -112,7 +130,7 @@
 	
 					this.$http.post('/comments', this.comment)
 					.then(({data}) => {
-						this.post.comments.push(data);
+						this.comments.push(data);
 						this.$toastr.success('comment published');
 						this.clearComment();
 					})
@@ -129,14 +147,6 @@
 						this.$router.push('/home');
 					})
 			},
-
-			getAutor() {
-				return {
-					"username": "freesgen",
-					"alias": "Jesus Guerrero",
-					"picture": ""
-				}
-			},
 	
 			setDates() {
 				this.comment.created = this.now();
@@ -145,12 +155,12 @@
 			updateComment({ content, comment }) {
 				if ( content.trim() ) {
 					this.getMentions(content)
-					const index = this.post.comments.findIndex((item) => item.id == comment.id );
+					const index = this.comments.findIndex((item) => item.id == comment.id );
 					comment.content = content;
 	
 					this.$http.patch(`/comments/${comment.id}`, comment)
 						.then(({ data }) => {
-							this.post.comments[index] = data;
+							this.comments[index] = data;
 							this.$toastr.success('comment updated');
 						})
 				} else {
@@ -159,17 +169,17 @@
 			},
 
 			deleteComment(id) {
-				const index = this.post.comments.findIndex((item) => item.id == id );
+				const index = this.comments.findIndex((item) => item.id == id );
 
 				this.$http.delete(`/comments/${id}`)
 					.then(() => {
-						this.post.comments.splice(index, 1);
+						this.comments.splice(index, 1);
 						this.$toastr.success('comment deleted');
 					})
 			},
 
 			commentLiked(comment) {
-				const index = this.post.comments.findIndex((item) => item.id == comment.id );
+				const index = this.comments.findIndex((item) => item.id == comment.id );
 				const profile = this.getAutor();
 				let message = 'post Liked';
 
@@ -183,7 +193,7 @@
 
 				this.$http.put(`/comments/${comment.id}`, comment)
 					.then(({ data }) => {
-						this.post.comments[index] = data;
+						this.comments[index] = data;
 						this.$toastr.success(message);
 					})
 			},
