@@ -1,20 +1,31 @@
 <template>
-    <div class="row">
-        <div class="col-md-8">
-            <h1 class="my-4"> Page Heading
-                <small> Subheading</small>
-            </h1>
+    <div class="">
+		<h1 class="my-4"> My posts </h1>
 
-					<post-card :post="post"></post-card>
-					<post-card :post="post"></post-card>
-					<app-pagination></app-pagination>
-        </div>
+		<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+			<TabLink ids="published-tab" classes="active" refs="#published" title="Published"> </TabLink>
+			<TabLink ids="draft-tab" refs="#draft" title="Drafts"> </TabLink>
+			<TabLink ids="trash-tab" refs="#trash" title="Trash"> </TabLink>
+		</ul>
 
-				<div class="col-md-4">
-						<app-wigget title="Search">
-							<search></search>
-						</app-wigget>
-				</div>
+			<div class="tab-content" id="pills-tabContent">
+			 <TabPane ids="published" classes="show active">
+				 	<MyTable
+					 url="api/posts/"
+					 >
+
+					 </MyTable>
+			 </TabPane>
+
+			 <TabPane ids="draft" classes="">
+				 draft
+			 </TabPane>
+
+			 <TabPane ids="trash" classes="">
+				 trash
+			 </TabPane>
+
+		</div>
 
     </div>
     
@@ -25,13 +36,19 @@
 	import AppWigget from '../components/AppWigget';
 	import Search from '../components/Search';
 	import AppPagination from '../components/AppPagination';
+	import TabLink from '../components/TabLink';
+	import TabPane from '../components/TabPane';
+	import MyTable from '../components/MyTable.vue';
 
 	export default {
 		components: {
 			AppWigget,
 			AppPagination,
 			PostCard,
-			Search
+			Search,
+			TabLink,
+			TabPane,
+			MyTable
 		},
 		data() {
 			return {

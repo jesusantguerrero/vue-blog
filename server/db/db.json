@@ -210,7 +210,6 @@
       },
       "content": "<p>hola <span class=\"atwho-inserted\" data-atwho-at-query=\"@\" data-fr-verified=\"true\">@yeshua</span>⁠&nbsp;</p>",
       "likes": [
-        4,
         3
       ],
       "editMode": false,
