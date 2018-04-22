@@ -3,26 +3,22 @@
 		<h1 class="my-4"> My posts </h1>
 
 		<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-			<TabLink ids="published-tab" classes="active" refs="#published" title="Published"> </TabLink>
-			<TabLink ids="draft-tab" refs="#draft" title="Drafts"> </TabLink>
-			<TabLink ids="trash-tab" refs="#trash" title="Trash"> </TabLink>
+			<TabLink ids="published-tab" classes="active" refs="#published" :title="`Published (${published.length})`"> </TabLink>
+			<TabLink ids="draft-tab" refs="#draft" :title="`Drafts (${drafted.length})`"> </TabLink>
+			<TabLink ids="trash-tab" refs="#trash" :title="`Trash (${trashed.length})`"> </TabLink>
 		</ul>
 
 			<div class="tab-content" id="pills-tabContent">
 			 <TabPane ids="published" classes="show active">
-				 	<MyTable
-					 url="api/posts/"
-					 >
-
-					 </MyTable>
+  				<v-client-table :data="published" :columns="columns" :options="options"></v-client-table>
 			 </TabPane>
 
 			 <TabPane ids="draft" classes="">
-				 draft
+  				<v-client-table :data="drafted" :columns="columns" :options="options"></v-client-table>
 			 </TabPane>
 
 			 <TabPane ids="trash" classes="">
-				 trash
+  				<v-client-table :data="trashed" :columns="columns" :options="options"></v-client-table>
 			 </TabPane>
 
 		</div>
@@ -38,7 +34,7 @@
 	import AppPagination from '../components/AppPagination';
 	import TabLink from '../components/TabLink';
 	import TabPane from '../components/TabPane';
-	import MyTable from '../components/MyTable.vue';
+	import title from '../components/table/Title.vue'
 
 	export default {
 		components: {
@@ -48,26 +44,83 @@
 			Search,
 			TabLink,
 			TabPane,
-			MyTable
+		},
+		computed: {
+			trashed() {
+				return this.posts.filter((post) => post.isDeleted);
+			},
+			drafted() {
+				return this.posts.filter((post) => !post.isPublish)
+			},
+			published() {
+				return this.posts.filter((post) => post.isPublish)
+			}
+
 		},
 		data() {
 			return {
-				post: {
-					id: 1,
-					title: 'Post Title',
-					content: 'example text',
-					publishDate: new Date(),
-					author: {
-						username: 'freesgen',
-						alias: 'Jesus Guerrero',
+				publishedFields: [
+					{
+						name: 'title',
+						title: '#'
 					},
-					comments: [
+					'title'
+				],
+				
+				columns: ['#', 'title', 'comments', 'likes', 'created', 'published'],
+        posts: [],
+        options: {
+					pagination: {
+						chunk: 25
+					},
+					perPage: 25,
+					sortable: ['title', 'comments', 'likes', 'created', 'published'],
+					storage: 'session',
+					filterByColums: true,
+					saveState: true,
+					templates: {
+            '#': (h, row, index) => {
+                return index;
+						},
+						comments: (h, row, index) => {
+							return row.comments.length;
+						},
+						likes: (h, row) => {
+							return row.likes.length;
+						},
+						published: (h, row) => {
+							return row.publishDate || '--'
+						},
+						title
+        	}
+        }
+			}
+		},
+		watch:{
+			me() {
+				if (this.me) {
+					this.getPosts();
+				}
+			}
+		},
 
-					],
-					likes: [],
-					created: new Date(),
-					updated: new Date()
-				},
+		mounted() {
+			this.getPosts();
+			// Event.$on('vue-tables.loaded', function (data) {
+				
+			// });
+
+			// Event.$on('vue-tables.loaded', function (data) {
+				
+			// });
+
+		},
+		methods: {
+			getPosts() {
+				if (this.me) {
+					this.$http.get(`/posts?userId=${this.me.id}&_sort=id&_order=desc&_embed=comments`)
+						.then(({ data }) => this.posts = data)
+				}
 			}
 		}
 	}

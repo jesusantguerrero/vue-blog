@@ -25,9 +25,8 @@ app.use(passport.session());
 app.use('/api/auth', authRouter)
 
 app.use(mComments);
-
 app.use('/api', router)
 
 app.listen(PORT, () => {
 	console.log(`listening port ${PORT}`);
-} )
+})
