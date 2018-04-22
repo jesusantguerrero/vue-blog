@@ -53,7 +53,7 @@ export default {
 								window.location.reload();
 							}
 						}).catch((err) => {
-							console.log(err);
+							this.$toastr.error(`${err.response.statusText}`);
 						});
 						return
 					}
