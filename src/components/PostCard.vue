@@ -8,7 +8,7 @@
 							</router-link>
 						</h2>
             <div class="card-text" v-if="isFullContent" v-html="post.content"></div>
-            <p class="card-text" v-else> {{ post.content | summary }} </p>
+            <p class="card-text" v-else v-html="summary(post.content)"> </p>
             <router-link :to="postLink" class="btn btn-primary">Read More &rarr;</router-link>
         </div>
         <div class="card-footer text-muted">
@@ -48,16 +48,6 @@ export default {
 		}
 	},
 
-	filters: {
-		summary(text) {
-			if (text) {
-				const plainText = (text[0] == "<") ? $(text).text() : text;
-				return plainText.slice(0, 200);
-			} 
-			return text;
-		}
-	},
-
 	computed: {
 		postLink() {
 			return `/post/${this.post.id}?ref=${this.origin}`;
@@ -74,6 +64,14 @@ export default {
 	},
 
 	methods: {
+		summary(text) {
+			if (text) {
+				const plainText = (text[0] == "<") ? $(text).text() : text;
+				return plainText.slice(0, 200);
+			} 
+			return text;
+		},
+
 		getImageLink() {
 			const { content } = this.post;
 			if (this.isHTML) {

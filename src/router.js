@@ -10,6 +10,8 @@ import PostEdit from './views/PostEdit';
 import User from './views/User';
 import AccountValidation from './views/AccountValidation';
 import Confirmation from './views/Confirmation';
+import Configuration from './views/Configuration';
+import ResetPassword from './views/ResetPassword';
 import axios from 'axios';
 
 Vue.use(Router)
@@ -85,6 +87,18 @@ const router = new Router({
 					component: Confirmation,
 					meta: {requiresAuth: true}
 				},
+				{
+					path: '/configuration',
+					name: 'configuration',
+					alias: '/config',
+					component: Configuration,
+					meta: {requiresAuth: true}
+				},
+				{
+					path: '/reset_password/:token?',
+					name: 'reset',
+					component: ResetPassword
+				}
     ]
 
 })
@@ -109,7 +123,7 @@ router.beforeEach((to, from, next) => {
 			.then(({data}) => {
 				if (data && data.isActive) {
 					next({
-						path: '/new-post',
+						path: '/home',
 						query: { redirect: to.fullPath }
 					})
 				} else if (data && !data.isActive) {
@@ -117,8 +131,7 @@ router.beforeEach((to, from, next) => {
 						path: '/account/validation',
 						query: { redirect: to.fullPath }
 					})
-				} else if (data && data.isActive && !data.lasname) {
-
+				} else if (data && data.isActive && !data.lastname) {
 					next({
 						path: '/confirmation',
 						query: { redirect: to.fullpath }

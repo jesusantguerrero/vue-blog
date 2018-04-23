@@ -1,5 +1,5 @@
 <template>
-    <div class="text-center login-box" v-show="users">
+    <div class="text-center login-box" v-show="users && me">
 			<form class="form-signin">
 				<h4 class="h3 mb-3 font-weight-normal"> {{ title || 'Confirm Your Profile'}} </h4>
 				<div class="d-flex justify-content-center">
@@ -20,7 +20,8 @@
 				<div class="form-group">
 					<label for="username" class="sr-only"> Name </label>
 					<p :class="{ 'control': true }">
-						<input  type="name" id="name" v-model="user.name" v-validate="'required|alpha_spaces'" class="form-control" :class="{'input': true, 'is-danger': errors.has('name') }" name="name" placeholder="your name">
+						<input  type="name" id="name" v-model="user.name" v-validate="'required|alpha_spaces'" class="form-control" :class="{'input': true, 'is-danger': errors.has('name') }" 
+						name="name" placeholder="your name">
 						<span v-show="errors.has('name')" class="help text-danger">{{ errors.first('name') }}</span>
 					</p>
 				</div>
@@ -36,7 +37,7 @@
 				<div class="form-group">
 					<label for="username" class="sr-only"> Description </label>
 					<p :class="{ 'control': true }">
-						<textarea  type="description" id="name" v-model="user.description" v-validate="'required'" class="form-control" :class="{'input': true, 'is-danger': errors.has('description') }" name="description" placeholder="description">
+						<textarea  type="description" id="description" v-model="user.description" v-validate="'required'" class="form-control" :class="{'input': true, 'is-danger': errors.has('description') }" name="description" placeholder="description">
 						</textarea>
 						<span v-show="errors.has('description')" class="help text-danger">{{ errors.first('description') }}</span>
 					</p>
@@ -55,6 +56,10 @@ export default {
 		title: {
 			type: String,
 			default: null
+		},
+		redirect: {
+			type: Boolean,
+			default: true
 		}
 	},
 	data() {
@@ -74,8 +79,9 @@ export default {
 
 	watch: {
 		me() {
-			if (this.me) {
+			if (this.me.length) {
 				this.user.username = this.me.username;
+				this.user = this.me;
 			}
 		},
 		'user.name'() {
@@ -89,6 +95,7 @@ export default {
 
 	mounted() {
 		this.getUsers();
+		this.user = this.me;
 	},
 
 	methods: {
@@ -99,7 +106,11 @@ export default {
 						this.$http.post(`/auth/update_profile/${this.me.id}`, this.user)
 						.then(() => {
 							this.$toastr.success('done');
-							this.$router.push('/new-post');
+							if (this.redirect) {
+								this.$router.push('/new-post');
+							} else {
+								window.location.reload();
+							}
 						}).catch((err) => {
 							this.$toastr.error(`${err.response.statusText}`)
 						});
@@ -114,7 +125,7 @@ export default {
 				.then(({ data }) => {
 					const users = []; 
 					data.forEach((user) => {
-						if (user.username != this.me.username) 
+						if (user.username !== this.me.username) 
 							users.push(user.username)
 					})
 					this.users = users.join(',');

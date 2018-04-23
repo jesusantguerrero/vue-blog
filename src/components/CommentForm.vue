@@ -71,7 +71,6 @@ export default {
 
 		async generateAtJsConfig() {
 			const datasource = await this.$http.get('/users?password_ne&isActive_ne').catch((err) => console.log(err));
-
 			// Build data to be used in At.JS config.
     	const names = datasource.data.map((value, i) => {
       	return {

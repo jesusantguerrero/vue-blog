@@ -93,7 +93,11 @@
 					this.setDates();
 					this.$http.post('/posts', this.post)
 						.then(({data}) => {
-							this.backToHome();
+							if (data.isPublish) {
+								this.$router.push(`/post/${data.id}`);
+							} else {
+								this.backToHome();
+							}
 						})
 				} else {
 					this.$toastr.warning('all the fields are required');
@@ -118,7 +122,7 @@
 			},
 	
 			backToHome() {
-				this.$router.push('/home')
+				this.$router.push('/home');
 			}
 	
 		}

@@ -8,8 +8,7 @@ async function commentMiddleware (req, res, next) {
 		const comment = req.body
 		const { mentions } = comment;
 		const { method } = req;
-		const author = await User.find('id', comment.userId).username;
-		console.log(author)
+		const author = await User.findById('id', comment.userId).username;
 		const message = (method === 'POST') ? 'new comment': 'updated comment'
 		if (mentions && mentions.length) {
 			pusher.trigger('comments', 'new-mention', {
