@@ -5,6 +5,7 @@ const User = require('./user');
 passport.use(new LocalStrategy({
 	usernameField: 'email'
 	},
+
   async function(username, password, done) {
 		const user = await User.find('email', username);
       if (!user) {
@@ -12,9 +13,10 @@ passport.use(new LocalStrategy({
 			}
 			
       if (!User.validatePassword(user.password, password)) {
-        return done(null, false, { message: 'Incorrect password.' });
+				return done(null, false, { message: 'Incorrect password.' });
       }
-      return done(null, user);
+			console.log('correct')
+		return done(null, user);
   }
 ));
 

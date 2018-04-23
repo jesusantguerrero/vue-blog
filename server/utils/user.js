@@ -32,7 +32,9 @@ module.exports = class User {
 	}
 
 	static async validatePassword(hash, password) {
-		return  bcrypt.compareSync(password, hash);
+		const isValid = bcrypt.compareSync(password, hash);
+		console.log(isValid)
+		return isValid;
 	}
 
 	static forSession(user) {

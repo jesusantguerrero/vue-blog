@@ -10,6 +10,7 @@ import PostEdit from './views/PostEdit';
 import User from './views/User';
 import AccountValidation from './views/AccountValidation';
 import Confirmation from './views/Confirmation';
+import Configuration from './views/Configuration';
 import axios from 'axios';
 
 Vue.use(Router)
@@ -83,6 +84,13 @@ const router = new Router({
 					path: '/confirmation',
 					name: 'confirmation',
 					component: Confirmation,
+					meta: {requiresAuth: true}
+				},
+				{
+					path: '/configuration',
+					name: 'configuration',
+					alias: '/config',
+					component: Configuration,
 					meta: {requiresAuth: true}
 				},
     ]

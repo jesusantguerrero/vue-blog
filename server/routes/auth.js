@@ -66,10 +66,7 @@ router.post('/reset_password', (req, res, next) => {
 
 router.post('/update_profile/:id', async (req, res, next) => {
 	const { body } = req;
-	console.log(body)
-	const user = await User.findById(req.params.id).then((data) => data)
-											.catch((err) => console.log('error in auth' ,err));
-	console.log(user)
+	const user = await User.findById(req.params.id);
 
 	user.username = body.username;
 	user.name = body.name;
@@ -86,6 +83,27 @@ router.post('/update_profile/:id', async (req, res, next) => {
 			res.json(User.forSession(user));
 		})
 		.catch((err) => console.log(err))
+})
+
+router.post('/update_password', async (req, res) => {
+	const { body } = req;
+	const user = await User.findById(req.user.id);
+
+	if (!req.user) {
+		res.statusMessage = 'You are not logged In';
+		res.status(400).end();
+	} else if (!User.validatePassword(user.password, body.oldPassword)) {
+
+		res.statusMessage = 'The old password is wrong';
+		res.status(400).end();
+	} else {
+			user.password = User.hash(body.password);
+			User.save(user)
+			.then((user) => {
+				res.redirect('/api/auth/logout');
+			})
+			.catch((err) => console.log(err))
+	}
 })
 
 router.post('/login', 

@@ -8,7 +8,7 @@
 							</router-link>
 						</h2>
             <div class="card-text" v-if="isFullContent" v-html="post.content"></div>
-            <p class="card-text" v-else> {{ post.content | summary }} </p>
+            <p class="card-text" v-else v-html=" post.content | summary"> </p>
             <router-link :to="postLink" class="btn btn-primary">Read More &rarr;</router-link>
         </div>
         <div class="card-footer text-muted">
