@@ -53,7 +53,7 @@
 				return this.posts.filter((post) => !post.isPublish)
 			},
 			published() {
-				return this.posts.filter((post) => post.isPublish)
+				return this.posts.filter((post) => post.isPublish && !post.isDeleted)
 			}
 
 		},

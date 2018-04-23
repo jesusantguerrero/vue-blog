@@ -156,6 +156,7 @@
 
 			deletePost() {	
 				this.post.isDeleted = true;
+				this.isPublished = false;
 				this.$http.patch(`/posts/${this.post.id}`, this.post)
 					.then(({ data }) => {
 						this.$toastr.success('post deleted');
