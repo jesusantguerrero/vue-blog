@@ -9,6 +9,7 @@ import PostCreate from './views/PostCreate';
 import PostEdit from './views/PostEdit';
 import User from './views/User';
 import AccountValidation from './views/AccountValidation';
+import Confirmation from './views/Confirmation';
 import axios from 'axios';
 
 Vue.use(Router)
@@ -78,6 +79,12 @@ const router = new Router({
 					alias: 'accounts/validation',
 					component: AccountValidation
 				},
+				{
+					path: '/confirmation',
+					name: 'confirmation',
+					component: Confirmation,
+					meta: {requiresAuth: true}
+				},
     ]
 
 })
@@ -109,6 +116,12 @@ router.beforeEach((to, from, next) => {
 					next({
 						path: '/account/validation',
 						query: { redirect: to.fullPath }
+					})
+				} else if (data && data.isActive && !data.lasname) {
+
+					next({
+						path: '/confirmation',
+						query: { redirect: to.fullpath }
 					})
 				} else {
 					next()

@@ -10,6 +10,7 @@
     "email-templates": "^3.5.2",
     "express-session": "^1.15.6",
     "faker": "^4.1.0",
+    "gravatar": "^1.6.0",
     "json-server": "^0.12.1",
     "laravel-mix": "^2.1.11",
     "nodemailer": "^4.6.4",
