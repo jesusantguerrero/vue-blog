@@ -86,6 +86,7 @@ export default {
 				data: names,
 				editableAtwhoQueryAttrs: {"data-fr-verified": true},
       	displayTpl: '<li>${name} <small>${email}</small></li>',
+				insertTpl: '<a href="/#/author/${id}">${atwho-at}${name}</a>',
       	limit: 200
     	}
 		},

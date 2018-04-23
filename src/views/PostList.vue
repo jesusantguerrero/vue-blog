@@ -10,15 +10,15 @@
 
 			<div class="tab-content" id="pills-tabContent">
 			 <TabPane ids="published" classes="show active">
-  				<v-client-table :data="published" :columns="columns" :options="options"></v-client-table>
+  				<v-client-table :data="published" :columns="columns" :options="options" name="t-publish-post"></v-client-table>
 			 </TabPane>
 
 			 <TabPane ids="draft" classes="">
-  				<v-client-table :data="drafted" :columns="columns" :options="options"></v-client-table>
+  				<v-client-table :data="drafted" :columns="columns" :options="options" name="t-draft-post"></v-client-table>
 			 </TabPane>
 
 			 <TabPane ids="trash" classes="">
-  				<v-client-table :data="trashed" :columns="columns" :options="options"></v-client-table>
+  				<v-client-table :data="trashed" :columns="columns" :options="options" name="t-trash-post"></v-client-table>
 			 </TabPane>
 
 		</div>
@@ -106,14 +106,6 @@
 
 		mounted() {
 			this.getPosts();
-			// Event.$on('vue-tables.loaded', function (data) {
-				
-			// });
-
-			// Event.$on('vue-tables.loaded', function (data) {
-				
-			// });
-
 		},
 		methods: {
 			getPosts() {

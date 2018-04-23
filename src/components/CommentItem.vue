@@ -76,21 +76,3 @@
 </script>
 
 
-<style lang="sass">
-	.comment-item
-		.isAuthor
-			visibility: hidden
-			transition: all ease .3s
-		&:hover
-			.isAuthor
-				visibility: visible
-
-	.comment-item__likes
-		color: grey
-		font-weight: bolder
-
-		&.myLike
-			color: green
-			
-</style>
-

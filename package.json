@@ -27,6 +27,7 @@
     "vue-at": "^2.3.2",
     "vue-axios": "^2.1.1",
     "vue-froala-wysiwyg": "^2.7.6",
+    "vue-paginate": "^3.6.0",
     "vue-router": "^3.0.1",
     "vue-tables-2": "^1.4.31",
     "vuetable-2": "^1.7.5"

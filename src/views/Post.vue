@@ -19,6 +19,11 @@
 			<hr>
 
 			<div class="content" v-html="post.content"></div>
+			<p class="media-footer text-muted" v-if="post.likes">
+				<a href="#" @click.prevent="postLiked">
+            <span class="comment-item__likes" :class="{myLike: hasMyLike }"> Likes:  {{ post.likes.length }} </span>
+				</a>
+      </p>
 			<hr>
 			<h2> Comments </h2>
 				<p> Post a new comment </p>
@@ -73,6 +78,13 @@
 
 			origin() {
 				return this.$route.query.ref || '';
+			},
+
+
+			hasMyLike() {
+				if (this.me) {
+					return this.post.likes.includes(this.me.id)
+				}
 			}
 			
 		},
@@ -206,6 +218,31 @@
 				}
 			},
 
+			postLiked() {
+				if (!this.me) {
+					this.$toastr.info('you must be an user to like this comment');
+				} else {
+
+				const profile = this.me;
+				const { post } = this;
+				let message = 'post Liked';
+
+				if (post.likes.includes(profile.id)) {
+					const likes = post.likes.filter((item) => item !== profile.id);
+					post.likes = likes
+					message = 'post disliked';
+				} else {
+					this.post.likes.push(profile.id);
+				}
+
+				this.$http.put(`/posts/${post.id}`, post)
+					.then(({ data }) => {
+						this.post.likes = data.likes;
+						this.$toastr.success(message);
+					})
+				}
+			},
+
 			changeCommentOrder() {
 				this.commentOrder = this.commentOrder == 'asc' ? 'desc' : 'asc';
 			},
@@ -235,6 +272,22 @@
 		background: transparentize(#06f, .8)
 		border-radius: 4px
 		padding: 0 5px
+
+	.comment-item
+		.isAuthor
+			visibility: hidden
+			transition: all ease .3s
+		&:hover
+			.isAuthor
+				visibility: visible
+
+	.comment-item__likes
+		color: grey
+		font-weight: bolder
+
+		&.myLike
+			color: green
+			
 </style>
 
 

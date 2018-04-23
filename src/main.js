@@ -7,6 +7,7 @@ import VeeValidate from 'vee-validate';
 import mixin from './utils/mixin';
 import Toastr from './utils/toastr';
 import { ClientTable, Event } from 'vue-tables-2';
+import VuePaginate from 'vue-paginate';
 
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -17,6 +18,7 @@ axios.defaults.baseURL = 'http://localhost:3000/api';
 Vue.use(VueFroala);
 Vue.use(VueAxios, axios);
 Vue.use(VeeValidate);
+Vue.use(VuePaginate);
 Vue.use(ClientTable, {}, false, 'bootstrap4', 'default');
 Vue.mixin(mixin);
 
