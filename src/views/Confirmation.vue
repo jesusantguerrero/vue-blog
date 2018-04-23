@@ -1,12 +1,13 @@
 <template>
     <div class="text-center login-box" v-show="users">
 			<form class="form-signin">
-				<h4 class="h3 mb-3 font-weight-normal"> Confirm Your Profile </h4>
-				<div class="text-center">
+				<h4 class="h3 mb-3 font-weight-normal"> {{ title || 'Confirm Your Profile'}} </h4>
+				<div class="d-flex justify-content-center">
 					<img class="d-flex mr-3 rounded-circle" :src=" user.picture || 'http://placehold.it/50x50'" alt=""> 
 				</div>
 				<br>
 				<button class="btn btn-lg btn-primary btn-block" type="submit" @click.prevent="setPicture"> Set Picture </button>
+				<br>
 
 				<div class="form-group">
 					<label for="username" class="sr-only"> Username </label>
@@ -50,6 +51,12 @@ import axios from 'axios';
 import gravatar from 'gravatar';
 
 export default {
+	props: {
+		title: {
+			type: String,
+			default: null
+		}
+	},
 	data() {
 		return {
 			user: {
@@ -58,7 +65,8 @@ export default {
 				lastname: '',
 				description: '',
       	alias: '',
-      	picture: '',
+				picture: '',
+				isPrivate: false,
 			},
 			users: '',
 		}
@@ -69,6 +77,13 @@ export default {
 			if (this.me) {
 				this.user.username = this.me.username;
 			}
+		},
+		'user.name'() {
+			this.user.alias = `${this.user.name} ${this.user.lastname}`; 
+		},
+
+		'user.lastname'() {
+			this.user.alias = `${this.user.name} ${this.user.lastname}`; 
 		}
 	},
 
@@ -81,7 +96,7 @@ export default {
 			this.$validator.validateAll()
 				.then((result) => {
 					if (result) {
-						this.$http.post('/auth/confirmation', this.user)
+						this.$http.post(`/auth/update_profile/${this.me.id}`, this.user)
 						.then(() => {
 							this.$toastr.success('done');
 							this.$router.push('/new-post');

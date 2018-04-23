@@ -23,13 +23,18 @@
     {
       "email": "jesusant@mctekk.com",
       "username": "yeshua",
-      "alias": "yeshua",
-      "picture": "",
+      "alias": "Jesus Antonio Guerrero",
+      "picture": "//www.gravatar.com/avatar/62ace26de95c89896c187aed2dc48677",
       "password": "$2a$10$EAHYq9Gh88ePE3PRasXVf.y/79H9Jo2yGk18REasbge/9Kb/DaZzu",
       "isActive": true,
-      "validationToken": "yd1NPbBnLLBCkzaJ",
+      "validationToken": "",
       "validationTokenTime": 1524319291976,
-      "id": 3
+      "id": 3,
+      "name": "Jesus Antonio",
+      "lastname": "Guerrero",
+      "description": "Hola mundo",
+      "isPrivate": false,
+      "tokenTime": null
     },
     {
       "email": "insanecode0@gmail.com",

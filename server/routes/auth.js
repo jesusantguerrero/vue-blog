@@ -64,6 +64,30 @@ router.post('/reset_password', (req, res, next) => {
 	// TODO
 })
 
+router.post('/update_profile/:id', async (req, res, next) => {
+	const { body } = req;
+	console.log(body)
+	const user = await User.findById(req.params.id).then((data) => data)
+											.catch((err) => console.log('error in auth' ,err));
+	console.log(user)
+
+	user.username = body.username;
+	user.name = body.name;
+	user.lastname = body.lastname;
+	user.description = body.description;
+	user.alias = body.alias;
+	user.picture = body.picture;
+	user.isPrivate =  body.isPrivate;
+	user.validationToken = '';
+	user.tokenTime = null;
+
+	User.save(user)
+		.then((user) => {
+			res.json(User.forSession(user));
+		})
+		.catch((err) => console.log(err))
+})
+
 router.post('/login', 
 passport.authenticate('local'), (req, res) => {
 	res.json(req.user)
@@ -132,5 +156,7 @@ function sendEmail(email, link, template = 'welcome') {
 	.then((email) => console.log('message sent'))
 	.catch((err) => console.error(err.data));
 }
+
+
 
 module.exports = router

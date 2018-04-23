@@ -10,12 +10,20 @@ module.exports = class User {
 		return (foundUser.length > 0 ) ? foundUser[0] : null;
 	}
 
+	static async findById(id) {
+		const foundUser = await axios.get(`${process.env.ROOT}/api/users/${id}`)
+			.then(({ data }) => data)
+			.catch((err) => console.log('error in user',err));
+		
+			return foundUser;
+	}
+
 	static async save(user) {
 		const isUser = await this.find('email', user.email);
 		const url = (isUser) ? `${process.env.ROOT}/api/users/${user.id}` : `${process.env.ROOT}/api/users`;
 		const method = (isUser) ? 'patch' : 'post';
-		axios[method](url, user)
-			.then((user) => console.log('user  or updated'))
+		return axios[method](url, user)
+			.then(({ data }) => data)
 			.catch((err) => console.log(err));		
 	}
 
