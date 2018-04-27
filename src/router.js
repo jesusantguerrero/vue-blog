@@ -11,6 +11,7 @@ import User from './views/User';
 import AccountValidation from './views/AccountValidation';
 import Confirmation from './views/Confirmation';
 import Configuration from './views/Configuration';
+import Search from './views/Search';
 import ResetPassword from './views/ResetPassword';
 import axios from 'axios';
 
@@ -30,6 +31,11 @@ const router = new Router({
 					name: 'user',
 					alias: "/user",
 					component: User
+				},
+				{
+					path: '/search',
+					name: 'search',
+					component: Search
 				},
 				// Auth
         {

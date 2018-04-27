@@ -44,5 +44,39 @@ export default {
 		userLink() {
 			return `/author/${this.$root.currentUser.username}`;
 		},
+
+		getSearch() {
+			const Search = {
+					text: '',
+					date: {
+						start: '',
+						end: ''
+					},
+					checks: {
+						title: true,
+						author: false,
+						content: false,
+						date: false
+					},
+					page: 1
+				}
+
+			if (!sessionStorage.getItem('Search')) {
+				this.setSearch(Search);
+			}
+			return JSON.parse(sessionStorage.getItem('Search'));
+		},
+		
+		setSearch(Search) {
+			sessionStorage.setItem('Search', JSON.stringify(Search))
+		},
+
+		saveSearch(key, value) {
+			const Search = this.getSearch();
+			Search[key] = value;
+			this.setSearch(Search);
+		},
+
+
 	}
 }

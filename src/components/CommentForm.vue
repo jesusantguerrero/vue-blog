@@ -4,9 +4,9 @@
 			<slot></slot>
 			<div class="d-flex flex-row justify-content-end">
 					<slot name="actions-before"></slot>
-					<button class="btn btn-danger" @click="cancel"> {{ btnCancelText || 'Cancel' }} </button>
+					<button class="btn btn-danger" @click.prevent="cancel"> {{ btnCancelText || 'Cancel' }} </button>
 					<slot name="actions-between"></slot>
-					<button @click="save" class="btn btn-success"> {{ btnSaveText || 'Save' }} </button>
+					<button @click.prevent="save" class="btn btn-success"> {{ btnSaveText || 'Save' }} </button>
 					<slot name="actions-after"></slot>
 			</div>
   </div>
