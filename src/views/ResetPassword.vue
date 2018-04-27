@@ -7,7 +7,7 @@
 				<div class="form-group">
 					<label for="email" class="sr-only">Email</label>
 					<p :class="{ 'control': true }">
-							<input v-validate="'required|email'" v-model="credentials.email" class="form-control" :class="{'input': true, 'is-danger': errors.has('email') }" name="email" type="text" placeholder="Email">
+							<input v-validate="'required|email'" v-model.lazy="credentials.email" class="form-control" :class="{'input': true, 'is-danger': errors.has('email') }" name="email" type="text" placeholder="Email">
 							<span v-show="errors.has('email')" class="help text-danger">{{ errors.first('email') }}</span>
 					</p>
 				</div>

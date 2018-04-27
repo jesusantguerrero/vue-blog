@@ -4,7 +4,7 @@
 				<div class="form-group" v-if="requireOld">
 					<label for="password" >Old Password</label>
 					<p :class="{ 'control': true }">
-							<input  type="password" id="old-password" v-model="user.oldPassword" v-validate="'required'" class="form-control" :class="{'input': true, 'is-danger': errors.has('old-password') }" name="old-password" placeholder="old password">
+							<input  type="password" id="old-password" v-model.lazy="user.oldPassword" v-validate="'required'" class="form-control" :class="{'input': true, 'is-danger': errors.has('old-password') }" name="old-password" placeholder="old password">
 							<span v-show="errors.has('old-password')" class="help text-danger">{{ errors.first('old-password') }}</span>
 					</p>
 				</div>
@@ -12,7 +12,7 @@
 				<div class="form-group">
 					<label for="password" >Password</label>
 					<p :class="{ 'control': true }">
-							<input  type="password" id="password" v-model="user.password" v-validate="'required'" class="form-control" :class="{'input': true, 'is-danger': errors.has('password') }" name="password" placeholder="password">
+							<input  type="password" id="password" v-model.lazy="user.password" v-validate="'required'" class="form-control" :class="{'input': true, 'is-danger': errors.has('password') }" name="password" placeholder="password">
 							<span v-show="errors.has('password')" class="help text-danger">{{ errors.first('password') }}</span>
 					</p>
 				</div>
