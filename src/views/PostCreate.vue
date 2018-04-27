@@ -114,10 +114,11 @@
 			},
 	
 			setDates() {
-				this.post.created = this.now();
-				this.post.update = this.now();
+				const date = this.now();
+				this.post.created = date;
+				this.post.update = date;
 				if (this.post.isPublish) {
-					this.post.publishDate = this.now();
+					this.post.publishDate = date;
 				}
 			},
 	

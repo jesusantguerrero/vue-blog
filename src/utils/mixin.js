@@ -24,6 +24,10 @@ export default {
 			return this.formatDate(new Date());
 		},
 
+		stampFormat(date) {
+			return date.replace(/[-]/g, '');
+		},
+
 		getAuthor() {
 			return this.me.id;
 		},

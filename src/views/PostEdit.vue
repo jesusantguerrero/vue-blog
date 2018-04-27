@@ -116,6 +116,11 @@
 					this.$http.patch(`/posts/${this.post.id}`, this.post)
 						.then(({ data }) => {
 							this.$toastr.success('post published');
+							if (data.isPublish) {
+								this.$router.push(`/post/${data.id}`);
+							} else {
+								this.$router.push('/home');
+							}
 						})
 				}	else {
 					this.$toastr.warning('all the fields are required');

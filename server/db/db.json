@@ -514,7 +514,7 @@
     {
       "title": "Hello this is a title",
       "content": "<p><img src=\"https://i.froala.com/download/8cc9ee1d93834b719a25d5121b9e4b45b3fd2327.jpg?1524519014\" style=\"width: 300px;\" class=\"fr-fic fr-dib\"></p><ol><li>&nbsp;uno</li><li>dos&nbsp;</li><li>tres</li></ol><p>hola</p>",
-      "publishDate": "2018-04-23",
+      "publishDate": "2018-04-27",
       "author": {
         "email": "jesusant@mctekk.com",
         "username": "yeshua",
@@ -555,11 +555,128 @@
             "@insane"
           ],
           "userId": 3
+        },
+        {
+          "id": 30,
+          "postId": 24,
+          "author": {
+            "email": "jesusant@mctekk.com",
+            "username": "yeshua",
+            "alias": "Jesus Guerrero",
+            "picture": "//www.gravatar.com/avatar/62ace26de95c89896c187aed2dc48677",
+            "isActive": true,
+            "id": 3,
+            "name": "Jesus",
+            "lastname": "Guerrero",
+            "description": "Hola mundo",
+            "isPrivate": false,
+            "tokenTime": null,
+            "resetToken": "",
+            "resetTokenTime": "",
+            "password": "$2a$10$fup6iBZhYbVeE3nJFWDMsOrfLfxLSm9FsiLUfXwfwSD3lTH0u//9G"
+          },
+          "content": "<p><span class=\"atwho-inserted\" data-atwho-at-query=\"@yesh\" data-fr-verified=\"true\"><a href=\"/#/author/3\">@yeshua</a></span>⁠&nbsp;</p>",
+          "likes": [
+            3
+          ],
+          "editMode": false,
+          "created": "2018-04-27",
+          "mentions": [
+            "@yeshua"
+          ],
+          "userId": 3,
+          "user": {
+            "email": "jesusant@mctekk.com",
+            "username": "yeshua",
+            "alias": "Jesus Guerrero",
+            "picture": "//www.gravatar.com/avatar/62ace26de95c89896c187aed2dc48677",
+            "isActive": true,
+            "id": 3,
+            "name": "Jesus",
+            "lastname": "Guerrero",
+            "description": "Hola mundo",
+            "isPrivate": false,
+            "tokenTime": null,
+            "resetToken": "",
+            "resetTokenTime": "",
+            "password": "$2a$10$fup6iBZhYbVeE3nJFWDMsOrfLfxLSm9FsiLUfXwfwSD3lTH0u//9G"
+          }
+        },
+        {
+          "id": 31,
+          "postId": 24,
+          "author": {
+            "email": "jesusant@mctekk.com",
+            "username": "yeshua",
+            "alias": "Jesus Guerrero",
+            "picture": "//www.gravatar.com/avatar/62ace26de95c89896c187aed2dc48677",
+            "isActive": true,
+            "id": 3,
+            "name": "Jesus",
+            "lastname": "Guerrero",
+            "description": "Hola mundo",
+            "isPrivate": false,
+            "tokenTime": null,
+            "resetToken": "",
+            "resetTokenTime": ""
+          },
+          "content": "<p><span class=\"atwho-inserted\" data-atwho-at-query=\"@yesh\" data-fr-verified=\"true\"><a href=\"/#/author/3\">@yeshua</a></span>⁠&nbsp;</p>",
+          "likes": [
+            3
+          ],
+          "editMode": false,
+          "created": "2018-04-27",
+          "mentions": [
+            "@yeshua"
+          ],
+          "userId": 3
+        },
+        {
+          "id": 32,
+          "postId": 24,
+          "author": {},
+          "content": "<p>hola <span class=\"atwho-inserted\" data-atwho-at-query=\"@yeshua\" data-fr-verified=\"true\"><a href=\"/#/author/3\">@yeshua</a></span>⁠&nbsp;</p>",
+          "likes": [],
+          "editMode": false,
+          "created": "2018-04-27",
+          "mentions": [
+            "@yeshua"
+          ],
+          "userId": 3
+        },
+        {
+          "id": 33,
+          "postId": 24,
+          "author": {
+            "email": "jesusant@mctekk.com",
+            "username": "yeshua",
+            "alias": "Jesus Guerrero",
+            "picture": "//www.gravatar.com/avatar/62ace26de95c89896c187aed2dc48677",
+            "isActive": true,
+            "id": 3,
+            "name": "Jesus",
+            "lastname": "Guerrero",
+            "description": "Hola mundo",
+            "isPrivate": false,
+            "tokenTime": null,
+            "resetToken": "",
+            "resetTokenTime": ""
+          },
+          "content": "<p><span class=\"atwho-inserted\" data-atwho-at-query=\"@yeshua\" data-fr-verified=\"true\"><a href=\"/#/author/3\">@yeshua</a></span>⁠ hola pueblo</p>",
+          "likes": [
+            3
+          ],
+          "editMode": false,
+          "created": "2018-04-27",
+          "mentions": [
+            "@yeshua"
+          ],
+          "userId": 3
         }
       ],
       "likes": [],
       "created": "2018-04-23",
-      "updated": "2018-04-23",
+      "updated": "2018-04-27",
       "canComment": true,
       "isPublish": true,
       "isDeleted": false,
@@ -581,7 +698,8 @@
         "description": "Hola mundo",
         "isPrivate": false,
         "tokenTime": null
-      }
+      },
+      "publishDateStamp": "20180427"
     },
     {
       "title": "Hello Post",
@@ -603,9 +721,26 @@
       "title": "New Post",
       "content": "<p>New Post</p>",
       "publishDate": "2018-04-27",
-      "author": {},
+      "author": {
+        "email": "jesusant@mctekk.com",
+        "username": "yeshua",
+        "alias": "Jesus Guerrero",
+        "picture": "//www.gravatar.com/avatar/62ace26de95c89896c187aed2dc48677",
+        "isActive": true,
+        "id": 3,
+        "name": "Jesus",
+        "lastname": "Guerrero",
+        "description": "Hola mundo",
+        "isPrivate": false,
+        "tokenTime": null,
+        "resetToken": "",
+        "resetTokenTime": "",
+        "password": "$2a$10$fup6iBZhYbVeE3nJFWDMsOrfLfxLSm9FsiLUfXwfwSD3lTH0u//9G"
+      },
       "comments": [],
-      "likes": [],
+      "likes": [
+        3
+      ],
       "created": "2018-04-27",
       "updated": "",
       "canComment": true,
@@ -613,7 +748,23 @@
       "isDeleted": false,
       "userId": 3,
       "update": "2018-04-27",
-      "id": 26
+      "id": 26,
+      "user": {
+        "email": "jesusant@mctekk.com",
+        "username": "yeshua",
+        "alias": "Jesus Guerrero",
+        "picture": "//www.gravatar.com/avatar/62ace26de95c89896c187aed2dc48677",
+        "isActive": true,
+        "id": 3,
+        "name": "Jesus",
+        "lastname": "Guerrero",
+        "description": "Hola mundo",
+        "isPrivate": false,
+        "tokenTime": null,
+        "resetToken": "",
+        "resetTokenTime": "",
+        "password": "$2a$10$fup6iBZhYbVeE3nJFWDMsOrfLfxLSm9FsiLUfXwfwSD3lTH0u//9G"
+      }
     }
   ],
   "comments": [

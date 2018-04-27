@@ -14,7 +14,7 @@
         <div class="card-footer text-muted">
 						Posted on 
             <router-link :to="postLink">{{ post.publishDate }}</router-link> by
-            <router-link :to="`/author/${post.author.username}`"> {{ post.author.alias }} </router-link> 
+            <router-link :to="`/author/${post.author.username}`"> {{ post.author.alias }} (@{{ post.author.username}}) </router-link> 
 						<router-link :to="authorLink"> <img class="d-flex mr-3 rounded-circle post__image" :src="post.author.picture || 'http://placehold.it/50x50'" alt=""> </router-link>
             <router-link :to="postLink"> Comments:  {{ post.comments.length }} </router-link> |
             <span> Likes:  {{ post.likes.length }} </span>

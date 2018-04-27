@@ -2,12 +2,13 @@
 	<div class="row">
 		<div class="col-md-8">
 			<h1 class="my-4"> Search Posts
-          <small> : filtering by "{{ search.text }}"</small>
+          <small> : filtering by "{{ search.text }}" </small> 
       </h1>
-			<div class="search-bar">
+					<h4> Results ({{ posts.length}})</h4>
+			<div class="search-bar d-flex justify-center" >
 				<input type="text" class="form-control" v-model="search.text">
-				<input type="date" v-if="this.search.checks.date" v-model="search.date.start">
-				<input type="date" v-if="this.search.checks.date" v-model="search.date.end">
+				<input type="date" class="form-control" title="start date" v-if="this.search.checks.date" v-model="search.date.start">
+				<input type="date" class="form-control" title="end date" v-if="this.search.checks.date" v-model="search.date.end">
 			</div>
 
 			<div class="search-bar__controls d-flex justify-center">
@@ -93,7 +94,9 @@ export default {
 				if (param[0] !=='date' && param[1]) {
 					return `${param[0]}_like=${this.search.text}&`;
 				} else if (param[1]) {
-					return `$publishDate_gte=${this.search.date.start}&$publishDate_lte=${this.search.date.end || this.now()}&`
+					const start = this.search.date.start|| 0;
+					const end = this.search.date.end || this.stampFormat(this.now())
+					return `publishDate_gte=${start}&publishDate_lte=${end}&`
 				}
 			});
 
