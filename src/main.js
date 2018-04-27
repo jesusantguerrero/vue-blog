@@ -10,7 +10,8 @@ import { ClientTable, Event } from 'vue-tables-2';
 import VuePaginate from 'vue-paginate';
 
 import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './assets/app.sass';
 import VueFroala from './froala';
 
 axios.defaults.baseURL = 'http://localhost:3000/api';

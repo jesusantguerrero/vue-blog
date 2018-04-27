@@ -13,7 +13,7 @@ async function commentMiddleware (req, res, next) {
 
 		if (method === 'PATCH') {
 			const oldComment = await axios.get(`${process.env.ROOT}/api/comments/${comment.id}`).then(({data}) => data).catch((err) => console.log(err));
-			mentions = mentions.filter((mention) => !oldComment.mentions.includes(mention));
+			mentions = mentions.filter((mention) => (!oldComment.mentions.includes(mention)));
 		}
 
 		if (mentions && mentions.length) {

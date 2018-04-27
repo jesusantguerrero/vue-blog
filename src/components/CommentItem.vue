@@ -1,6 +1,6 @@
 <template>
 	 <div class="media mt-4 comment-item">
-			<router-link :to="authorLink"> <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt=""> </router-link>
+			<router-link :to="authorLink"> <img class="d-flex mr-3 rounded-circle post__image" :src=" comment.author.picture ||'http://placehold.it/50x50'" alt=""> </router-link>
 			<div class="media-body">
 				<h5 class="mt-0"> <router-link :to="authorLink"> {{ comment.author.alias }} </router-link> </h5>
 				<div v-if="!comment.editMode" class="commet-content" v-html="comment.content"></div>

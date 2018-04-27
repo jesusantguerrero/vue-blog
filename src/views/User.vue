@@ -2,7 +2,7 @@
     <div class="row">
 				<div class="col-md-4">
 						<app-wigget title="">
-								<router-link :to="authorLink"> <img class="d-flex mr-3 rounded-circle" :src=" user.picture || 'http://placehold.it/50x50'" alt=""> </router-link>
+								<router-link :to="authorLink"> <img class="d-flex mr-3 rounded-circle profile-picture" :src=" user.picture || 'http://placehold.it/50x50'" alt=""> </router-link>
 								<h5 class="mt-0"> <router-link :to="authorLink"> {{ user.username }} </router-link> </h5>
 						</app-wigget>
 

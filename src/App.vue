@@ -63,10 +63,6 @@
 <style lang="sass" scoped>
 	.container
 		padding-top: 50px
-
-	img.rounded-circle
-		height: 50px !important
-		width: 50px !important
 </style>
 
 

@@ -3,10 +3,11 @@
 			<form class="form-signin">
 				<h4 class="h3 mb-3 font-weight-normal"> {{ title || 'Confirm Your Profile'}} </h4>
 				<div class="d-flex justify-content-center">
-					<img class="d-flex mr-3 rounded-circle" :src=" user.picture || 'http://placehold.it/50x50'" alt=""> 
+					<img class="d-flex mr-3 rounded-circle profile-picture" :src=" user.picture || 'http://placehold.it/50x50'" alt=""> 
 				</div>
 				<br>
-				<button class="btn btn-lg btn-primary btn-block" type="submit" @click.prevent="setPicture"> Set Picture </button>
+				<FilePond allow-multiple="false" server="/api/upload" @processfile="updateProfile"/>
+				<!-- <button class="btn btn-lg btn-primary btn-block" type="submit" @click.prevent="setPicture"> Set Picture </button> -->
 				<br>
 
 				<div class="form-group">
@@ -50,6 +51,9 @@
 <script>
 import axios from 'axios';
 import gravatar from 'gravatar';
+import FilePond from 'vue-filepond';
+// Import FilePond styles
+import 'filepond/dist/filepond.min.css';
 
 export default {
 	props: {
@@ -61,6 +65,9 @@ export default {
 			type: Boolean,
 			default: true
 		}
+	},
+	components: {
+		FilePond
 	},
 	data() {
 		return {
@@ -134,6 +141,14 @@ export default {
 
 		setPicture() {
 			this.user.picture = gravatar.url(this.me.email);
+		},
+
+		updateProfile() {
+			this.$http.get('/auth/me')
+				.then(({data}) => {
+					this.setCurrentUser(data);
+					this.user.picture = data.picture
+			})
 		}
 	}
 }

@@ -20,7 +20,7 @@
 				<div class="form-group">
 					<label for="password"> Confirm Password</label>
 					<p :class="{ 'control': true }">
-							<input  type="password" id="confirm-password" v-validate="'required|confirmed:password'" class="form-control" :class="{'input': true, 'is-danger': errors.has('password-confirm') }" name="confirm-password" placeholder="confirm password">
+							<input  type="password" id="confirm-password" v-model.lazy="passwordConfirmation" v-validate="'required|confirmed:password'" class="form-control" :class="{'input': true, 'is-danger': errors.has('password-confirm') }" name="confirm-password" placeholder="confirm password">
 							<span v-show="errors.has('confirm-password')" class="help text-danger">{{ errors.first('confirm-password') }}</span>
 					</p>
 				</div>
@@ -45,6 +45,7 @@ export default {
       	oldPassword: '',
       	password: '',
 			},
+			passwordConfirmation: ''
 		}
 	},
 

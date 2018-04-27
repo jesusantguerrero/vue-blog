@@ -169,7 +169,6 @@ function sendEmailConfirmation(user, isCreated = false) {
 	
 	axios[method](url, newUser)
 	.then(({ data }) => {
-		console.log(data)
 		const user = data;
 		const validationLink = `${process.env.ROOT}/#/account/validation/${user.validationToken}/${user.email}`;
 		sendEmail(user.email, validationLink);
