@@ -10,13 +10,13 @@ passport.use(new LocalStrategy({
 		const user = await User.find('email', username);
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
-			}
-			
-      if (!User.validatePassword(user.password, password)) {
+			} else if (!User.validatePassword(user.password, password)) {
+				console.log('bad')
 				return done(null, false, { message: 'Incorrect password.' });
-      }
-			console.log('correct')
-		return done(null, user);
+      } else {
+				console.log('correct')
+				return done(null, user);
+			}
   }
 ));
 

@@ -1,8 +1,8 @@
 <template>
     <div class="row">
         <div class="col-md-8">
-            <h1 class="my-4"> Page Heading
-                <small> Subheading</small>
+            <h1 class="my-4"> Posts By
+                <small> our Users</small>
             </h1>
 
 					<post-card :key="i" v-for="(post, i) in posts" :post="post" origin="/home"></post-card>

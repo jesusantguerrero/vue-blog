@@ -43,7 +43,10 @@
 				const channel = pusher.subscribe('comments', () => console.log('started'))
 
 				channel.bind('new-mention', (data) => {
-					this.$toastr.info(`${data.author} has metioned you in a ${data.message}`);
+					console.log(data.mentions)
+					if (data.mentions.includes(`@${this.me.username}`)) {
+						this.$toastr.info(`${data.author.username} has metioned you in a comment`);
+					}
 				});
 			},
 

@@ -28,12 +28,11 @@ module.exports = class User {
 	}
 
 	static hash(password) {
-		return bcrypt.hashSync(password);
+		return bcrypt.hashSync(password, bcrypt.genSaltSync());
 	}
 
-	static async validatePassword(hash, password) {
+	static validatePassword(hash, password) {
 		const isValid = bcrypt.compareSync(password, hash);
-		console.log(isValid)
 		return isValid;
 	}
 

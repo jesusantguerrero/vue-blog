@@ -1,7 +1,7 @@
 <template>
     <div class="text-center login-box">
-			<form class="form-signin">
-				<h1 class="h3 mb-3 font-weight-normal"> Email Validation </h1>
+			<form class="form-signin" v-if="!isReset">
+				<h1 class="h3 mb-3 font-weight-normal"> Type your email </h1>
 				<br>
 				<p> if you didn't receive the email you can resend the validation, you have two hours to confirm</p>
 				<div class="form-group">
@@ -12,44 +12,49 @@
 					</p>
 				</div>
 
-				<button class="btn btn-lg btn-primary btn-block" type="submit" @click.prevent="resendValidation"> Resend </button>
+				<button class="btn btn-lg btn-primary btn-block" type="submit" @click.prevent="resetPassword"> send </button>
     	</form>
+
+			<UpdatePassword v-else></UpdatePassword>
 		</div>
 </template>
 
 <script>
 import axios from 'axios';
+import UpdatePassword from './UpdatePassword';
 
 export default {
+	components: {
+		UpdatePassword
+	},
 	data() {
 		return {
 			credentials: {
-      	email: localStorage.getItem('validationEmail') || '',
+				email: localStorage.getItem('validationEmail') || '',
 			},
+			
+			isReset: false,
 
 			validationCredentials: {
-				email: this.$route.params.email || '',
 				token: this.$route.params.token || ''
 			}
 		}
 	},
 
 	mounted() {
-		this.validateEmail();
+		this.validateResetPassword();
 	},
 
 	methods: {
-		resendValidation() {
+		resetPassword() {
 			this.$validator.validateAll()
 				.then((result) => {
 					if (result) {
-
-						axios.post('/auth/send_confirmation', this.credentials)
+						axios.post('/auth/reset_password', this.credentials)
 						.then(() => {
 							this.$toastr('email sent, check yout email');
-							//this.$router.push('/confirmation');
 						}).catch((err) => {
-							console.log(err);
+							this.$toastr.error(`${err.response.statusText}`);
 						});
 						return
 					}
@@ -58,17 +63,17 @@ export default {
 				})
 		},
 
-		validateEmail() {
-			if (this.validationCredentials.email && this.validationCredentials.token) {
-					axios.post('/auth/validation', this.validationCredentials)
+		validateResetPassword() {
+			if (this.validationCredentials.token) {
+					axios.post('/auth/validate_reset_password', this.validationCredentials)
 						.then(({ data }) => {
-							this.$toastr.success('your email has been validated');
+							this.$toastr.success('your token has been validated');
 							this.setCurrentUser(data)
-							this.$router.push('/confirmation');
+							this.isReset = true;
 						}).catch((err) => {
 							this.$toastr.error(`${err.response.statusText}`);
 						});
-						return	
+					return	
 			}
 		}
 	}

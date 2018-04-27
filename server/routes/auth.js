@@ -32,19 +32,46 @@ router.post('/registration', async (req, res, next) => {
 router.post('/validation', async (req, res, next) => {
 	const credentials = req.body;
 	const user = await User.find('email', credentials.email);
-	if (credentials.email == user.email && user.validationToken == credentials.token && isValidTokenTime(user.validationTokenTime)) {
-		user.isActive = true;
-		axios.put(`${process.env.ROOT}/api/users/${user.id}`, user);
+	if (user.validationToken && credentials.email == user.email && user.validationToken == credentials.token && isValidTokenTime(user.validationTokenTime)) {
+		const newData = {
+			sActive: true,
+			validationToken: '',
+			validationTokenTime: null
+		}
+		axios.patch(`${process.env.ROOT}/api/users/${user.id}`, newData)
+		.then(({ data }) => {
+			req.login(user,  function(err) {
+				if (err) { return next(err); }
+				return true
+			});
+			res.status(200).json(User.forSession(data));
+			res.end()
+		})
+		.catch((err) => console.log(err))
+	} else {
+		res.statusMessage = 'is not a valid token or the token has expired';
+		res.status(404).end();
+	}
+})
+
+router.post('/validate_reset_password', async (req, res, next) => {
+	const credentials = req.body;
+	const user = await User.find('resetToken', credentials.token);
+	if (user.resetToken == credentials.token && isValidTokenTime(user.resetTokenTime)) {
+		const newData = {
+			resetToken: '',
+			resetTokenTime: ''
+		}
+		axios.patch(`${process.env.ROOT}/api/users/${user.id}`, newData);
 		req.login(user,  function(err) {
 			if (err) { return next(err); }
 			return true
 		});
-		res.status(200).json({ ok: true });
+		res.status(200).json(User.forSession(user));
 		res.end()
 	} else {
 		res.statusMessage = 'is not a valid token or the token has expired';
 		res.status(404).end();
-
 	}
 })
 
@@ -60,8 +87,17 @@ router.post('/send_confirmation', async (req, res, next) => {
 	}
 })
 
-router.post('/reset_password', (req, res, next) => {
-	// TODO
+router.post('/reset_password', async (req, res, next) => {
+	const credentials = req.body;
+	const user = await User.find('email', credentials.email);
+	console.log('user found', user)
+	if (user) {
+		sendPasswordReset(user, true);
+		res.json(User.forSession(user));		
+	} else {
+		res.statusMessage = 'is not a valid email';
+ 		res.status(400).end();
+	}
 })
 
 router.post('/update_profile/:id', async (req, res, next) => {
@@ -122,14 +158,17 @@ router.get('/me', (req, res) => {
 });
 
 function sendEmailConfirmation(user, isCreated = false) {
-	user.validationToken = randtoken.generate(16);
-	user.validationTokenTime = new Date().getTime();
+	const newData = {
+		validationToken: randtoken.generate(16),
+		validationTokenTime: new Date().getTime()
+	}
 
 	const url = (isCreated) ? `${process.env.ROOT}/api/users/${user.id}` : `${process.env.ROOT}/api/users`;
 	const method = (isCreated) ? 'patch' : 'post';
+	const newUser = (isCreated) ? newData : Object.assign(user, newData);
 	
-	axios[method](url, user)
-	.then(({data}) => {
+	axios[method](url, newUser)
+	.then(({ data }) => {
 		console.log(data)
 		const user = data;
 		const validationLink = `${process.env.ROOT}/#/account/validation/${user.validationToken}/${user.email}`;
@@ -175,6 +214,17 @@ function sendEmail(email, link, template = 'welcome') {
 	.catch((err) => console.error(err.data));
 }
 
+function sendPasswordReset(user) {
+	user.resetToken =randtoken.generate(16);
+	user.resetTokenTime = new Date().getTime();
 
+	axios.put(`${process.env.ROOT}/api/users/${user.id}`, user)
+	.then(({ data }) => {
+		const user = data;
+		const validationLink = `${process.env.ROOT}/#/reset_password/${user.resetToken}`;
+		sendEmail(user.email, validationLink);
+	})
+	.catch((err) => console.log('Error de post', err));
+}
 
 module.exports = router

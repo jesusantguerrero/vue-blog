@@ -7,7 +7,7 @@
 				<div class="form-group">
 					<label for="email" class="sr-only">Email</label>
 					<p :class="{ 'control': true }">
-							<input v-validate="'required|email'" v-model="user.email" class="form-control" :class="{'input': true, 'is-danger': errors.has('email') }" name="email" type="text" placeholder="Email">
+							<input v-validate="'required|email'" v-model.lazy="user.email" class="form-control" :class="{'input': true, 'is-danger': errors.has('email') }" name="email" type="text" placeholder="Email">
 							<span v-show="errors.has('email')" class="help text-danger">{{ errors.first('email') }}</span>
 					</p>
 				</div>
@@ -15,7 +15,7 @@
 				<div class="form-group">
 					<label for="username" class="sr-only"> Username </label>
 					<p :class="{ 'control': true }">
-						<input  type="name" id="username" v-model="user.username" v-validate="'required|alpha_num'" class="form-control" :class="{'input': true, 'is-danger': errors.has('username') }" name="username" placeholder="username">
+						<input  type="name" id="username" v-model.lazy="user.username" v-validate="'required|alpha_num'" class="form-control" :class="{'input': true, 'is-danger': errors.has('username') }" name="username" placeholder="username">
 						<span v-show="errors.has('username')" class="help text-danger">{{ errors.first('username') }}</span>
 					</p>
 				</div>
@@ -23,7 +23,7 @@
 				<div class="form-group">
 					<label for="password" class="sr-only" >Password</label>
 					<p :class="{ 'control': true }">
-							<input  type="password" id="password" v-model="user.password" v-validate="'required'" class="form-control" :class="{'input': true, 'is-danger': errors.has('password') }" name="password" placeholder="password">
+							<input  type="password" id="password" v-model.lazy="user.password" v-validate="'required'" class="form-control" :class="{'input': true, 'is-danger': errors.has('password') }" name="password" placeholder="password">
 							<span v-show="errors.has('password')" class="help text-danger">{{ errors.first('password') }}</span>
 					</p>
 				</div>

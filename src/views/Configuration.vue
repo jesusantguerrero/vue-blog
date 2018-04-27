@@ -20,7 +20,7 @@
 						<app-wigget title="User Activity" ref="appWidget">
 								<div class="tab-content" id="pills-tabContent">
 									<TabPane ids="published" classes="show active" ref="panePublished">
-										<UpdatePassword></UpdatePassword>
+										<UpdatePassword :require-old="true"></UpdatePassword>
 									</TabPane>
 
 									<TabPane ids="liked" classes="" ref="paneLiked">

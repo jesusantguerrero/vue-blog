@@ -8,14 +8,14 @@
 							</router-link>
 						</h2>
             <div class="card-text" v-if="isFullContent" v-html="post.content"></div>
-            <p class="card-text" v-else v-html=" post.content | summary"> </p>
+            <p class="card-text" v-else v-html="summary(post.content)"> </p>
             <router-link :to="postLink" class="btn btn-primary">Read More &rarr;</router-link>
         </div>
         <div class="card-footer text-muted">
 						Posted on 
             <router-link :to="postLink">{{ post.publishDate }}</router-link> by
-            <router-link :to="`/author/${post.author.username}`"> {{ post.author.alias }} </router-link> 
-						<router-link :to="authorLink"> <img class="d-flex mr-3 rounded-circle" :src="post.author.picture || 'http://placehold.it/50x50'" alt=""> </router-link>
+            <router-link :to="`/author/${post.author.username}`"> {{ post.author.alias }} (@{{ post.author.username}}) </router-link> 
+						<router-link :to="authorLink"> <img class="d-flex mr-3 rounded-circle post__image" :src="post.author.picture || 'http://placehold.it/50x50'" alt=""> </router-link>
             <router-link :to="postLink"> Comments:  {{ post.comments.length }} </router-link> |
             <span> Likes:  {{ post.likes.length }} </span>
 						
@@ -48,16 +48,6 @@ export default {
 		}
 	},
 
-	filters: {
-		summary(text) {
-			if (text) {
-				const plainText = (text[0] == "<") ? $(text).text() : text;
-				return plainText.slice(0, 200);
-			} 
-			return text;
-		}
-	},
-
 	computed: {
 		postLink() {
 			return `/post/${this.post.id}?ref=${this.origin}`;
@@ -74,6 +64,14 @@ export default {
 	},
 
 	methods: {
+		summary(text) {
+			if (text) {
+				const plainText = (text[0] == "<") ? $(text).text() : text;
+				return plainText.slice(0, 200);
+			} 
+			return text;
+		},
+
 		getImageLink() {
 			const { content } = this.post;
 			if (this.isHTML) {
@@ -88,4 +86,11 @@ export default {
 	}
 }
 </script>
+
+<style lang="sass">
+	.post__image
+		height: 50px
+		width: 50px
+</style>
+
 

@@ -3,7 +3,7 @@
 		<div class="col-lg-8">
 			<br>
 			<div class="lead d-flex justify-content-between w-100" v-show="post"> 
-				<router-link :to="`${origin}`"> {{ goBackText }} </router-link>
+				<router-link :to="`${origin || '/home'}`"> {{ goBackText }} </router-link>
 				<div v-if="isAuthor(post.userId)">
 					<button @click="deletePost" class="btn btn-danger"> X </button>	
 					<router-link class="btn btn-success" :to="`/edit/post/${this.post.id}`"> Edit </router-link>
@@ -73,7 +73,8 @@
 
 			goBackText() {
 				const { ref } = this.$route.query;
-				return (ref && (/[home]|[author]/g.test(ref))) ? 'Volver al listado' : 'Volver a la Busqueda';
+				console.log(ref)
+				return (ref && ref == '/search') ? 'Volver a la Busqueda' : 'Volver al listado';
 			},
 
 			origin() {
