@@ -53,6 +53,18 @@
       "id": 4
     },
     {
+      "oldPassword": "hola",
+      "password": "$2a$10$yg7ycFWlfcIS9HD6Pfpz1ulU7Fv/NETy2Wu6nk8yIfCNw9HHLrC6K",
+      "validationToken": "jl2ILspl7fGvvDKW",
+      "validationTokenTime": 1524515965769,
+      "id": 5
+    },
+    {
+      "validationToken": "pmqt1ECYHT01jU9L",
+      "validationTokenTime": 1524835718984,
+      "id": 6
+    },
+    {
       "email": "jesus-g31@hotmail.com",
       "username": "anthony",
       "alias": "Anthony  Alvarez",
@@ -66,6 +78,46 @@
       "name": "Anthony ",
       "lastname": "Alvarez",
       "description": "Yo",
+      "tokenTime": null
+    },
+    {
+      "yeshua": "",
+      "id": 8
+    },
+    {
+      "yeshua": "",
+      "id": 9
+    },
+    {
+      "yeshua": "",
+      "id": 10
+    },
+    {
+      "yeshua": "",
+      "id": 11
+    },
+    {
+      "yeshua": "",
+      "id": 12
+    },
+    {
+      "yeshua": "",
+      "id": 13
+    },
+    {
+      "email": "g3460409@nwytg.com",
+      "username": "danny",
+      "alias": "Danny Feliz",
+      "picture": "",
+      "password": "$2a$10$C7RbQlzyrPAs6V2IFgu.BufC7e0mlpcckrAJAhdhdl5/1nh8947pO",
+      "isActive": false,
+      "validationToken": "",
+      "validationTokenTime": null,
+      "id": 14,
+      "sActive": true,
+      "name": "Danny",
+      "lastname": "Feliz",
+      "description": "This is me",
       "tokenTime": null
     }
   ],
@@ -281,9 +333,9 @@
       "comments": [],
       "likes": [],
       "created": "2018-04-22",
-      "updated": "",
-      "canComment": true,
-      "isPublish": false,
+      "updated": "2018-04-27",
+      "canComment": false,
+      "isPublish": true,
       "isDeleted": false,
       "userId": 3,
       "update": "2018-04-22",
@@ -389,17 +441,48 @@
       "title": "Title",
       "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum porttitor, elit non porttitor rhoncus, neque urna consectetur metus, vitae feugiat dui libero quis ipsum. Ut eget volutpat felis. Morbi ornare turpis neque, eu tempor felis elementum quis. Praesent gravida eleifend ante at viverra. Donec pretium vulputate libero, non tincidunt ex commodo vel. Sed malesuada et leo non sagittis. Proin ut finibus velit. Pellentesque eu laoreet ipsum. Aenean volutpat nisl ac risus feugiat convallis. Vivamus dapibus purus vitae vulputate sagittis. Quisque congue ipsum vel risus porttitor cursus. Aliquam erat volutpat. Nullam id dolor convallis, consectetur nulla nec, pretium arcu. Sed blandit lacus sit amet massa varius, eget aliquam augue tempus. Vivamus vulputate, orci at auctor porta, quam odio mattis dolor, nec elementum risus augue dignissim enim. Proin ut arcu eu elit varius aliquam.</p><p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse porttitor ipsum at tempor consectetur. Suspendisse pellentesque fermentum pharetra. Ut non erat eu diam cursus varius. Aliquam tempus felis ut velit fermentum auctor. Suspendisse fermentum urna turpis, a dapibus augue scelerisque ut. Vestibulum in velit ut odio tincidunt aliquam id at nisl. Nullam commodo risus ac efficitur eleifend. Duis ultricies sapien id eros sollicitudin ultricies. Sed vel imperdiet quam. Sed scelerisque urna in metus commodo, in pharetra ipsum facilisis. Aliquam lobortis nibh non diam suscipit rutrum. Duis laoreet elit in eros blandit, eget tincidunt neque dignissim. In hac habitasse platea dictumst.</p><p>Morbi pretium diam eu dolor viverra elementum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin quam tellus, pretium ac blandit id, pharetra ut eros. Quisque et odio dignissim, blandit magna vitae, vehicula lacus. Donec eget ornare nisl. Vestibulum leo sem, maximus in varius fermentum, malesuada a lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque eget imperdiet eros. Suspendisse sit amet arcu vel mauris scelerisque finibus a ut leo.</p><p>Proin lobortis in orci a ullamcorper. Pellentesque vel vehicula sem. Donec gravida finibus maximus. Vestibulum laoreet rhoncus enim, non placerat ipsum mattis vel. Nullam volutpat vulputate ligula eget euismod. Sed sed est accumsan, condimentum odio in, volutpat nulla. Nunc egestas nisi at purus egestas, eget pharetra nisi maximus. In at finibus lectus. Praesent eget elementum nibh, quis sollicitudin nisi. Aliquam ac tortor eu metus facilisis venenatis. Nunc ultricies elit vel leo volutpat placerat.</p><p>Fusce sit amet augue eget orci ornare interdum vitae quis elit. Quisque sodales eu ex eget lobortis. Vivamus quis dolor odio. Praesent mauris dolor, congue a porttitor nec, rutrum id lectus. Ut posuere sapien et ante bibendum, vel posuere urna accumsan. Vivamus eget leo vehicula, fermentum nisi ut, ultrices purus. Suspendisse finibus nibh eu urna efficitur, non porta augue vulputate. Praesent pharetra eros ornare felis luctus, ut bibendum nisl aliquet. Donec non maximus lacus. Vestibulum sem dui, porta commodo dignissim nec, euismod vel dolor. Donec nisl nulla, pretium et scelerisque vel, congue in nibh. Ut purus arcu, tempor ac tellus quis, congue semper massa.</p>",
       "publishDate": "2018-04-22",
-      "author": {},
+      "author": {
+        "email": "jesusant@mctekk.com",
+        "username": "yeshua",
+        "alias": "Jesus Guerrero",
+        "picture": "./uploads/3.jpg",
+        "isActive": true,
+        "id": 3,
+        "name": "Jesus",
+        "lastname": "Guerrero",
+        "description": "Hola mundo",
+        "isPrivate": false,
+        "tokenTime": null,
+        "resetToken": "",
+        "resetTokenTime": "",
+        "password": "$2a$10$fup6iBZhYbVeE3nJFWDMsOrfLfxLSm9FsiLUfXwfwSD3lTH0u//9G"
+      },
       "comments": [],
       "likes": [],
       "created": "2018-04-22",
       "updated": "",
       "canComment": true,
       "isPublish": true,
-      "isDeleted": false,
+      "isDeleted": true,
       "userId": 3,
       "update": "2018-04-22",
-      "id": 20
+      "id": 20,
+      "user": {
+        "email": "jesusant@mctekk.com",
+        "username": "yeshua",
+        "alias": "Jesus Guerrero",
+        "picture": "./uploads/3.jpg",
+        "isActive": true,
+        "id": 3,
+        "name": "Jesus",
+        "lastname": "Guerrero",
+        "description": "Hola mundo",
+        "isPrivate": false,
+        "tokenTime": null,
+        "resetToken": "",
+        "resetTokenTime": "",
+        "password": "$2a$10$fup6iBZhYbVeE3nJFWDMsOrfLfxLSm9FsiLUfXwfwSD3lTH0u//9G"
+      }
     },
     {
       "title": "lorem 34",
@@ -763,6 +846,85 @@
         "username": "yeshua",
         "alias": "Jesus Guerrero",
         "picture": "//www.gravatar.com/avatar/62ace26de95c89896c187aed2dc48677",
+        "isActive": true,
+        "id": 3,
+        "name": "Jesus",
+        "lastname": "Guerrero",
+        "description": "Hola mundo",
+        "isPrivate": false,
+        "tokenTime": null,
+        "resetToken": "",
+        "resetTokenTime": "",
+        "password": "$2a$10$fup6iBZhYbVeE3nJFWDMsOrfLfxLSm9FsiLUfXwfwSD3lTH0u//9G"
+      }
+    },
+    {
+      "title": "THis is a test",
+      "content": "<p>awesome</p>",
+      "publishDate": null,
+      "author": {},
+      "comments": [],
+      "likes": [],
+      "created": "2018-04-27",
+      "updated": "2018-04-27",
+      "canComment": false,
+      "isPublish": true,
+      "isDeleted": true,
+      "userId": 3,
+      "update": "2018-04-27",
+      "id": 27
+    },
+    {
+      "title": "My first post",
+      "content": "<p>This is my new post</p>",
+      "publishDate": "2018-04-27",
+      "author": {},
+      "comments": [],
+      "likes": [],
+      "created": "2018-04-27",
+      "updated": "",
+      "canComment": true,
+      "isPublish": true,
+      "isDeleted": false,
+      "userId": 14,
+      "update": "2018-04-27",
+      "id": 28
+    },
+    {
+      "title": "       f",
+      "content": "<p>&nbsp; &nbsp; &nbsp; &nbsp;h</p>",
+      "publishDate": "2018-04-27",
+      "author": {
+        "email": "jesusant@mctekk.com",
+        "username": "yeshua",
+        "alias": "Jesus Guerrero",
+        "picture": "./uploads/3.jpg",
+        "isActive": true,
+        "id": 3,
+        "name": "Jesus",
+        "lastname": "Guerrero",
+        "description": "Hola mundo",
+        "isPrivate": false,
+        "tokenTime": null,
+        "resetToken": "",
+        "resetTokenTime": "",
+        "password": "$2a$10$fup6iBZhYbVeE3nJFWDMsOrfLfxLSm9FsiLUfXwfwSD3lTH0u//9G"
+      },
+      "comments": [],
+      "likes": [],
+      "created": "2018-04-27",
+      "updated": "",
+      "canComment": true,
+      "isPublish": true,
+      "isDeleted": true,
+      "userId": 3,
+      "update": "2018-04-27",
+      "id": 29,
+      "user": {
+        "email": "jesusant@mctekk.com",
+        "username": "yeshua",
+        "alias": "Jesus Guerrero",
+        "picture": "./uploads/3.jpg",
         "isActive": true,
         "id": 3,
         "name": "Jesus",
@@ -1218,18 +1380,36 @@
         "isPrivate": false,
         "tokenTime": null,
         "resetToken": "",
-        "resetTokenTime": ""
+        "resetTokenTime": "",
+        "password": "$2a$10$fup6iBZhYbVeE3nJFWDMsOrfLfxLSm9FsiLUfXwfwSD3lTH0u//9G"
       },
       "content": "<p>Hello <span class=\"atwho-inserted\" data-atwho-at-query=\"@ye\" data-fr-verified=\"true\"><a href=\"/#/author/3\">@yeshua</a></span>⁠ <span class=\"atwho-inserted\" data-atwho-at-query=\"@insa\" data-fr-verified=\"true\"><a href=\"/#/author/4\">@insane</a></span>⁠ <span class=\"atwho-inserted\" data-atwho-at-query=\"@\" data-fr-verified=\"true\"><a href=\"/#/author/7\">@anthony</a></span>⁠&nbsp;</p>",
       "likes": [
-        3
+        3,
+        14
       ],
       "editMode": false,
       "created": "2018-04-27",
       "mentions": [
         "@yeshua"
       ],
-      "userId": 3
+      "userId": 3,
+      "user": {
+        "email": "jesusant@mctekk.com",
+        "username": "yeshua",
+        "alias": "Jesus Guerrero",
+        "picture": "./uploads/3.jpg",
+        "isActive": true,
+        "id": 3,
+        "name": "Jesus",
+        "lastname": "Guerrero",
+        "description": "Hola mundo",
+        "isPrivate": false,
+        "tokenTime": null,
+        "resetToken": "",
+        "resetTokenTime": "",
+        "password": "$2a$10$fup6iBZhYbVeE3nJFWDMsOrfLfxLSm9FsiLUfXwfwSD3lTH0u//9G"
+      }
     },
     {
       "id": 37,
@@ -1256,6 +1436,98 @@
       "mentions": [
         "@insane"
       ],
+      "userId": 3
+    },
+    {
+      "id": 38,
+      "postId": 26,
+      "author": {
+        "email": "g3460409@nwytg.com",
+        "username": "danny",
+        "alias": "Danny Feliz",
+        "picture": "",
+        "isActive": false,
+        "id": 14,
+        "sActive": true,
+        "name": "Danny",
+        "lastname": "Feliz",
+        "description": "This is me"
+      },
+      "content": "<p>This is awesoime&nbsp;&nbsp;<span class=\"atwho-inserted\" data-atwho-at-query=\"@yes\" data-fr-verified=\"true\"><a href=\"/#/author/3\">@yeshua</a></span>⁠ asasdasddasd</p>",
+      "likes": [],
+      "editMode": false,
+      "created": "2018-04-27",
+      "mentions": [
+        "@yeshua"
+      ],
+      "userId": 14
+    },
+    {
+      "id": 39,
+      "postId": 26,
+      "author": {
+        "email": "g3460409@nwytg.com",
+        "username": "danny",
+        "alias": "Danny Feliz",
+        "picture": "",
+        "password": "$2a$10$C7RbQlzyrPAs6V2IFgu.BufC7e0mlpcckrAJAhdhdl5/1nh8947pO",
+        "isActive": false,
+        "validationToken": "",
+        "validationTokenTime": null,
+        "id": 14,
+        "sActive": true,
+        "name": "Danny",
+        "lastname": "Feliz",
+        "description": "This is me",
+        "tokenTime": null
+      },
+      "content": "<p>&nbsp;<span class=\"atwho-inserted\" data-atwho-at-query=\"@yes\" data-fr-verified=\"true\"><a href=\"/#/author/3\">@yeshua</a></span>⁠ asdasd</p>",
+      "likes": [],
+      "editMode": false,
+      "created": "2018-04-27",
+      "mentions": [
+        "@yeshua"
+      ],
+      "userId": 14,
+      "user": {
+        "email": "g3460409@nwytg.com",
+        "username": "danny",
+        "alias": "Danny Feliz",
+        "picture": "",
+        "password": "$2a$10$C7RbQlzyrPAs6V2IFgu.BufC7e0mlpcckrAJAhdhdl5/1nh8947pO",
+        "isActive": false,
+        "validationToken": "",
+        "validationTokenTime": null,
+        "id": 14,
+        "sActive": true,
+        "name": "Danny",
+        "lastname": "Feliz",
+        "description": "This is me",
+        "tokenTime": null
+      }
+    },
+    {
+      "id": 40,
+      "postId": 26,
+      "author": {},
+      "content": "<p><span class=\"atwho-inserted\" data-atwho-at-query=\"@da\" data-fr-verified=\"true\"><a href=\"/#/author/14\">@danny</a></span>⁠&nbsp;</p>",
+      "likes": [],
+      "editMode": false,
+      "created": "2018-04-27",
+      "mentions": [
+        "@danny"
+      ],
+      "userId": 14
+    },
+    {
+      "id": 41,
+      "postId": 29,
+      "author": {},
+      "content": "<p>hhh</p>",
+      "likes": [],
+      "editMode": false,
+      "created": "2018-04-27",
+      "mentions": [],
       "userId": 3
     }
   ]

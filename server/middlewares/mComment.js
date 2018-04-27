@@ -9,7 +9,6 @@ async function commentMiddleware (req, res, next) {
 		let { mentions } = comment;
 		const { method } = req;
 		const author = await User.findById(comment.userId);
-		console.log(author)
 
 		if (method === 'PATCH') {
 			const oldComment = await axios.get(`${process.env.ROOT}/api/comments/${comment.id}`).then(({data}) => data).catch((err) => console.log(err));
