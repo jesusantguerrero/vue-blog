@@ -15,7 +15,7 @@
 <script>
 import VueFroala from 'vue-froala-wysiwyg';
 const atJsConfig = {};
-const commentToolbar =  ['undo', 'redo' , '|', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'clearFormatting', 'insertTable', 'emoticons'];
+const commentToolbar =  ['undo', 'redo' , '|', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'clearFormatting', 'insertTable'];
 const reachToolbar = [...commentToolbar, '|','formatOL','formatUL','insertLink','insertImage','insertVideo','|','quote','paragraphStyle', 'paragraphFormat', ];
 
 export default {

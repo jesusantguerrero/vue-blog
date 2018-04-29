@@ -101,7 +101,7 @@ export default {
 			});
 
 			params = params.join('').replace('author', 'user.username')
-			this.$http.get(`/posts?${params}isDeleted=false&isPublish=true&_sort=id&_order=desc&_embed=comments&_expand=user`)
+			this.$http.get(`/posts?${params}isDeleted=false&isPublish=true&_sort=id&_order=desc&_expand=user&_embed=comments`)
 				.then((res) => {
 					this.posts = res.data.map((post) => {
 						post.author = post.user;

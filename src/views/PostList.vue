@@ -14,11 +14,11 @@
 			 </TabPane>
 
 			 <TabPane ids="draft" classes="">
-  				<v-client-table :data="drafted" :columns="columns" :options="options" name="t-draft-post"></v-client-table>
+  				<v-client-table :data="drafted" :columns="columns" :options="optionsPrivate" name="t-draft-post"></v-client-table>
 			 </TabPane>
 
 			 <TabPane ids="trash" classes="">
-  				<v-client-table :data="trashed" :columns="columns" :options="options" name="t-trash-post"></v-client-table>
+  				<v-client-table :data="trashed" :columns="columns" :options="optionsPrivate" name="t-trash-post"></v-client-table>
 			 </TabPane>
 
 		</div>
@@ -34,7 +34,35 @@
 	import AppPagination from '../components/AppPagination';
 	import TabLink from '../components/TabLink';
 	import TabPane from '../components/TabPane';
-	import title from '../components/table/Title.vue'
+
+	const options = {
+		pagination: {
+			chunk: 25
+		},
+		perPage: 25,
+		sortable: ['title', 'comments', 'likes', 'created', 'published'],
+		storage: 'session',
+		filterByColums: true,
+		saveState: true,
+		templates: {
+			'#': (h, row, index) => {
+					return index;
+			},
+			comments: (h, row, index) => {
+				return row.comments.length;
+			},
+			likes: (h, row) => {
+				return row.likes.length;
+			},
+			published: (h, row) => {
+				return row.publishDate || '--'
+			},
+			title: 'title'
+		}
+	}
+
+	const optionsPrivate = options;
+	optionsPrivate.templates.title = 'privateTitle';
 
 	export default {
 		components: {
@@ -69,31 +97,8 @@
 				
 				columns: ['#', 'title', 'comments', 'likes', 'created', 'published'],
         posts: [],
-        options: {
-					pagination: {
-						chunk: 25
-					},
-					perPage: 25,
-					sortable: ['title', 'comments', 'likes', 'created', 'published'],
-					storage: 'session',
-					filterByColums: true,
-					saveState: true,
-					templates: {
-            '#': (h, row, index) => {
-                return index;
-						},
-						comments: (h, row, index) => {
-							return row.comments.length;
-						},
-						likes: (h, row) => {
-							return row.likes.length;
-						},
-						published: (h, row) => {
-							return row.publishDate || '--'
-						},
-						title
-        	}
-        }
+        options,
+				optionsPrivate
 			}
 		},
 		watch:{

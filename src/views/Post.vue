@@ -1,6 +1,6 @@
 <template>
-	<div class="row" v-if="post && post.author">
-		<div class="col-lg-8">
+	<div class="row">
+		<div class="col-lg-8" v-if="post && post.author && !isPrivateOrDeleted">
 			<br>
 			<div class="lead d-flex justify-content-between w-100" v-show="post"> 
 				<router-link :to="`${origin || '/home'}`"> {{ goBackText }} </router-link>
@@ -25,12 +25,20 @@
 				</a>
       </p>
 			<hr>
-			<h2> Comments </h2>
-				<p> Post a new comment </p>
-				<comment-form v-if="post.canComment" :is-delete-on-save="true" :isComment="true" :model="comment.content" btnSaveText="Create" @saved="createComment" @canceled="clearComment"></comment-form>
+			<h2> Comments ({{ this.comments.length }})</h2>
+				<div v-if="post.canComment">
+					<br>
+					<p> Post a new comment </p>
+					<comment-form :is-delete-on-save="true" :isComment="true" :model="comment.content" btnSaveText="Create" @saved="createComment" @canceled="clearComment"></comment-form>
+				</div>
 				<br>
 				<p> Comments (current Order: {{ commentOrder }}) <button class="btn btn-primary" @click="changeCommentOrder"> Change Order </button></p>
 				<comment-item :key="i" v-for="(comment, i) of commentList" :comment="comment" model="comment.content" @update-comment="updateComment" @delete-comment="deleteComment" @liked="commentLiked"></comment-item>
+		</div>
+		<div v-if="isPrivateOrDeleted">
+			<br>
+			<h2> This post is private or have been deleted</h2>
+			<router-link to="/home">go back to home page</router-link>
 		</div>
   </div>
 
@@ -43,7 +51,7 @@
 	const comment = {
       id: null,
       postId: null,
-      author: {},
+			author: {},
       content: '',
       likes: [],
       editMode: false,
@@ -92,6 +100,7 @@
 
 		data() {
 			return {
+				isPrivateOrDeleted: false,
 				commentOrder: 'desc',
 				comment: { ...comment },
 				comments: [],
@@ -109,12 +118,14 @@
 
 		methods: {
 			getPost() {
-				this.$http.get(`/posts/${this.$route.params.id}?_expand=user`)
+				this.$http.get(`/posts?id=${this.$route.params.id}&isPublish=true&isDeleted=false&_expand=user`)
 				.then(({data}) => {
-					if (data) {
-						data.author = data.user;
-					}	
-					this.post = data;
+					if (data.length) {
+						this.post = data[0];
+						this.post.author = this.post.user;
+					}	else {
+						this.isPrivateOrDeleted = true;
+					}
 				})
 			},
 
@@ -237,7 +248,7 @@
 					this.post.likes.push(profile.id);
 				}
 
-				this.$http.put(`/posts/${post.id}`, post)
+				this.$http.patch(`/posts/${post.id}`, { likes: this.post.likes })
 					.then(({ data }) => {
 						this.post.likes = data.likes;
 						this.$toastr.success(message);

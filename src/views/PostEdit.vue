@@ -118,10 +118,11 @@
 					this.post.updated = this.now();
 					this.$http.patch(`/posts/${this.post.id}`, this.post)
 						.then(({ data }) => {
-							this.$toastr.success('post published');
 							if (data.isPublish) {
+								this.$toastr.success('post updated and published');
 								this.$router.push(`/post/${data.id}`);
 							} else {
+								this.$toastr.success('post updated');
 								this.$router.push('/home');
 							}
 						})
