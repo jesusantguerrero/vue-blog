@@ -81,7 +81,7 @@ export default {
 				} 
 			}
 
-			return 'http://placehold.it/750x300';
+			return './img/placeholder-blog.jpg';
 		}
 	}
 }

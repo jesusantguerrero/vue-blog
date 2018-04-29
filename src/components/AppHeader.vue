@@ -23,6 +23,8 @@
 									<router-link class="dropdown-item" to="/config"> config </router-link>
 									<router-link class="dropdown-item" to="/my-posts"> my posts </router-link>
 									<div class="dropdown-divider"></div>
+									<router-link class="dropdown-item" to="/new-post"> new post </router-link>
+									<div class="dropdown-divider"></div>
 									<a class="dropdown-item" href="/api/auth/logout">logout</a>
 								</div>
 							</li>

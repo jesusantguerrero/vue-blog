@@ -12,8 +12,8 @@
 						<app-wigget title="Search">
 							<search></search>
 						</app-wigget>
-						<app-wigget title="Nuevo Post" v-if="isLogged">
-							<router-link to='/new-post'> Nuevo Post </router-link>
+						<app-wigget title="New Post" v-if="isLogged">
+							<router-link to='/new-post'> New Post </router-link>
 						</app-wigget>
 				</div>
 
