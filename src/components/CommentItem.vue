@@ -4,7 +4,7 @@
 			<div class="media-body">
 				<h5 class="mt-0"> <router-link :to="authorLink"> {{ comment.author.alias }} </router-link> </h5>
 				<div v-if="!comment.editMode" class="commet-content" v-html="comment.content"></div>
-				<comment-form v-else :model="comment.content" :id="comment.id" btnSaveText="Update" @saved="updateComment" @canceled="cancelComment"></comment-form>
+				<comment-form v-else :model="comment.content" :id="comment.id" :isComment="true" btnSaveText="Update" @saved="updateComment" @canceled="cancelComment"></comment-form>
 				<br>
 				<p class="media-footer text-muted">
 						Posted on {{ comment.created }} |

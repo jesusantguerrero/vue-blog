@@ -14,15 +14,18 @@
 
 <script>
 import VueFroala from 'vue-froala-wysiwyg';
-const atJsConfig = {}
+const atJsConfig = {};
+const commentToolbar =  ['undo', 'redo' , '|', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'clearFormatting', 'insertTable', 'emoticons'];
+const reachToolbar = [...commentToolbar, '|','formatOL','formatUL','insertLink','insertImage','insertVideo','|','quote','paragraphStyle', 'paragraphFormat', ];
 
 export default {
-	props: ['model', 'btnSaveText', 'btnCancelText', 'id', "isDeleteOnSave"],
+	props: ['model', 'btnSaveText', 'btnCancelText', 'id', "isDeleteOnSave",'isComment'],
   data () {
     return {
 			value: this.model,
 			atJsConfig,
       config: {
+				toolbarButtons: this.isComment ? commentToolbar : reachToolbar,
         events: {
           'froalaEditor.initialized': async (e, editor) => {
 						await this.generateAtJsConfig();
@@ -62,6 +65,7 @@ export default {
 		},
 
 		cancel() {
+			this.value = '';
 			this.$emit('canceled')
 		},
 

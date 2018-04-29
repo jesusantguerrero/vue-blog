@@ -53,18 +53,6 @@
       "id": 4
     },
     {
-      "oldPassword": "hola",
-      "password": "$2a$10$yg7ycFWlfcIS9HD6Pfpz1ulU7Fv/NETy2Wu6nk8yIfCNw9HHLrC6K",
-      "validationToken": "jl2ILspl7fGvvDKW",
-      "validationTokenTime": 1524515965769,
-      "id": 5
-    },
-    {
-      "validationToken": "pmqt1ECYHT01jU9L",
-      "validationTokenTime": 1524835718984,
-      "id": 6
-    },
-    {
       "email": "jesus-g31@hotmail.com",
       "username": "anthony",
       "alias": "Anthony  Alvarez",
@@ -79,30 +67,6 @@
       "lastname": "Alvarez",
       "description": "Yo",
       "tokenTime": null
-    },
-    {
-      "yeshua": "",
-      "id": 8
-    },
-    {
-      "yeshua": "",
-      "id": 9
-    },
-    {
-      "yeshua": "",
-      "id": 10
-    },
-    {
-      "yeshua": "",
-      "id": 11
-    },
-    {
-      "yeshua": "",
-      "id": 12
-    },
-    {
-      "yeshua": "",
-      "id": 13
     },
     {
       "email": "g3460409@nwytg.com",
@@ -811,7 +775,7 @@
     },
     {
       "title": "New Post",
-      "content": "<p>New Post</p>",
+      "content": "<p>New Post by me</p>",
       "publishDate": "2018-04-27",
       "author": {
         "email": "jesusant@mctekk.com",
@@ -829,12 +793,213 @@
         "resetTokenTime": "",
         "password": "$2a$10$fup6iBZhYbVeE3nJFWDMsOrfLfxLSm9FsiLUfXwfwSD3lTH0u//9G"
       },
-      "comments": [],
+      "comments": [
+        {
+          "id": 34,
+          "postId": 26,
+          "author": {},
+          "content": "<p><span class=\"atwho-inserted\" data-atwho-at-query=\"@\" data-fr-verified=\"true\"><a href=\"/#/author/2\">@freesgen</a></span>⁠ Hello</p>",
+          "likes": [],
+          "editMode": false,
+          "created": "2018-04-27",
+          "mentions": [
+            "@freesgen"
+          ],
+          "userId": 3
+        },
+        {
+          "id": 35,
+          "postId": 26,
+          "author": {},
+          "content": "<p><span class=\"atwho-inserted\" data-atwho-at-query=\"@yesh\" data-fr-verified=\"true\"><a href=\"/#/author/3\">@yeshua</a></span>⁠&nbsp;</p>",
+          "likes": [],
+          "editMode": false,
+          "created": "2018-04-27",
+          "mentions": [
+            "@yeshua"
+          ],
+          "userId": 3
+        },
+        {
+          "id": 36,
+          "postId": 26,
+          "author": {
+            "email": "jesusant@mctekk.com",
+            "username": "yeshua",
+            "alias": "Jesus Guerrero",
+            "picture": "./uploads/3.jpg",
+            "isActive": true,
+            "id": 3,
+            "name": "Jesus",
+            "lastname": "Guerrero",
+            "description": "Hola mundo",
+            "isPrivate": false,
+            "tokenTime": null,
+            "resetToken": "",
+            "resetTokenTime": "",
+            "password": "$2a$10$fup6iBZhYbVeE3nJFWDMsOrfLfxLSm9FsiLUfXwfwSD3lTH0u//9G"
+          },
+          "content": "<p>Hello <span class=\"atwho-inserted\" data-atwho-at-query=\"@ye\" data-fr-verified=\"true\"><a href=\"/#/author/3\">@yeshua</a></span>⁠ <span class=\"atwho-inserted\" data-atwho-at-query=\"@insa\" data-fr-verified=\"true\"><a href=\"/#/author/4\">@insane</a></span>⁠ <span class=\"atwho-inserted\" data-atwho-at-query=\"@\" data-fr-verified=\"true\"><a href=\"/#/author/7\">@anthony</a></span>⁠&nbsp;</p>",
+          "likes": [
+            3,
+            14
+          ],
+          "editMode": false,
+          "created": "2018-04-27",
+          "mentions": [
+            "@yeshua"
+          ],
+          "userId": 3,
+          "user": {
+            "email": "jesusant@mctekk.com",
+            "username": "yeshua",
+            "alias": "Jesus Guerrero",
+            "picture": "./uploads/3.jpg",
+            "isActive": true,
+            "id": 3,
+            "name": "Jesus",
+            "lastname": "Guerrero",
+            "description": "Hola mundo",
+            "isPrivate": false,
+            "tokenTime": null,
+            "resetToken": "",
+            "resetTokenTime": "",
+            "password": "$2a$10$fup6iBZhYbVeE3nJFWDMsOrfLfxLSm9FsiLUfXwfwSD3lTH0u//9G"
+          }
+        },
+        {
+          "id": 38,
+          "postId": 26,
+          "author": {
+            "email": "g3460409@nwytg.com",
+            "username": "danny",
+            "alias": "Danny Feliz",
+            "picture": "",
+            "isActive": false,
+            "id": 14,
+            "sActive": true,
+            "name": "Danny",
+            "lastname": "Feliz",
+            "description": "This is me"
+          },
+          "content": "<p>This is awesoime&nbsp;&nbsp;<span class=\"atwho-inserted\" data-atwho-at-query=\"@yes\" data-fr-verified=\"true\"><a href=\"/#/author/3\">@yeshua</a></span>⁠ asasdasddasd</p>",
+          "likes": [],
+          "editMode": false,
+          "created": "2018-04-27",
+          "mentions": [
+            "@yeshua"
+          ],
+          "userId": 14
+        },
+        {
+          "id": 39,
+          "postId": 26,
+          "author": {
+            "email": "g3460409@nwytg.com",
+            "username": "danny",
+            "alias": "Danny Feliz",
+            "picture": "",
+            "password": "$2a$10$C7RbQlzyrPAs6V2IFgu.BufC7e0mlpcckrAJAhdhdl5/1nh8947pO",
+            "isActive": false,
+            "validationToken": "",
+            "validationTokenTime": null,
+            "id": 14,
+            "sActive": true,
+            "name": "Danny",
+            "lastname": "Feliz",
+            "description": "This is me",
+            "tokenTime": null
+          },
+          "content": "<p>&nbsp;<span class=\"atwho-inserted\" data-atwho-at-query=\"@yes\" data-fr-verified=\"true\"><a href=\"/#/author/3\">@yeshua</a></span>⁠ asdasd</p>",
+          "likes": [],
+          "editMode": false,
+          "created": "2018-04-27",
+          "mentions": [
+            "@yeshua"
+          ],
+          "userId": 14,
+          "user": {
+            "email": "g3460409@nwytg.com",
+            "username": "danny",
+            "alias": "Danny Feliz",
+            "picture": "",
+            "password": "$2a$10$C7RbQlzyrPAs6V2IFgu.BufC7e0mlpcckrAJAhdhdl5/1nh8947pO",
+            "isActive": false,
+            "validationToken": "",
+            "validationTokenTime": null,
+            "id": 14,
+            "sActive": true,
+            "name": "Danny",
+            "lastname": "Feliz",
+            "description": "This is me",
+            "tokenTime": null
+          }
+        },
+        {
+          "id": 40,
+          "postId": 26,
+          "author": {},
+          "content": "<p><span class=\"atwho-inserted\" data-atwho-at-query=\"@da\" data-fr-verified=\"true\"><a href=\"/#/author/14\">@danny</a></span>⁠&nbsp;</p>",
+          "likes": [],
+          "editMode": false,
+          "created": "2018-04-27",
+          "mentions": [
+            "@danny"
+          ],
+          "userId": 14
+        },
+        {
+          "id": 42,
+          "postId": 26,
+          "author": {
+            "email": "jesusant@mctekk.com",
+            "username": "yeshua",
+            "alias": "Jesus Guerrero",
+            "picture": "./uploads/3.jpg",
+            "isActive": true,
+            "id": 3,
+            "name": "Jesus",
+            "lastname": "Guerrero",
+            "description": "Hola mundo",
+            "isPrivate": false,
+            "tokenTime": null,
+            "resetToken": "",
+            "resetTokenTime": "",
+            "password": "$2a$10$fup6iBZhYbVeE3nJFWDMsOrfLfxLSm9FsiLUfXwfwSD3lTH0u//9G"
+          },
+          "content": "<p>hola <span class=\"atwho-inserted\" data-atwho-at-query=\"@yesh\" data-fr-verified=\"true\"><a href=\"/#/author/3\">@yeshua</a></span>⁠&nbsp; <span class=\"atwho-inserted\" data-atwho-at-query=\"@insa\" data-fr-verified=\"true\"><a href=\"/#/author/4\">@insane</a></span>⁠&nbsp;<span class=\"atwho-inserted\" data-atwho-at-query=\"@ye\" data-fr-verified=\"true\"><a href=\"/#/author/3\"></a></span></p>",
+          "likes": [],
+          "editMode": false,
+          "created": "2018-04-28",
+          "mentions": [
+            "@yeshua",
+            "@insane",
+            ""
+          ],
+          "userId": 3,
+          "user": {
+            "email": "jesusant@mctekk.com",
+            "username": "yeshua",
+            "alias": "Jesus Guerrero",
+            "picture": "./uploads/3.jpg",
+            "isActive": true,
+            "id": 3,
+            "name": "Jesus",
+            "lastname": "Guerrero",
+            "description": "Hola mundo",
+            "isPrivate": false,
+            "tokenTime": null,
+            "resetToken": "",
+            "resetTokenTime": "",
+            "password": "$2a$10$fup6iBZhYbVeE3nJFWDMsOrfLfxLSm9FsiLUfXwfwSD3lTH0u//9G"
+          }
+        }
+      ],
       "likes": [
         3
       ],
       "created": "2018-04-27",
-      "updated": "",
+      "updated": "2018-04-29",
       "canComment": true,
       "isPublish": true,
       "isDeleted": false,
@@ -845,7 +1010,7 @@
         "email": "jesusant@mctekk.com",
         "username": "yeshua",
         "alias": "Jesus Guerrero",
-        "picture": "//www.gravatar.com/avatar/62ace26de95c89896c187aed2dc48677",
+        "picture": "./uploads/3.jpg",
         "isActive": true,
         "id": 3,
         "name": "Jesus",
@@ -1529,6 +1694,52 @@
       "created": "2018-04-27",
       "mentions": [],
       "userId": 3
+    },
+    {
+      "id": 42,
+      "postId": 26,
+      "author": {
+        "email": "jesusant@mctekk.com",
+        "username": "yeshua",
+        "alias": "Jesus Guerrero",
+        "picture": "./uploads/3.jpg",
+        "isActive": true,
+        "id": 3,
+        "name": "Jesus",
+        "lastname": "Guerrero",
+        "description": "Hola mundo",
+        "isPrivate": false,
+        "tokenTime": null,
+        "resetToken": "",
+        "resetTokenTime": "",
+        "password": "$2a$10$fup6iBZhYbVeE3nJFWDMsOrfLfxLSm9FsiLUfXwfwSD3lTH0u//9G"
+      },
+      "content": "<p>hola <span class=\"atwho-inserted\" data-atwho-at-query=\"@yesh\" data-fr-verified=\"true\"><a href=\"/#/author/3\">@yeshua</a></span>⁠&nbsp; <span class=\"atwho-inserted\" data-atwho-at-query=\"@insa\" data-fr-verified=\"true\"><a href=\"/#/author/4\">@insane</a></span>⁠&nbsp;<span class=\"atwho-inserted\" data-atwho-at-query=\"@ye\" data-fr-verified=\"true\"><a href=\"/#/author/3\"></a></span></p>",
+      "likes": [],
+      "editMode": false,
+      "created": "2018-04-28",
+      "mentions": [
+        "@yeshua",
+        "@insane",
+        ""
+      ],
+      "userId": 3,
+      "user": {
+        "email": "jesusant@mctekk.com",
+        "username": "yeshua",
+        "alias": "Jesus Guerrero",
+        "picture": "./uploads/3.jpg",
+        "isActive": true,
+        "id": 3,
+        "name": "Jesus",
+        "lastname": "Guerrero",
+        "description": "Hola mundo",
+        "isPrivate": false,
+        "tokenTime": null,
+        "resetToken": "",
+        "resetTokenTime": "",
+        "password": "$2a$10$fup6iBZhYbVeE3nJFWDMsOrfLfxLSm9FsiLUfXwfwSD3lTH0u//9G"
+      }
     }
   ]
 }

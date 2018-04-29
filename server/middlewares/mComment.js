@@ -11,8 +11,11 @@ async function commentMiddleware (req, res, next) {
 		const author = await User.findById(comment.userId);
 
 		if (method === 'PATCH') {
+			console.log('new mentions', mentions);
 			const oldComment = await axios.get(`${process.env.ROOT}/api/comments/${comment.id}`).then(({data}) => data).catch((err) => console.log(err));
 			mentions = mentions.filter((mention) => (!oldComment.mentions.includes(mention)));
+			console.log('old comment',oldComment);
+			console.log('new mentions', mentions);
 		}
 
 		if (mentions && mentions.length) {

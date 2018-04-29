@@ -1,6 +1,5 @@
 <template>
 	<div class="">
-	
 		<h1 class="my-4"> Edit Your Post: {{ post.title }} </h1>
 		<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
 			<TabLink ids="edit-post-tab" classes="active" refs="#edit-post" title="Edit Post"> </TabLink>
@@ -35,11 +34,11 @@
 							</div>
 
 							<template slot="actions-before">
-								<button v-show="!post.isPublish" class="btn btn-primary" @click="publishPost"> Publish </button>
+								<button class="btn btn-danger" @click="deletePost"> Eliminar </button>
 							</template>
 
 							<template slot="actions-after">
-								<button class="btn btn-primary" @click="deletePost"> Eliminar </button>
+								<button class="btn btn-primary" @click="publishPost"> Publish </button>
 							</template>
 						</comment-form>
 					</form>
@@ -98,9 +97,13 @@
 		methods: {
 
 			getPost() {
-				this.$http.get(`/posts/${this.$route.params.id}?_embed=comments`)
+				this.$http.get(`/posts/${this.$route.params.id}?_expand=user&_embed=comments`)
 				.then(({data}) => {
-					this.post = data;
+					if (this.isAuthor(data.user.id)) {
+						this.post = data;
+					} else {
+						this.$router.push(`/post/${this.$route.params.id}`);
+					}
 				})
 			},
 
@@ -128,24 +131,18 @@
 			},
 
 			deletePost() {	
-				this.post.isDeleted = true;
-				this.$http.patch(`/posts/${this.post.id}`, this.post)
-					.then(({ data }) => {
-						this.$toastr.success('post deleted');
-						// this.$router.push('/home');
-					})
+				if (confirm('Are you sure you wnat to delete this post?')) {
+					this.post.isDeleted = true;
+					this.$http.patch(`/posts/${this.post.id}`, this.post)
+						.then(({ data }) => {
+							this.$toastr.success('post deleted');
+							this.$router.push('/home');
+						})
+				}
 			},
 
 			onInput(content) {
 				this.post.content = content;
-			},
-	
-			setAutor() {
-				this.post.author = {
-					"username": "freesgen",
-					"alias": "Jesus Guerrero",
-					"picture": ""
-				}
 			},
 	
 			setDates() {

@@ -27,7 +27,7 @@
 			<hr>
 			<h2> Comments </h2>
 				<p> Post a new comment </p>
-				<comment-form v-if="post.canComment" :is-delete-on-save="true" :model="comment.content" btnSaveText="Create" @saved="createComment" @canceled="clearComment"></comment-form>
+				<comment-form v-if="post.canComment" :is-delete-on-save="true" :isComment="true" :model="comment.content" btnSaveText="Create" @saved="createComment" @canceled="clearComment"></comment-form>
 				<br>
 				<p> Comments (current Order: {{ commentOrder }}) <button class="btn btn-primary" @click="changeCommentOrder"> Change Order </button></p>
 				<comment-item :key="i" v-for="(comment, i) of commentList" :comment="comment" model="comment.content" @update-comment="updateComment" @delete-comment="deleteComment" @liked="commentLiked"></comment-item>
@@ -134,7 +134,7 @@
 				if (this.me) {
 					if (content && content.trim()) {
 						this.comment.userId = this.getAuthor();
-						this.getMentions(content)
+						this.comment.mentions = this.getMentions(content);
 						this.setDates();
 	
 						this.comment.postId = this.post.id;
@@ -171,9 +171,9 @@
 
 			updateComment({ content, comment }) {
 				if ( content.trim() ) {
-					this.getMentions(content)
 					const index = this.comments.findIndex((item) => item.id == comment.id );
 					comment.content = content;
+					comment.mentions = this.getMentions(content);
 	
 					this.$http.patch(`/comments/${comment.id}`, comment)
 						.then(({ data }) => {
@@ -259,7 +259,7 @@
 							mentions.push(mentionItem)
 					});
 				}
-				this.comment.mentions = mentions;
+				return mentions;
 			},
 
 			clearComment() {

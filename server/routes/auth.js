@@ -34,7 +34,7 @@ router.post('/validation', async (req, res, next) => {
 	const user = await User.find('email', credentials.email);
 	if (user.validationToken && credentials.email == user.email && user.validationToken == credentials.token && isValidTokenTime(user.validationTokenTime)) {
 		const newData = {
-			sActive: true,
+			isActive: true,
 			validationToken: '',
 			validationTokenTime: null
 		}
@@ -226,4 +226,4 @@ function sendPasswordReset(user) {
 	.catch((err) => console.log('Error de post', err));
 }
 
-module.exports = router
+module.exports = router;
