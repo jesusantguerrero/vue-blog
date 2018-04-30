@@ -25,7 +25,9 @@
 					</label>
 				</div>
 
+
 				<button class="btn btn-lg btn-primary btn-block" type="submit" @click.prevent="login">Sign in</button>
+				<router-link to="/reset_password">Forgot password </router-link>
 				<p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
     	</form>
 		</div>

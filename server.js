@@ -14,7 +14,6 @@ const fileUpload = require('express-fileupload');
 const randtoken = require('rand-token');
 const User = require('./server/utils/user');
 
-
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(jsonMiddlewares)
 

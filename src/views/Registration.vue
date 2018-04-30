@@ -36,6 +36,8 @@
 					</p>
 				</div>
 
+				<div class="g-recaptcha" data-sitekey="6Lc9bVYUAAAAADHVeTnVRPqbQIaf7pAOQorB0To9"></div>
+
 				<button class="btn btn-lg btn-primary btn-block" type="submit" @click.prevent="registerAccount">Sign up</button>
     	</form>
 		</div>
