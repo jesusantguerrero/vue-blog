@@ -77,10 +77,11 @@ export default {
 				this.setSearch(this.search);
 				setTimeout(() => {
 					this.searchPosts();
-				}, 500);
+				}, 1000);
 			},
 			deep: true
-		}
+		},
+		
 	},
 
 	mounted() {
@@ -91,7 +92,9 @@ export default {
 		searchPosts() {
 			let params = Object.entries(this.search.checks);
 			params = params.map((param) => {
-				if (param[0] !=='date' && param[1]) {
+				if (param[0] === 'author') {
+					// search this locally
+				} else if (param[0] !=='date' && param[1]) {
 					return `${param[0]}_like=${this.search.text}&`;
 				} else if (param[1]) {
 					const start = this.search.date.start|| 0;
@@ -100,14 +103,17 @@ export default {
 				}
 			});
 
-			params = params.join('').replace('author', 'user.username')
+			// params = params.join('').replace('author', 'user.username')
 			this.$http.get(`/posts?${params}isDeleted=false&isPublish=true&_sort=id&_order=desc&_expand=user&_embed=comments`)
 				.then((res) => {
 					this.posts = res.data.map((post) => {
 						post.author = post.user;
 						return post;
-					})
-
+					});
+					
+					if (this.search.checks.author) {
+						this.filterAuthor();
+					}
 					//  wait for paginate to render the list
 					setTimeout(() => {
 						const page = this.posts.length ? 1 : 0
@@ -120,7 +126,11 @@ export default {
 
 		onPageChange (toPage, fromPage) {
     	this.search.page = toPage;
-  	}
+  	},
+
+		filterAuthor() {
+			this.posts = this.posts.filter((post) => (post.author.username.indexOf(this.search.text) >= 0));
+		}
 
 	}
 }

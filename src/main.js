@@ -17,7 +17,7 @@ import axios from 'axios';
 import mixin from './utils/mixin';
 import router from './router';
 
-axios.defaults.baseURL = 'http://localhost:3000/api';
+axios.defaults.baseURL = '/api';
 
 Vue.use(VueFroala);
 Vue.use(VueAxios, axios);
