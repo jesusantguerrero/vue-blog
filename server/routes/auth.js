@@ -142,6 +142,23 @@ router.post('/update_password', async (req, res) => {
 	}
 })
 
+router.post('/change_password', async (req, res) => {
+	const { body } = req;
+	const user = await User.findById(req.user.id);
+
+	if (!req.user) {
+		res.statusMessage = 'You are not logged In';
+		res.status(400).end();
+	} else {
+			user.password = User.hash(body.password);
+			User.save(user)
+			.then((user) => {
+				res.redirect('/api/auth/logout');
+			})
+			.catch((err) => console.log(err))
+	}
+})
+
 router.post('/login', 
 passport.authenticate('local'), (req, res) => {
 	res.json(req.user)

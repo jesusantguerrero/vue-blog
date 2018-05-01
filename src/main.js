@@ -25,7 +25,7 @@ Vue.use(VeeValidate);
 Vue.use(VuePaginate);
 Vue.use(ClientTable, {}, false, 'bootstrap4', 'default');
 Vue.mixin(mixin);
-Vue.component('title',Title)
+Vue.component('table-title',Title)
 Vue.component('privateTitle',PrivateTitle)
 
 Vue.prototype.$toastr = Toastr;

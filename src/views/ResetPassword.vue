@@ -52,7 +52,7 @@ export default {
 					if (result) {
 						axios.post('/auth/reset_password', this.credentials)
 						.then(() => {
-							this.$toastr('email sent, check yout email');
+							this.$toastr.success('email sent, check your email');
 						}).catch((err) => {
 							this.$toastr.error(`${err.response.statusText}`);
 						});

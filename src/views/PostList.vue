@@ -57,7 +57,7 @@
 			published: (h, row) => {
 				return row.publishDate || '--'
 			},
-			title: 'title'
+			title: 'table-title'
 		}
 	}
 

@@ -45,11 +45,11 @@
       "username": "insane",
       "alias": "insane",
       "picture": "./uploads/4.PNG",
-      "password": "$2a$10$H7TwbuqasAQVoW.YqH50uel9NQFNj19PapUwhrZJ4Fp.8aLQaandG",
       "isActive": true,
-      "validationToken": "ehxMvVKv1yFKr3rU",
-      "validationTokenTime": 1524328887691,
-      "id": 4
+      "id": 4,
+      "resetToken": "",
+      "resetTokenTime": "",
+      "password": "$2a$10$GDNGcYMBCo64eI5nzrqr3u/UDIBcm7OOi.aCctn5pVIyjJZ3NiHfS"
     },
     {
       "email": "jesus-g31@hotmail.com",
@@ -971,6 +971,22 @@
         "resetTokenTime": "",
         "password": "$2a$10$fup6iBZhYbVeE3nJFWDMsOrfLfxLSm9FsiLUfXwfwSD3lTH0u//9G"
       }
+    },
+    {
+      "title": "With Image",
+      "content": "<p><img src=\"./uploads/rFKsWpRJ0hEs9eGzthought-catalog-470876.jpg\" style=\"width: 300px;\" class=\"fr-fic fr-dib fr-fil\"></p><p>The Image</p>",
+      "publishDate": "2018-05-01",
+      "author": {},
+      "comments": [],
+      "likes": [],
+      "created": "2018-05-01",
+      "updated": "",
+      "canComment": true,
+      "isPublish": true,
+      "isDeleted": false,
+      "userId": 3,
+      "update": "2018-05-01",
+      "id": 30
     }
   ],
   "comments": [

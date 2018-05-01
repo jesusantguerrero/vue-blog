@@ -26,6 +26,11 @@ export default {
 			atJsConfig,
       config: {
 				toolbarButtons: this.isComment ? commentToolbar : reachToolbar,
+				imageUploadParam: 'froala',
+				imageUploadURL: '/api/upload_froala',
+				imageUploadMethod: 'POST',
+        imageMaxSize: 5 * 1024 * 1024, 
+        imageAllowedTypes: ['jpeg', 'jpg', 'png'],
         events: {
           'froalaEditor.initialized': async (e, editor) => {
 						await this.generateAtJsConfig();
@@ -36,10 +41,22 @@ export default {
 								return false;
 							}
 						}, true)
-          }
-        }
-      },
-    }
+					},
+					'froalaEditor.image.uploaded': (e, editor, response) => {
+      		},
+      		'froalaEditor.image.error': (e, editor, error, response) => {
+						switch (error.code) {
+							case 1:
+								
+								break;
+						
+							default:
+								break;
+						}
+        	}
+				}
+			}
+		}
 	},
 
 	watch: {
