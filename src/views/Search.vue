@@ -104,6 +104,7 @@ export default {
 			});
 
 			// params = params.join('').replace('author', 'user.username')
+			params = params.join('');
 			this.$http.get(`/posts?${params}isDeleted=false&isPublish=true&_sort=id&_order=desc&_expand=user&_embed=comments`)
 				.then((res) => {
 					this.posts = res.data.map((post) => {
