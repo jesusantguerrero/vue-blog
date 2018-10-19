@@ -14,7 +14,6 @@ router.post('/order',(req, res) => {
 	} else {
 		message = listarPedidos(data)
 	}
-
 	res.json(message)
 })
 
@@ -24,9 +23,8 @@ router.post('/test', (req, res) => {
 	return res.json(message);
 })
 
-router.get('/order',(req, res) => {
-	console.log(req.params);
-	res.json({message : 'ok'})
+router.post('/llego', (req, res) => {
+	return res.send("@canal Muchachone vamo a come xD");
 })
 
 router.get('/test', (req, res) => {
@@ -41,20 +39,20 @@ function agregarComida(data) {
 		"text": `Orden \`${data.nombre_comida}\` agregada a la lista con exito`,
 		"attachments": [
 				{
-						"text":`gracias por hacer tu pedido @${user_name}`
+						"text":`gracias por hacer tu pedido @${data.user_name}`
 				}
 		]
 	}
 }
 
-function listarPedidos() {
-	const pedidos = ["pedido 1", "pedido2"];
+function listarPedidos(data) {
+	const orders = ["pedido 1", "pedido2"];
 	const response = {
 		"text": `Orden \`${data.nombre_comida}\` agregada a la lista con exito`,
 		"attachments": []
 	};
 
-	pedidos.forEach((pedido) => {
+	orders.forEach((order) => {
 		response.attachments.push({text: `${index + 1} - ${order}`})
 	})
 	response.attachments.push({text: ``})
@@ -65,14 +63,18 @@ function listarPedidos() {
 
 function enviarPedidos(orders) {
 	sendOrderEmail('jesusant@mctekk.com', orders,'pedidos');
-	return {
+	const response = {
 		"text": `Orden enviada`,
-		"attachments": [
-				{
-						"text":`gracias por hacer tu pedido.`
-				}
-		]
+		"attachments": []
 	}
+
+	orders.forEach((order) => {
+		response.attachments.push({text: `${index + 1} - ${order}`})
+	})
+	
+	response.attachments.push({text: ``})
+	response.attachments.push({text: `---gracias por hacer tu pedido.---`})
+	return response;
 }
 
 function sendOrderEmail(email, orders,template = 'welcome') {
