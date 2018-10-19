@@ -7,7 +7,6 @@
 		"node": "8.12.0"
 	},
   "dependencies": {
-		"micro": "latest",
     "axios": "^0.18.0",
     "bcrypt-nodejs": "0.0.3",
     "bootstrap": "^4.0.0",
@@ -64,7 +63,6 @@
     "build": "set NODE_ENV=production & webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
 		"dev-server": "nodemon server.js",
 		"heroku-postbuild":"npm run build",
-    "start": "micro",
     "start-dev": "node server.js",
     "db": "json-server --watch server/db/db.json --p 3600",
     "dev": "run-p js-watch dev-server",

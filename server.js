@@ -6,7 +6,8 @@ const path = require('path');
 const mComments = require('./server/middlewares/mComment');
 const authRouter = require('./server/routes/auth');
 const uploadRouter = require('./server/routes/upload');
-const PORT = process.env.PORT || 80;
+const slackRouter = require('./server/routes/slack');
+const PORT = process.env.PORT || 3000;
 const jsonMiddlewares = jsonServer.defaults();
 const router = jsonServer.router(path.resolve(__dirname, 'server/db/db.json'));
 const session = require('express-session');
@@ -24,7 +25,7 @@ app.use(session({ secret: 'vue-blog', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/api/auth', authRouter)
-
+app.use('/api/slack', slackRouter)
 app.use('/api', uploadRouter)
 
 app.use(mComments);
