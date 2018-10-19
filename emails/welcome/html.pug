@@ -1,4 +1,7 @@
-h4 Hi #{name},
+h4 Buenos dias #{name},
 br
-p Thanks for sign up in our app, press the link below to confirm tis email.
-a(href=link, target="_blank")= link
+p Estas son nuestras ordenes para el almuerzo de Hoy.
+ol
+ each order in orders
+    li= order
+p Gracias.
